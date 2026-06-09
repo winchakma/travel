@@ -47,19 +47,20 @@
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="p-6 text-center border-b border-gray-100">
           <div class="relative inline-block">
-            <img src="https://ui-avatars.com/api/?name=John+Doe&background=1a2b6b&color=fff&size=128" alt="Profile" class="w-24 h-24 rounded-full mx-auto shadow-md border-4 border-white" />
-            <button class="absolute bottom-0 right-0 bg-white text-gray-600 rounded-full w-8 h-8 flex items-center justify-center shadow hover:text-[#1a2b6b] transition-colors border border-gray-100">
+            <img id="sidebar-avatar" src="https://ui-avatars.com/api/?name=User&background=1a2b6b&color=fff&size=128" alt="Profile" class="w-24 h-24 rounded-full mx-auto shadow-md border-4 border-white object-cover" />
+            <input type="file" id="profile-upload" accept="image/*" class="hidden" />
+            <button onclick="document.getElementById('profile-upload').click()" class="absolute bottom-0 right-0 bg-white text-gray-600 rounded-full w-8 h-8 flex items-center justify-center shadow hover:text-[#1a2b6b] transition-colors border border-gray-100">
               <i class="fa-solid fa-camera"></i>
             </button>
           </div>
-          <h2 class="mt-4 text-xl font-bold text-gray-800">John Doe</h2>
-          <p class="text-sm text-gray-500">Member since 2023</p>
+          <h2 id="sidebar-name" class="mt-4 text-xl font-bold text-gray-800">User Name</h2>
+          <p id="sidebar-member-since" class="text-sm text-gray-500">Member since 2024</p>
         </div>
         <nav class="flex flex-col py-2">
           <a href="#" class="px-6 py-3 text-[#1a2b6b] font-medium bg-blue-50 border-l-4 border-[#1a2b6b] flex items-center gap-3">
             <i class="fa-regular fa-user w-5 text-center"></i> Personal Info
           </a>
-          <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-[#1a2b6b] font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
+          <a href="#bookings" class="px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-[#1a2b6b] font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
             <i class="fa-solid fa-suitcase w-5 text-center"></i> My Bookings
           </a>
           <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-[#1a2b6b] font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
@@ -72,7 +73,7 @@
             <i class="fa-solid fa-gear w-5 text-center"></i> Settings
           </a>
           <div class="my-2 border-t border-gray-100"></div>
-          <a href="index.html" class="px-6 py-3 text-red-500 hover:bg-red-50 font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
+          <a href="#" onclick="logout(); return false;" class="px-6 py-3 text-red-500 hover:bg-red-50 font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
             <i class="fa-solid fa-right-from-bracket w-5 text-center"></i> Log Out
           </a>
         </nav>
@@ -91,40 +92,37 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-              <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="John" />
+              <input type="text" id="prof-firstName" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-              <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="Doe" />
+              <input type="text" id="prof-lastName" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-              <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="john@example.com" />
+              <input type="email" id="prof-email" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 bg-gray-50 text-gray-500 cursor-not-allowed" value="" readonly />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-              <input type="tel" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="+1 234 567 8900" />
+              <input type="tel" id="prof-phone" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="" />
             </div>
             <div class="md:col-span-2">
               <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
-              <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="123 Travel Lane, Suite 456" />
+              <input type="text" id="prof-address" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
-              <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="New York" />
+              <input type="text" id="prof-city" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">Country</label>
-              <select class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b] bg-white">
-                <option value="US" selected>United States</option>
-                <option value="UK">United Kingdom</option>
-                <option value="CA">Canada</option>
-                <option value="AU">Australia</option>
+              <select id="prof-country" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b] bg-white">
+                <option value="United States">United States</option>
               </select>
             </div>
           </div>
           <div class="flex justify-end mt-8">
-            <button type="button" class="bg-[#1a2b6b] hover:bg-[#2d4a9e] text-white font-medium py-2.5 px-6 rounded-lg transition-colors">
+            <button type="button" id="prof-save-btn" class="bg-[#1a2b6b] hover:bg-[#2d4a9e] text-white font-medium py-2.5 px-6 rounded-lg transition-colors">
               Save Changes
             </button>
           </div>
@@ -138,19 +136,19 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="md:col-span-2 max-w-md">
               <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
-              <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+              <input type="password" id="pw-current" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
             </div>
             <div class="max-w-md">
               <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
-              <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+              <input type="password" id="pw-new" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
             </div>
             <div class="max-w-md">
               <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
-              <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+              <input type="password" id="pw-confirm" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
             </div>
           </div>
           <div class="mt-6">
-            <button type="button" class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors">
+            <button type="button" id="pw-save-btn" class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors">
               Update Password
             </button>
           </div>
@@ -240,10 +238,10 @@
 </footer>
 
 <script src="js/script.js"></script>
-
 <script src="js/config.js"></script>
 <script src="js/chatbot.js"></script>
 <script src="js/support_widget.js"></script>
+<script src="js/profile.js"></script>
 
 </body>
 </html>

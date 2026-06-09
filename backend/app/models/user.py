@@ -9,6 +9,9 @@ class User(Document):
     email: str = Indexed(unique=True)
     hashed_password: Optional[str] = Field(None)
     phoneNumber: Optional[str] = None
+    address: Optional[str] = None
+    city: Optional[str] = None
+    country: Optional[str] = "United States"
     nickname: str = "Elite Member"
     bio: str = "No bio set."
     weight: float = 75.0

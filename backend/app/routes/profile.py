@@ -205,6 +205,9 @@ async def update_profile(
     bio: Optional[str] = Form(None),
     goal: Optional[str] = Form(None),
     phoneNumber: Optional[str] = Form(None),
+    address: Optional[str] = Form(None),
+    city: Optional[str] = Form(None),
+    country: Optional[str] = Form(None),
     weight: Optional[float] = Form(None),
     weightGoal: Optional[float] = Form(None),
     height: Optional[float] = Form(None),
@@ -223,7 +226,10 @@ async def update_profile(
     if nickname: user.nickname = nickname
     if bio: user.bio = bio
     if goal: user.goal = goal
-    if phoneNumber: user.phoneNumber = phoneNumber
+    if phoneNumber is not None: user.phoneNumber = phoneNumber
+    if address is not None: user.address = address
+    if city is not None: user.city = city
+    if country is not None: user.country = country
     if weight is not None: user.weight = weight
     if weightGoal is not None: user.weightGoal = weightGoal
     if height is not None: user.height = height
