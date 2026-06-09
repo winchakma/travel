@@ -10,7 +10,7 @@ const API = (() => {
   if (hostname === 'localhost' || hostname === '127.0.0.1') {
     return "http://localhost:10000/api";
   }
-  return "https://gotrip-backend.onrender.com/api";
+  return "https://travel-xyyl.onrender.com/api";
 })();
 
 const getToken = () => localStorage.getItem("gotrip_token");
@@ -277,8 +277,8 @@ async function handleLogin() {
       updateNavbar(); 
       showToast(`Welcome back, ${data.user.name}! 👋`); 
     }
-  } catch (err) { 
-    showError("si-error","Cannot reach server. Make sure your backend is running on port 5000!");
+  } catch (err) {
+    showError("si-error","Cannot reach server. Make sure your backend is running!");
   }
   finally { 
     btn.textContent = originalText; 
@@ -316,7 +316,7 @@ async function handleRegister() {
       showToast(`Account created! Welcome, ${data.user.name}! 🎉`); 
     }
   } catch (err) { 
-    showError("reg-error","Cannot reach server. Make sure your backend is running on port 5000!");
+    showError("reg-error","Cannot reach server. Make sure your backend is running!");
   }
   finally { 
     btn.textContent = originalText; 
