@@ -118,7 +118,8 @@ else:
         "http://localhost:10000",
         "http://127.0.0.1:3000",
         "http://127.0.0.1:10000",
-        "https://gotrip.vercel.app"
+        "https://gotrip.vercel.app",
+        "https://travel-gray-nu.vercel.app"
     ]
 
 app.add_middleware(
