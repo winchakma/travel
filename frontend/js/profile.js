@@ -220,6 +220,10 @@ async function handleProfileSave() {
     const localUser = getUser();
     localUser.firstName = data.user.firstName;
     localUser.lastName = data.user.lastName;
+    localUser.phoneNumber = data.user.phoneNumber;
+    localUser.address = data.user.address;
+    localUser.city = data.user.city;
+    localUser.country = data.user.country;
     localStorage.setItem("gotrip_user", JSON.stringify(localUser));
     
     document.getElementById("sidebar-name").textContent = `${data.user.firstName} ${data.user.lastName}`;

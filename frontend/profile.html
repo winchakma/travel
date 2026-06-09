@@ -130,31 +130,6 @@
           </form>
         </section>
 
-        <!-- Password Update -->
-        <section class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-          <h2 class="text-xl font-bold text-gray-800 mb-6">Change Password</h2>
-          <form class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="md:col-span-2 max-w-md">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
-                <input type="password" id="pw-current" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
-              </div>
-              <div class="max-w-md">
-                <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
-                <input type="password" id="pw-new" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
-              </div>
-              <div class="max-w-md">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
-                <input type="password" id="pw-confirm" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
-              </div>
-            </div>
-            <div class="mt-6">
-              <button type="button" id="pw-save-btn" class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors">
-                Update Password
-              </button>
-            </div>
-          </form>
-        </section>
       </div>
 
       <!-- My Bookings Section -->
@@ -185,9 +160,35 @@
 
       <!-- Settings Section -->
       <div id="section-settings" class="profile-section hidden">
-        <section class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+        <section class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 mb-8">
           <h2 class="text-2xl font-bold text-gray-800 mb-6">Settings</h2>
-          <p class="text-gray-500">Manage your notification preferences here.</p>
+          <p class="text-gray-500 mb-6">Manage your notification preferences here.</p>
+        </section>
+
+        <!-- Password Update -->
+        <section class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-xl font-bold text-gray-800 mb-6">Change Password</h2>
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="md:col-span-2 max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+                <input type="password" id="pw-current" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+              </div>
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                <input type="password" id="pw-new" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+              </div>
+              <div class="max-w-md">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+                <input type="password" id="pw-confirm" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+              </div>
+            </div>
+            <div class="mt-6">
+              <button type="button" id="pw-save-btn" class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors">
+                Update Password
+              </button>
+            </div>
+          </form>
         </section>
       </div>
 
