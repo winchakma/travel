@@ -270,7 +270,13 @@ async function handleLogin() {
     });
     const data = await res.json();
     if (!res.ok) {
-      showError("si-error", data.error || "Login failed. Check your credentials.");
+      let errorMsg = data.error || "Login failed.";
+      if (data.detail && Array.isArray(data.detail)) {
+        errorMsg = data.detail[0].msg;
+      } else if (data.detail) {
+        errorMsg = data.detail;
+      }
+      showError("si-error", errorMsg);
     } else { 
       saveAuth(data.token, data.user); 
       closeModal("gt-auth-overlay"); 
@@ -302,18 +308,28 @@ async function handleRegister() {
   btn.style.opacity = "0.6"; // Visual feedback!
   
   try {
+    const nameParts = name.trim().split(" ");
+    const firstName = nameParts[0] || "User";
+    const lastName = nameParts.slice(1).join(" ") || "Name";
+
     const res = await fetch(`${API}/auth/register`, {
       method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ firstName, lastName, email, password }),
     });
     const data = await res.json();
     if (!res.ok) {
-      showError("reg-error", data.error || "Registration failed. Try a different email.");
+      let errorMsg = data.error || "Registration failed.";
+      if (data.detail && Array.isArray(data.detail)) {
+        errorMsg = data.detail[0].msg.replace("Value error, ", "");
+      } else if (data.detail) {
+        errorMsg = data.detail;
+      }
+      showError("reg-error", errorMsg);
     } else { 
       saveAuth(data.token, data.user); 
       closeModal("gt-auth-overlay"); 
       updateNavbar(); 
-      showToast(`Account created! Welcome, ${data.user.name}! 🎉`); 
+      showToast(`Account created! Welcome, ${data.user.name || firstName}! 🎉`); 
     }
   } catch (err) { 
     showError("reg-error","Cannot reach server. Make sure your backend is running!");
