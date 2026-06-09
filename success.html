@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GoTrip Press — News & Media</title>
+  <title>Booking Success - GoTrip</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 flex flex-col min-h-screen">
 
 <!-- NAVBAR -->
 <nav class="navbar px-4 md:px-10">
@@ -23,119 +24,55 @@
     <li><a href="cruise.html">Cruise</a></li>
     <li><a href="flights.html">Flights</a></li>
   </ul>
-  <div class="nav-buttons">
-    <button class="btn-login">Sign In</button>
-    <button class="btn-register">Register</button>
+  <div class="nav-buttons flex items-center gap-4">
+    <a href="profile.html" class="flex items-center gap-2 cursor-pointer text-[#1a2b6b] font-medium">
+      <img src="https://ui-avatars.com/api/?name=John+Doe&background=1a2b6b&color=fff" alt="User Profile" class="w-8 h-8 rounded-full shadow-sm" />
+      <span class="text-sm hidden sm:block">My Account</span>
+    </a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero px-4 md:px-10" style="background:linear-gradient(135deg,#1a2b6b 0%, #2d4a9e 65%, #4a6fc4 100%);">
-  <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight">Press & Media</h1>
-  <p>Official updates, announcements, and media resources</p>
-</section>
-
-<section class="section px-4 md:px-10 gray-bg">
-  <div class="section-header">
-    <h2>Latest Announcements</h2>
-    <a href="index.html">Back to Home →</a>
-  </div>
-
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&h=450&fit=crop" alt="Launch" />
-      <div class="card-body">
-        <span class="badge">Press</span>
-        <h3>GoTrip expands to 50+ cruise lines</h3>
-        <p>New inventory, better filters, and improved mobile booking flow.</p>
-        <p class="price">April 2026</p>
+<!-- MAIN CONTENT -->
+<main class="flex-grow flex items-center justify-center p-4">
+  <div class="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100 max-w-lg w-full text-center">
+    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+      <i class="fa-solid fa-check text-4xl text-green-500"></i>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Booking Confirmed!</h1>
+    <p class="text-gray-500 mb-8">Thank you for booking with GoTrip. Your transaction was successful and a confirmation email has been sent to your inbox.</p>
+    
+    <div class="bg-gray-50 rounded-xl p-6 text-left mb-8 border border-gray-100">
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-gray-500 text-sm">Booking Reference</span>
+        <span class="font-mono font-semibold text-[#1a2b6b]">#BK-94827X</span>
+      </div>
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-gray-500 text-sm">Date</span>
+        <span class="font-medium text-gray-800">Oct 24 - Oct 28, 2024</span>
+      </div>
+      <div class="flex justify-between items-center">
+        <span class="text-gray-500 text-sm">Amount Paid</span>
+        <span class="font-bold text-gray-800">$928.50</span>
       </div>
     </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=450&fit=crop" alt="Deals" />
-      <div class="card-body">
-        <span class="badge blue">Update</span>
-        <h3>New deal alerts for flights + hotels</h3>
-        <p>Personalized notifications with price drop tracking (mock).</p>
-        <p class="price">March 2026</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&h=450&fit=crop" alt="Trust" />
-      <div class="card-body">
-        <span class="badge yellow">Security</span>
-        <h3>Privacy upgrades and cookie controls</h3>
-        <p>Clear consent UX and improved account safety messaging.</p>
-        <p class="price">February 2026</p>
-      </div>
+    
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="profile.html" class="bg-white border-2 border-[#1a2b6b] text-[#1a2b6b] hover:bg-blue-50 font-semibold py-3 px-6 rounded-lg transition-colors">
+        View Booking
+      </a>
+      <a href="index.html" class="bg-[#1a2b6b] hover:bg-[#2d4a9e] text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+        Back to Home
+      </a>
     </div>
   </div>
-
-  <div style="max-width:900px;margin:28px auto 0;background:#fff;border-radius:14px;padding:18px 18px 18px;box-shadow:0 3px 15px rgba(0,0,0,0.08);">
-    <h3 style="color:#1a2b6b;margin-bottom:8px;">Media contact</h3>
-    <p style="color:#555;line-height:1.7;">
-      For media inquiries, please email <strong>press@gotrip.com</strong>.
-      This is mock contact info for the demo site.
-    </p>
-  </div>
-</section>
+</main>
 
 <!-- FOOTER -->
-<footer class="footer px-4 md:px-10">
-  <div class="footer-grid">
-    <div>
-      <h3>Go<span style="color:#4a90d9">Trip</span></h3>
-      <p style="font-size:13px;margin-bottom:15px">Find next place to visit</p>
-      <div class="app-badges">
-        <a href="https://apps.apple.com/app/gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-          <div class="app-badge"><i class="fa-brands fa-apple"></i> App Store</div>
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-          <div class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</div>
-        </a>
-      </div>
-    </div>
-    <div>
-      <h3>Company</h3>
-      <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="press.html">Press</a></li>
-        <li><a href="#">Gift Cards</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Support</h3>
-      <ul>
-        <li><a href="#">Help Center</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>More</h3>
-      <ul>
-        <li><a href="cruise.html">Cruises</a></li>
-        <li><a href="flights.html">Flights</a></li>
-      </ul>
-    </div>
-  </div>
+<footer class="footer px-4 md:px-10 mt-auto">
   <div class="footer-bottom">
     <span>© 2024 GoTrip. All rights reserved.</span>
-    <div style="display:flex; gap:15px;">
-      <a href="https://facebook.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Facebook">
-        <i class="fa-brands fa-facebook" style="font-size:16px;"></i>
-      </a>
-      <a href="https://linkedin.com/company/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on LinkedIn">
-        <i class="fa-brands fa-linkedin" style="font-size:16px;"></i>
-      </a>
-    </div>
   </div>
 </footer>
-
-<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
 <script src="js/script.js"></script>
 
 <!-- AUTH MODAL -->

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - GoTrip</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white flex flex-col min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn-login">Sign In</button>
+    <button class="btn-register">Register</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative bg-[#1a2b6b] py-24 text-center overflow-hidden">
+  <div class="absolute inset-0 opacity-20">
+    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&h=600&fit=crop" class="w-full h-full object-cover" />
+  </div>
+  <div class="relative max-w-4xl mx-auto px-4 z-10 text-white">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Explore The World With Us</h1>
+    <p class="text-lg md:text-xl text-blue-100 mb-8 leading-relaxed">
+      We believe that travel is the ultimate catalyst for personal growth, connection, and joy. Our mission is to make experiencing the world accessible, seamless, and deeply memorable.
+    </p>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="max-w-7xl mx-auto px-4 md:px-10 py-16 md:py-24">
+  <div class="flex flex-col md:flex-row items-center gap-12">
+    <div class="md:w-1/2">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Our Story</h2>
+      <p class="text-gray-600 mb-4 leading-relaxed text-lg">
+        Founded in 2020 by a group of passionate globetrotters, GoTrip began with a simple idea: booking a dream vacation shouldn't be a nightmare of open tabs and hidden fees.
+      </p>
+      <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+        What started as a small booking portal has now grown into a global ecosystem connecting millions of travelers with the finest hotels, tours, and experiences. We hand-pick our partners and relentlessly innovate to ensure every journey you take is perfect.
+      </p>
+      <div class="grid grid-cols-2 gap-6 mt-8">
+        <div>
+          <h3 class="text-4xl font-bold text-[#1a2b6b] mb-2">12M+</h3>
+          <p class="text-gray-500 font-medium">Happy Travelers</p>
+        </div>
+        <div>
+          <h3 class="text-4xl font-bold text-[#1a2b6b] mb-2">150+</h3>
+          <p class="text-gray-500 font-medium">Countries Covered</p>
+        </div>
+      </div>
+    </div>
+    <div class="md:w-1/2">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop" class="rounded-2xl shadow-xl w-full" alt="Team collaborating" />
+    </div>
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="bg-gray-50 py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-4 md:px-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Core Values</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">These principles guide everything we do, from designing our website to answering your support calls.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-[#1a2b6b] mx-auto mb-6">
+          <i class="fa-solid fa-earth-americas text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">Global Accessibility</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Travel should be for everyone. We strive to provide options for every budget and lifestyle across the globe.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-[#1a2b6b] mx-auto mb-6">
+          <i class="fa-solid fa-shield-halved text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">Uncompromised Trust</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">No hidden fees, secure payments, and honest reviews. We build trust by being transparent every step of the way.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-[#1a2b6b] mx-auto mb-6">
+          <i class="fa-solid fa-handshake-angle text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">Customer First</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Your satisfaction is our priority. Our support team is always ready to ensure your trip goes smoothly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10 mt-auto">
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+  </div>
+</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

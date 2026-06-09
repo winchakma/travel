@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="User Profile - GoTrip" />
+  <title>My Profile - GoTrip</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons flex items-center gap-4">
+    <!-- Logged in state -->
+    <a href="profile.html" class="flex items-center gap-2 cursor-pointer text-[#1a2b6b] font-medium border-b-2 border-[#1a2b6b] pb-1">
+      <img src="https://ui-avatars.com/api/?name=John+Doe&background=1a2b6b&color=fff" alt="User Profile" class="w-8 h-8 rounded-full shadow-sm" />
+      <span class="text-sm hidden sm:block">My Account</span>
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="flex-grow px-4 py-10 md:px-10 max-w-7xl mx-auto w-full">
+  
+  <div class="flex flex-col md:flex-row gap-8">
+    
+    <!-- SIDEBAR -->
+    <div class="w-full md:w-1/4">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 text-center border-b border-gray-100">
+          <div class="relative inline-block">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=1a2b6b&color=fff&size=128" alt="Profile" class="w-24 h-24 rounded-full mx-auto shadow-md border-4 border-white" />
+            <button class="absolute bottom-0 right-0 bg-white text-gray-600 rounded-full w-8 h-8 flex items-center justify-center shadow hover:text-[#1a2b6b] transition-colors border border-gray-100">
+              <i class="fa-solid fa-camera"></i>
+            </button>
+          </div>
+          <h2 class="mt-4 text-xl font-bold text-gray-800">John Doe</h2>
+          <p class="text-sm text-gray-500">Member since 2023</p>
+        </div>
+        <nav class="flex flex-col py-2">
+          <a href="#" class="px-6 py-3 text-[#1a2b6b] font-medium bg-blue-50 border-l-4 border-[#1a2b6b] flex items-center gap-3">
+            <i class="fa-regular fa-user w-5 text-center"></i> Personal Info
+          </a>
+          <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-[#1a2b6b] font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
+            <i class="fa-solid fa-suitcase w-5 text-center"></i> My Bookings
+          </a>
+          <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-[#1a2b6b] font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
+            <i class="fa-regular fa-heart w-5 text-center"></i> Saved Items
+          </a>
+          <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-[#1a2b6b] font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
+            <i class="fa-regular fa-credit-card w-5 text-center"></i> Payment Methods
+          </a>
+          <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-[#1a2b6b] font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
+            <i class="fa-solid fa-gear w-5 text-center"></i> Settings
+          </a>
+          <div class="my-2 border-t border-gray-100"></div>
+          <a href="index.html" class="px-6 py-3 text-red-500 hover:bg-red-50 font-medium flex items-center gap-3 transition-colors border-l-4 border-transparent">
+            <i class="fa-solid fa-right-from-bracket w-5 text-center"></i> Log Out
+          </a>
+        </nav>
+      </div>
+    </div>
+    
+    <!-- CONTENT AREA -->
+    <div class="w-full md:w-3/4 flex flex-col gap-8">
+      
+      <!-- Personal Information Form -->
+      <section class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Personal Information</h2>
+        <p class="text-gray-500 text-sm mb-6">Update your personal details and how we can reach you.</p>
+        
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+              <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="John" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+              <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="Doe" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="john@example.com" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <input type="tel" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="+1 234 567 8900" />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
+              <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="123 Travel Lane, Suite 456" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+              <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" value="New York" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Country</label>
+              <select class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b] bg-white">
+                <option value="US" selected>United States</option>
+                <option value="UK">United Kingdom</option>
+                <option value="CA">Canada</option>
+                <option value="AU">Australia</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex justify-end mt-8">
+            <button type="button" class="bg-[#1a2b6b] hover:bg-[#2d4a9e] text-white font-medium py-2.5 px-6 rounded-lg transition-colors">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Password Update -->
+      <section class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-800 mb-6">Change Password</h2>
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="md:col-span-2 max-w-md">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+              <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+            </div>
+            <div class="max-w-md">
+              <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+              <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+            </div>
+            <div class="max-w-md">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+              <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+            </div>
+          </div>
+          <div class="mt-6">
+            <button type="button" class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors">
+              Update Password
+            </button>
+          </div>
+        </form>
+      </section>
+
+    </div>
+    
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10 mt-auto">
+  <div class="footer-grid">
+    <div>
+      <h3>Go<span style="color:#4a90d9">Trip</span></h3>
+      <p style="font-size:13px;margin-bottom:15px">Find next place to visit</p>
+      <div class="app-badges">
+        <a href="https://apps.apple.com/app/gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-apple"></i> App Store
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-google-play"></i> Google Play
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Other Services</h3>
+      <ul>
+        <li><a href="hotel.html">Hotels</a></li>
+        <li><a href="tour.html">Tours</a></li>
+        <li><a href="activity.html">Activities</a></li>
+        <li><a href="rental.html">Rentals</a></li>
+        <li><a href="car.html">Car Hire</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>More</h3>
+      <ul>
+        <li><a href="cruise.html">Cruises</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="#">Travel Insurance</a></li>
+        <li><a href="#">Airport Transfers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+    <div style="display:flex; gap:15px;">
+      <a href="https://facebook.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Facebook">
+        <i class="fa-brands fa-facebook" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://twitter.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Twitter">
+        <i class="fa-brands fa-twitter" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://instagram.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Instagram">
+        <i class="fa-brands fa-instagram" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://linkedin.com/company/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on LinkedIn">
+        <i class="fa-brands fa-linkedin" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

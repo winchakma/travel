@@ -1069,3 +1069,166 @@ document.addEventListener("DOMContentLoaded", () => {
   initCategoryFilters();
   initTestimonials();
 });
+
+  // Modal Logic
+  const authModal = document.getElementById('authModal');
+  const authModalContent = document.getElementById('authModalContent');
+  const closeAuthModal = document.getElementById('closeAuthModal');
+  
+  const tabLogin = document.getElementById('tabLogin');
+  const tabRegister = document.getElementById('tabRegister');
+  const formLogin = document.getElementById('formLogin');
+  const formRegister = document.getElementById('formRegister');
+  
+  const btnLogins = document.querySelectorAll('.btn-login');
+  const btnRegisters = document.querySelectorAll('.btn-register');
+
+  function openModal(isRegister = false) {
+    if(authModal) {
+      authModal.classList.remove('hidden');
+      // small delay for transition
+      setTimeout(() => {
+        authModalContent.classList.remove('scale-95', 'opacity-0');
+        authModalContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+      
+      if(isRegister) {
+        switchToRegister();
+      } else {
+        switchToLogin();
+      }
+    }
+  }
+
+  function closeModal() {
+    if(authModal) {
+      authModalContent.classList.remove('scale-100', 'opacity-100');
+      authModalContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        authModal.classList.add('hidden');
+      }, 300);
+    }
+  }
+
+  function switchToLogin() {
+    tabLogin.classList.replace('text-gray-400', 'text-[#1a2b6b]');
+    tabLogin.classList.replace('border-transparent', 'border-[#1a2b6b]');
+    tabRegister.classList.replace('text-[#1a2b6b]', 'text-gray-400');
+    tabRegister.classList.replace('border-[#1a2b6b]', 'border-transparent');
+    formLogin.classList.remove('hidden');
+    formRegister.classList.add('hidden');
+  }
+
+  function switchToRegister() {
+    tabRegister.classList.replace('text-gray-400', 'text-[#1a2b6b]');
+    tabRegister.classList.replace('border-transparent', 'border-[#1a2b6b]');
+    tabLogin.classList.replace('text-[#1a2b6b]', 'text-gray-400');
+    tabLogin.classList.replace('border-[#1a2b6b]', 'border-transparent');
+    formRegister.classList.remove('hidden');
+    formLogin.classList.add('hidden');
+  }
+
+  btnLogins.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(false);
+  }));
+  
+  btnRegisters.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(true);
+  }));
+
+  if(closeAuthModal) closeAuthModal.addEventListener('click', closeModal);
+  if(tabLogin) tabLogin.addEventListener('click', switchToLogin);
+  if(tabRegister) tabRegister.addEventListener('click', switchToRegister);
+  
+  // Close on outside click
+  if(authModal) {
+    authModal.addEventListener('click', (e) => {
+      if (e.target === authModal) {
+        closeModal();
+      }
+    });
+  }
+
+
+  // Modal Logic
+  const authModal = document.getElementById('authModal');
+  const authModalContent = document.getElementById('authModalContent');
+  const closeAuthModal = document.getElementById('closeAuthModal');
+  
+  const tabLogin = document.getElementById('tabLogin');
+  const tabRegister = document.getElementById('tabRegister');
+  const formLogin = document.getElementById('formLogin');
+  const formRegister = document.getElementById('formRegister');
+  
+  const btnLogins = document.querySelectorAll('.btn-login');
+  const btnRegisters = document.querySelectorAll('.btn-register');
+
+  function openModal(isRegister = false) {
+    if(authModal) {
+      authModal.classList.remove('hidden');
+      // small delay for transition
+      setTimeout(() => {
+        authModalContent.classList.remove('scale-95', 'opacity-0');
+        authModalContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+      
+      if(isRegister) {
+        switchToRegister();
+      } else {
+        switchToLogin();
+      }
+    }
+  }
+
+  function closeModal() {
+    if(authModal) {
+      authModalContent.classList.remove('scale-100', 'opacity-100');
+      authModalContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        authModal.classList.add('hidden');
+      }, 300);
+    }
+  }
+
+  function switchToLogin() {
+    tabLogin.classList.replace('text-gray-400', 'text-[#1a2b6b]');
+    tabLogin.classList.replace('border-transparent', 'border-[#1a2b6b]');
+    tabRegister.classList.replace('text-[#1a2b6b]', 'text-gray-400');
+    tabRegister.classList.replace('border-[#1a2b6b]', 'border-transparent');
+    formLogin.classList.remove('hidden');
+    formRegister.classList.add('hidden');
+  }
+
+  function switchToRegister() {
+    tabRegister.classList.replace('text-gray-400', 'text-[#1a2b6b]');
+    tabRegister.classList.replace('border-transparent', 'border-[#1a2b6b]');
+    tabLogin.classList.replace('text-[#1a2b6b]', 'text-gray-400');
+    tabLogin.classList.replace('border-[#1a2b6b]', 'border-transparent');
+    formRegister.classList.remove('hidden');
+    formLogin.classList.add('hidden');
+  }
+
+  btnLogins.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(false);
+  }));
+  
+  btnRegisters.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(true);
+  }));
+
+  if(closeAuthModal) closeAuthModal.addEventListener('click', closeModal);
+  if(tabLogin) tabLogin.addEventListener('click', switchToLogin);
+  if(tabRegister) tabRegister.addEventListener('click', switchToRegister);
+  
+  // Close on outside click
+  if(authModal) {
+    authModal.addEventListener('click', (e) => {
+      if (e.target === authModal) {
+        closeModal();
+      }
+    });
+  }

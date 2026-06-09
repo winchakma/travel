@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Westin New York Grand Central - GoTrip</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html" style="color:#4a90d9; font-weight:600;">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn-login">Sign In</button>
+    <button class="btn-register">Register</button>
+  </div>
+</nav>
+
+<!-- BREADCRUMBS & TITLE -->
+<div class="max-w-7xl mx-auto px-4 md:px-10 py-6 w-full">
+  <div class="text-sm text-gray-500 mb-2">
+    <a href="index.html" class="hover:text-[#1a2b6b]">Home</a> > <a href="hotel.html" class="hover:text-[#1a2b6b]">Hotels</a> > <a href="#" class="hover:text-[#1a2b6b]">New York</a> > <span class="text-gray-800">The Westin New York</span>
+  </div>
+  <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">The Westin New York Grand Central</h1>
+  <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+    <span class="flex items-center gap-1 text-yellow-500 font-bold"><i class="fa-solid fa-star"></i> 4.8 <span class="text-gray-500 font-normal">(1,204 reviews)</span></span>
+    <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> 212 E 42nd St, New York, NY 10017</span>
+    <a href="#" class="text-[#1a2b6b] font-medium hover:underline">Show on Map</a>
+  </div>
+</div>
+
+<!-- IMAGE GALLERY -->
+<div class="max-w-7xl mx-auto px-4 md:px-10 pb-10 w-full">
+  <div class="grid grid-cols-4 grid-rows-2 gap-2 h-[400px] md:h-[500px] rounded-2xl overflow-hidden">
+    <div class="col-span-2 row-span-2">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop" class="w-full h-full object-cover hover:opacity-90 transition-opacity cursor-pointer" />
+    </div>
+    <div class="col-span-1 row-span-1">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=300&fit=crop" class="w-full h-full object-cover hover:opacity-90 transition-opacity cursor-pointer" />
+    </div>
+    <div class="col-span-1 row-span-1">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&h=300&fit=crop" class="w-full h-full object-cover hover:opacity-90 transition-opacity cursor-pointer" />
+    </div>
+    <div class="col-span-1 row-span-1">
+      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&h=300&fit=crop" class="w-full h-full object-cover hover:opacity-90 transition-opacity cursor-pointer" />
+    </div>
+    <div class="col-span-1 row-span-1 relative">
+      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=300&fit=crop" class="w-full h-full object-cover hover:opacity-90 transition-opacity cursor-pointer" />
+      <div class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer hover:bg-black/50 transition-colors">
+        <span class="text-white font-bold text-lg">+12 Photos</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT + SIDEBAR -->
+<main class="max-w-7xl mx-auto px-4 md:px-10 pb-20 w-full flex flex-col lg:flex-row gap-10">
+  
+  <!-- LEFT: Details -->
+  <div class="lg:w-2/3">
+    
+    <!-- Overview -->
+    <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Overview</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Located in the heart of Midtown Manhattan, The Westin New York Grand Central offers luxurious accommodations and easy access to New York City's top attractions. Just steps from Grand Central Terminal, the UN, and Bryant Park, this modern hotel features a state-of-the-art fitness studio, a refined restaurant, and beautifully appointed rooms with city views.
+      </p>
+      <h3 class="font-semibold text-gray-800 mt-6 mb-3">Most Popular Facilities</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-wifi text-[#1a2b6b]"></i> Free WiFi</div>
+        <div class="flex items-center gap-2"><i class="fa-solid fa-dumbbell text-[#1a2b6b]"></i> Fitness Center</div>
+        <div class="flex items-center gap-2"><i class="fa-solid fa-ban-smoking text-[#1a2b6b]"></i> Non-smoking</div>
+        <div class="flex items-center gap-2"><i class="fa-solid fa-utensils text-[#1a2b6b]"></i> Restaurant</div>
+        <div class="flex items-center gap-2"><i class="fa-solid fa-martini-glass-citrus text-[#1a2b6b]"></i> Bar</div>
+        <div class="flex items-center gap-2"><i class="fa-solid fa-wheelchair text-[#1a2b6b]"></i> Accessible</div>
+      </div>
+    </section>
+
+    <!-- Rooms -->
+    <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Available Rooms</h2>
+      
+      <div class="border border-gray-200 rounded-xl p-4 mb-4 flex flex-col md:flex-row gap-6">
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=300&h=200&fit=crop" class="w-full md:w-48 h-32 object-cover rounded-lg" />
+        <div class="flex-grow">
+          <h3 class="font-bold text-lg text-gray-800">Deluxe Double Room</h3>
+          <p class="text-sm text-gray-500 mt-1">2 double beds • City view • 32 m²</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-green-600 text-sm font-medium"><i class="fa-solid fa-check"></i> Free cancellation</span>
+            <span class="font-bold text-xl">$220 <span class="text-sm font-normal text-gray-500">/ night</span></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-6">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=300&h=200&fit=crop" class="w-full md:w-48 h-32 object-cover rounded-lg" />
+        <div class="flex-grow">
+          <h3 class="font-bold text-lg text-gray-800">King Suite with Balcony</h3>
+          <p class="text-sm text-gray-500 mt-1">1 extra-large double bed • Balcony • 45 m²</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-red-500 text-sm font-medium"><i class="fa-solid fa-fire"></i> Only 2 rooms left</span>
+            <span class="font-bold text-xl">$350 <span class="text-sm font-normal text-gray-500">/ night</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Guest Reviews</h2>
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-16 h-16 bg-[#1a2b6b] rounded-lg text-white flex items-center justify-center text-2xl font-bold">4.8</div>
+        <div>
+          <h3 class="font-bold text-lg">Excellent</h3>
+          <p class="text-gray-500 text-sm">Based on 1,204 reviews</p>
+        </div>
+      </div>
+      
+      <div class="space-y-6">
+        <div class="border-b border-gray-100 pb-6">
+          <div class="flex items-center gap-3 mb-2">
+            <img src="https://ui-avatars.com/api/?name=Sarah+M&background=random" class="w-10 h-10 rounded-full" />
+            <div>
+              <h4 class="font-bold text-gray-800 text-sm">Sarah M.</h4>
+              <span class="text-xs text-gray-500">United Kingdom</span>
+            </div>
+            <span class="ml-auto text-sm font-bold text-[#1a2b6b]">5.0/5</span>
+          </div>
+          <p class="text-gray-600 text-sm">"Absolutely loved my stay here. The bed was incredibly comfortable and the view of the Chrysler Building from our room was breathtaking."</p>
+        </div>
+        <div class="pb-2">
+          <div class="flex items-center gap-3 mb-2">
+            <img src="https://ui-avatars.com/api/?name=David+L&background=random" class="w-10 h-10 rounded-full" />
+            <div>
+              <h4 class="font-bold text-gray-800 text-sm">David L.</h4>
+              <span class="text-xs text-gray-500">Australia</span>
+            </div>
+            <span class="ml-auto text-sm font-bold text-[#1a2b6b]">4.5/5</span>
+          </div>
+          <p class="text-gray-600 text-sm">"Great location! Close to the subway and Times Square. Staff were very accommodating when we needed an early check-in."</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- RIGHT: Booking Widget -->
+  <div class="lg:w-1/3">
+    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 sticky top-24">
+      <div class="flex justify-between items-end mb-6">
+        <div>
+          <span class="text-sm text-gray-500">Price starts from</span>
+          <div class="text-3xl font-bold text-gray-800">$220</div>
+        </div>
+        <span class="text-sm text-gray-500 line-through">$280</span>
+      </div>
+      
+      <div class="border border-gray-300 rounded-lg mb-6 overflow-hidden">
+        <div class="flex border-b border-gray-300">
+          <div class="flex-1 p-3 border-r border-gray-300">
+            <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Check-in</label>
+            <input type="date" class="w-full text-sm focus:outline-none text-gray-600 bg-transparent" />
+          </div>
+          <div class="flex-1 p-3">
+            <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Check-out</label>
+            <input type="date" class="w-full text-sm focus:outline-none text-gray-600 bg-transparent" />
+          </div>
+        </div>
+        <div class="p-3 border-b border-gray-300">
+          <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Guests</label>
+          <select class="w-full text-sm focus:outline-none text-gray-600 bg-transparent cursor-pointer">
+            <option>2 Adults, 0 Children</option>
+            <option>1 Adult, 0 Children</option>
+            <option>2 Adults, 2 Children</option>
+          </select>
+        </div>
+        <div class="p-3">
+          <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Room Type</label>
+          <select class="w-full text-sm focus:outline-none text-gray-600 bg-transparent cursor-pointer">
+            <option>Deluxe Double Room</option>
+            <option>King Suite with Balcony</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="flex justify-between text-sm text-gray-600 mb-4 px-2">
+        <span>$220 x 4 nights</span>
+        <span>$880.00</span>
+      </div>
+      <div class="flex justify-between text-sm text-gray-600 mb-6 px-2 border-b border-gray-100 pb-4">
+        <span>Taxes & fees</span>
+        <span>$98.50</span>
+      </div>
+      <div class="flex justify-between font-bold text-gray-800 text-lg mb-6 px-2">
+        <span>Total</span>
+        <span>$978.50</span>
+      </div>
+
+      <a href="checkout.html" class="block w-full bg-[#1a2b6b] hover:bg-[#2d4a9e] text-white font-bold py-4 px-4 rounded-lg text-center transition-colors shadow-md shadow-blue-900/20">
+        Book Now
+      </a>
+      <p class="text-center text-xs text-gray-400 mt-4"><i class="fa-solid fa-lock"></i> Secure SSL Checkout</p>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10">
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+  </div>
+</footer>
+<script src="js/script.js"></script>
+
+<!-- AUTH MODAL -->
+<div id="authModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden relative transform transition-all scale-95 opacity-0 duration-300" id="authModalContent">
+    <button id="closeAuthModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-10">
+      <i class="fa-solid fa-xmark text-xl"></i>
+    </button>
+    
+    <div class="flex border-b border-gray-100">
+      <button id="tabLogin" class="flex-1 py-4 text-sm font-semibold text-[#1a2b6b] border-b-2 border-[#1a2b6b] transition-colors">Sign In</button>
+      <button id="tabRegister" class="flex-1 py-4 text-sm font-semibold text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition-colors">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="formLogin" class="p-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Welcome Back</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#1a2b6b] focus:ring-1 focus:ring-[#1a2b6b]" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#1a2b6b] focus:ring-1 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center gap-2 cursor-pointer text-gray-600">
+            <input type="checkbox" class="rounded text-[#1a2b6b] focus:ring-[#1a2b6b]" /> Remember me
+          </label>
+          <a href="#" class="text-[#1a2b6b] hover:underline font-medium">Forgot Password?</a>
+        </div>
+        <button type="button" class="w-full bg-[#1a2b6b] hover:bg-[#2d4a9e] text-white font-semibold py-3 rounded-lg transition-colors mt-4">Sign In</button>
+        
+        <div class="relative flex items-center justify-center mt-6">
+          <span class="absolute bg-white px-2 text-xs text-gray-400">OR CONTINUE WITH</span>
+          <div class="w-full border-t border-gray-200"></div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3 mt-6">
+          <button type="button" class="flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2 hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700">
+            <i class="fa-brands fa-google text-red-500"></i> Google
+          </button>
+          <button type="button" class="flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2 hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700">
+            <i class="fa-brands fa-facebook text-blue-600"></i> Facebook
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div id="formRegister" class="p-8 hidden">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Create an Account</h2>
+      <form class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+            <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#1a2b6b] focus:ring-1 focus:ring-[#1a2b6b]" placeholder="John" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+            <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#1a2b6b] focus:ring-1 focus:ring-[#1a2b6b]" placeholder="Doe" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#1a2b6b] focus:ring-1 focus:ring-[#1a2b6b]" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#1a2b6b] focus:ring-1 focus:ring-[#1a2b6b]" placeholder="••••••••" />
+        </div>
+        <button type="button" class="w-full bg-[#1a2b6b] hover:bg-[#2d4a9e] text-white font-semibold py-3 rounded-lg transition-colors mt-4">Create Account</button>
+      </form>
+      <p class="text-xs text-center text-gray-500 mt-6">By signing up, you agree to our <a href="#" class="text-[#1a2b6b] hover:underline">Terms of Service</a> and <a href="#" class="text-[#1a2b6b] hover:underline">Privacy Policy</a>.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
