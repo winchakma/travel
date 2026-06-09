@@ -341,7 +341,14 @@ async function handleRegister() {
   }
 }
 
-function logout() { clearAuth(); updateNavbar(); showToast("Signed out. See you soon!"); }
+function logout() { 
+  clearAuth(); 
+  updateNavbar(); 
+  showToast("Signed out. See you soon!"); 
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 1000);
+}
 
 function updateNavbar() {
   const navButtons = document.querySelector(".nav-buttons");

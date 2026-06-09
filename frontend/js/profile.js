@@ -86,7 +86,7 @@ async function handleProfilePictureUpload(e) {
       // Update local storage user caching
       const localUser = getUser();
       localUser.profilePicture = data.user.profilePicture;
-      localStorage.setItem("gt-user", JSON.stringify(localUser));
+      localStorage.setItem("gotrip_user", JSON.stringify(localUser));
       updateNavbar();
       
       showToast("Profile picture updated! 🎉");
@@ -124,7 +124,7 @@ async function handleProfileSave() {
     const localUser = getUser();
     localUser.firstName = data.user.firstName;
     localUser.lastName = data.user.lastName;
-    localStorage.setItem("gt-user", JSON.stringify(localUser));
+    localStorage.setItem("gotrip_user", JSON.stringify(localUser));
     
     document.getElementById("sidebar-name").textContent = `${data.user.firstName} ${data.user.lastName}`;
     updateNavbar();
