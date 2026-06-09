@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Search and book flights worldwide with GoTrip. Compare hundreds of airlines and find the cheapest tickets. Best flight deals guaranteed!" />
+  <meta name="keywords" content="flights, cheap flights, flight booking, airline tickets, travel booking, GoTrip" />
+  <meta name="author" content="GoTrip" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gotrip.com/flights.html" />
+  <meta property="og:title" content="GoTrip - Search & Book Flights Worldwide" />
+  <meta property="og:description" content="Search and book flights worldwide with GoTrip. Compare hundreds of airlines and find the cheapest tickets." />
+  <meta property="og:image" content="https://gotrip.com/images/og-flights.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://gotrip.com/flights.html" />
+  <meta property="twitter:title" content="GoTrip - Search & Book Flights Worldwide" />
+  <meta property="twitter:description" content="Search and book flights worldwide with GoTrip. Compare hundreds of airlines and find the cheapest tickets." />
+  <meta property="twitter:image" content="https://gotrip.com/images/og-flights.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  
+  <title>GoTrip - Where Do You Want To Fly | Flight Booking</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn-login">Sign In</button>
+    <button class="btn-register">Register</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="px-4 md:px-10" style="background:#f7f8fc; padding:60px 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:30px;">
+  <div style="max-width:550px;">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight font-bold" style="color:#1a2b6b; margin-bottom:12px;">Where do You Want To Fly</h1>
+    <p style="color:#777; font-size:15px; margin-bottom:30px;">Search hundreds of airlines and find the cheapest tickets</p>
+    <div style="background:#fff; border-radius:10px; padding:20px; box-shadow:0 3px 20px rgba(0,0,0,0.08);">
+      <div style="display:flex; gap:15px; margin-bottom:15px; flex-wrap:wrap;">
+        <label style="display:flex; align-items:center; gap:8px; font-size:14px; color:#1a2b6b; cursor:pointer;">
+          <input type="radio" name="triptype" checked /> Round Trip
+        </label>
+        <label style="display:flex; align-items:center; gap:8px; font-size:14px; color:#1a2b6b; cursor:pointer;">
+          <input type="radio" name="triptype" /> One Way
+        </label>
+        <label style="display:flex; align-items:center; gap:8px; font-size:14px; color:#1a2b6b; cursor:pointer;">
+          <input type="radio" name="triptype" /> Multi City
+        </label>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+        <input type="text" placeholder="From — City or Airport" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+        <input type="text" placeholder="To — City or Airport" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+        <input type="date" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+        <input type="date" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <select style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none; flex:1;">
+          <option>1 Passenger</option>
+          <option>2 Passengers</option>
+          <option>3 Passengers</option>
+        </select>
+        <select style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none; flex:1;">
+          <option>Economy</option>
+          <option>Business</option>
+          <option>First Class</option>
+        </select>
+        <button class="btn-search" style="padding:12px 30px;"><i class="fa-solid fa-magnifying-glass"></i> Search Flights</button>
+      </div>
+    </div>
+  </div>
+  <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&h=350&fit=crop" class="w-full max-w-md md:max-w-lg rounded-xl" />
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section px-4 md:px-10">
+  <h2 class="text-center">Why Choose Us</h2>
+  <p class="subtitle text-center">The smartest way to book your flights</p>
+  <div class="cards-grid-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="margin-top:30px; text-align:center;">
+    <div style="padding:30px;">
+      <i class="fa-solid fa-plane-departure" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Any Destination</h3>
+      <p style="color:#777; font-size:14px;">Search flights to over 5,000 destinations worldwide.</p>
+    </div>
+    <div style="padding:30px;">
+      <i class="fa-solid fa-clock-rotate-left" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Flexible Booking</h3>
+      <p style="color:#777; font-size:14px;">Change or cancel your flight with no hidden fees.</p>
+    </div>
+    <div style="padding:30px;">
+      <i class="fa-solid fa-shield-halved" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Trusted & Secure</h3>
+      <p style="color:#777; font-size:14px;">Book safely with our 100% secure payment system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDED FLIGHTS -->
+<section class="section gray-bg px-4 md:px-10">
+  <div class="section-header">
+    <h2>Recommended Flights</h2>
+    <a href="flights.html">View All →</a>
+  </div>
+  <!-- Flight list style -->
+  <div style="display:flex; flex-direction:column; gap:15px;">
+    <div style="background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;">
+      <div style="display:flex; align-items:center; gap:20px;">
+        <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
+          <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
+          <p style="font-size:11px; color:#777; margin-top:4px;">Emirates</p>
+        </div>
+        <div>
+          <h4 style="color:#1a2b6b; font-size:15px;">New York → London</h4>
+          <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> 7h 30m &nbsp; Direct</p>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Departure</p>
+        <h4 style="color:#1a2b6b;">08:00 AM</h4>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Arrival</p>
+        <h4 style="color:#1a2b6b;">03:30 PM</h4>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Class</p>
+        <h4 style="color:#1a2b6b;">Economy</h4>
+      </div>
+      <div style="text-align:right;">
+        <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">$420</h3>
+        <p style="color:#777; font-size:12px;">per person</p>
+        <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
+      </div>
+    </div>
+    <div style="background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;">
+      <div style="display:flex; align-items:center; gap:20px;">
+        <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
+          <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
+          <p style="font-size:11px; color:#777; margin-top:4px;">Qatar Airways</p>
+        </div>
+        <div>
+          <h4 style="color:#1a2b6b; font-size:15px;">London → Dubai</h4>
+          <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> 6h 45m &nbsp; Direct</p>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Departure</p>
+        <h4 style="color:#1a2b6b;">10:15 AM</h4>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Arrival</p>
+        <h4 style="color:#1a2b6b;">05:00 PM</h4>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Class</p>
+        <h4 style="color:#1a2b6b;">Business</h4>
+      </div>
+      <div style="text-align:right;">
+        <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">$980</h3>
+        <p style="color:#777; font-size:12px;">per person</p>
+        <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
+      </div>
+    </div>
+    <div style="background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;">
+      <div style="display:flex; align-items:center; gap:20px;">
+        <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
+          <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
+          <p style="font-size:11px; color:#777; margin-top:4px;">Singapore Air</p>
+        </div>
+        <div>
+          <h4 style="color:#1a2b6b; font-size:15px;">Sydney → Singapore</h4>
+          <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> 8h 10m &nbsp; Direct</p>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Departure</p>
+        <h4 style="color:#1a2b6b;">06:30 AM</h4>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Arrival</p>
+        <h4 style="color:#1a2b6b;">02:40 PM</h4>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Class</p>
+        <h4 style="color:#1a2b6b;">Economy</h4>
+      </div>
+      <div style="text-align:right;">
+        <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">$560</h3>
+        <p style="color:#777; font-size:12px;">per person</p>
+        <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
+      </div>
+    </div>
+    <div style="background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;">
+      <div style="display:flex; align-items:center; gap:20px;">
+        <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
+          <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
+          <p style="font-size:11px; color:#777; margin-top:4px;">Air France</p>
+        </div>
+        <div>
+          <h4 style="color:#1a2b6b; font-size:15px;">Paris → New York</h4>
+          <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> 8h 25m &nbsp; Direct</p>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Departure</p>
+        <h4 style="color:#1a2b6b;">02:00 PM</h4>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Arrival</p>
+        <h4 style="color:#1a2b6b;">04:25 PM</h4>
+      </div>
+      <div style="text-align:center;">
+        <p style="color:#777; font-size:13px;">Class</p>
+        <h4 style="color:#1a2b6b;">First Class</h4>
+      </div>
+      <div style="text-align:right;">
+        <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">$2,400</h3>
+        <p style="color:#777; font-size:12px;">per person</p>
+        <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP DESTINATIONS -->
+<section class="section px-4 md:px-10">
+  <div class="section-header">
+    <h2>Top Destinations</h2>
+    <a href="tour.html">View All →</a>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=130&fit=crop" />
+      <div class="dest-label">Los Angeles</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&h=130&fit=crop" />
+      <div class="dest-label">Paris</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=130&fit=crop" />
+      <div class="dest-label">London</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=130&fit=crop" />
+      <div class="dest-label">Bali</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&h=130&fit=crop" />
+      <div class="dest-label">Sydney</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL - BLUE -->
+<section class="px-4 md:px-10" style="background:#1a2b6b; color:#fff; padding:60px 0;">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; max-width:1100px; margin:0 auto; flex-wrap:wrap;">
+    <div>
+      <h2 style="font-size:26px; margin-bottom:12px;">What Our Customers Are Saying Us?</h2>
+      <p style="opacity:0.8; margin-bottom:25px;">Millions of travelers book their flights with GoTrip every year.</p>
+      <div style="display:flex; gap:40px;">
+        <div>
+          <h3 style="font-size:32px; font-weight:700;">13m+</h3>
+          <p style="opacity:0.7; font-size:13px;">Happy Customers</p>
+        </div>
+        <div>
+          <h3 style="font-size:32px; font-weight:700;">4.88</h3>
+          <p style="opacity:0.7; font-size:13px;">Overall Rating</p>
+        </div>
+      </div>
+    </div>
+    <div style="background:#fff; border-radius:12px; padding:25px; color:#333;">
+      <i class="fa-solid fa-quote-left" style="font-size:24px; color:#1a2b6b; margin-bottom:12px;"></i>
+      <p style="font-size:14px; line-height:1.8; color:#555; margin-bottom:18px;">Found amazing first class tickets at half the price I expected. GoTrip is now the only place I book flights. The search is fast, easy and always finds the best deals available!</p>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=45&h=45&fit=crop" style="width:45px; height:45px; border-radius:50%; object-fit:cover;" />
+        <div>
+          <h4 style="color:#1a2b6b; font-size:14px;">Robert Evans</h4>
+          <span style="color:#f5c518;">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR ROUTES -->
+<section class="section px-4 md:px-10">
+  <div class="section-header">
+    <h2>Popular Routes</h2>
+    <a href="flights.html">View All →</a>
+  </div>
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <h3>New York → Paris</h3>
+        <p><i class="fa-solid fa-plane" style="color:#1a2b6b;"></i> Direct · 7h 20m</p>
+        <p class="price">From $380</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <h3>London → Dubai</h3>
+        <p><i class="fa-solid fa-plane" style="color:#1a2b6b;"></i> Direct · 6h 45m</p>
+        <p class="price">From $450</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <h3>Sydney → Bali</h3>
+        <p><i class="fa-solid fa-plane" style="color:#1a2b6b;"></i> Direct · 5h 55m</p>
+        <p class="price">From $280</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <h3>Paris → Rome</h3>
+        <p><i class="fa-solid fa-plane" style="color:#1a2b6b;"></i> Direct · 2h 05m</p>
+        <p class="price">From $120</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP DOWNLOAD -->
+<section class="px-4 md:px-10" style="background:#eef3fb; padding:60px 0;">
+  <div style="display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; flex-wrap:wrap; gap:30px;">
+    <div style="max-width:450px;">
+      <h2 style="font-size:26px; color:#1a2b6b; margin-bottom:12px;">Download the App</h2>
+      <p style="color:#777; margin-bottom:25px;">Search and book flights on the go. Get exclusive app deals and real-time flight alerts straight to your phone.</p>
+      <div style="display:flex; gap:15px; flex-wrap:wrap;">
+        <div class="app-badge"><i class="fa-brands fa-apple"></i> App Store</div>
+        <div class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</div>
+      </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=350&h=220&fit=crop" class="w-full max-w-sm md:max-w-md rounded-xl" />
+  </div>
+</section>
+
+<!-- INSPIRATION -->
+<section class="section px-4 md:px-10">
+  <h2 class="text-center">Get Inspiration For Your Next Trip</h2>
+  <p class="subtitle text-center">Flight guides and travel tips from around the world</p>
+  <div class="inspiration-grid" style="margin-top:25px">
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>How to find the cheapest flights online</h4>
+        <p>September 01, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Best times to book international flights</h4>
+        <p>September 08, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Top tips for a comfortable long haul flight</h4>
+        <p>September 15, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Hidden flight deals you need to know about</h4>
+        <p>September 22, 2022</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section px-4 md:px-10">
+  <h2 class="text-2xl sm:text-3xl font-bold">Your Travel Journey Starts Here</h2>
+  <p>Sign up and we'll send the best flight deals to you</p>
+  <div class="cta-input">
+    <input type="email" placeholder="Your email address" />
+    <button><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10">
+  <div class="footer-grid">
+    <div>
+      <h3>Go<span style="color:#4a90d9">Trip</span></h3>
+      <p style="font-size:13px;margin-bottom:15px">Find next place to visit</p>
+      <div class="app-badges">
+        <a href="https://apps.apple.com/app/gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-apple"></i> App Store
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-google-play"></i> Google Play
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Other Services</h3>
+      <ul>
+        <li><a href="hotel.html">Hotels</a></li>
+        <li><a href="tour.html">Tours</a></li>
+        <li><a href="activity.html">Activities</a></li>
+        <li><a href="rental.html">Rentals</a></li>
+        <li><a href="car.html">Car Hire</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>More</h3>
+      <ul>
+        <li><a href="cruise.html">Cruises</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="#">Travel Insurance</a></li>
+        <li><a href="#">Airport Transfers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+    <div style="display:flex; gap:15px;">
+      <a href="https://facebook.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Facebook">
+        <i class="fa-brands fa-facebook" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://twitter.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Twitter">
+        <i class="fa-brands fa-twitter" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://instagram.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Instagram">
+        <i class="fa-brands fa-instagram" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://linkedin.com/company/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on LinkedIn">
+        <i class="fa-brands fa-linkedin" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+<script src="js/script.js"></script>
+</body>
+</html>

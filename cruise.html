@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Find the best cruise deals with GoTrip. Explore the world's most beautiful seas and destinations. Book Caribbean, Mediterranean, Alaska cruises and more!" />
+  <meta name="keywords" content="cruises, cruise booking, cruise deals, Caribbean cruises, Mediterranean cruises, travel booking, GoTrip" />
+  <meta name="author" content="GoTrip" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gotrip.com/cruise.html" />
+  <meta property="og:title" content="GoTrip - Find The Best Cruise For You" />
+  <meta property="og:description" content="Find the best cruise deals with GoTrip. Explore the world's most beautiful seas and destinations." />
+  <meta property="og:image" content="https://gotrip.com/images/og-cruise.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://gotrip.com/cruise.html" />
+  <meta property="twitter:title" content="GoTrip - Find The Best Cruise For You" />
+  <meta property="twitter:description" content="Find the best cruise deals with GoTrip. Explore the world's most beautiful seas and destinations." />
+  <meta property="twitter:image" content="https://gotrip.com/images/og-cruise.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  
+  <title>GoTrip - Find The Best Cruise For You | Cruise Booking</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn-login">Sign In</button>
+    <button class="btn-register">Register</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero px-4 md:px-10" style="background:linear-gradient(135deg, #1a2b6b 0%, #2d5fa5 60%, #4a8fd4 100%); padding:100px 0 80px;">
+  <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight">Find The Best Cruise For You</h1>
+  <p>Explore the world's most beautiful seas and destinations</p>
+  <div class="search-bar">
+    <input type="text" placeholder="Where do you want to sail?" />
+    <input type="date" />
+    <select>
+      <option>1 Guest</option>
+      <option>2 Guests</option>
+      <option>3 Guests</option>
+    </select>
+    <select>
+      <option>Any Duration</option>
+      <option>3-5 Days</option>
+      <option>7 Days</option>
+      <option>14+ Days</option>
+    </select>
+    <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+  </div>
+</section>
+
+<!-- POPULAR DESTINATIONS -->
+<section class="section px-4 md:px-10">
+  <div class="section-header">
+    <h2>Popular Destinations</h2>
+    <a href="cruise.html">View All →</a>
+  </div>
+  <div class="gt-filters" data-filter-group="cruises" style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:25px;">
+    <button data-filter="all" class="gt-filter active" style="background:#1a2b6b; color:#fff; border:none; padding:10px 18px; border-radius:20px; font-size:13px; cursor:pointer; min-height:44px;">All</button>
+    <button data-filter="caribbean" class="gt-filter" style="background:#f0f3fa; color:#1a2b6b; border:none; padding:10px 18px; border-radius:20px; font-size:13px; cursor:pointer; min-height:44px;">Caribbean</button>
+    <button data-filter="mediterranean" class="gt-filter" style="background:#f0f3fa; color:#1a2b6b; border:none; padding:10px 18px; border-radius:20px; font-size:13px; cursor:pointer; min-height:44px;">Mediterranean</button>
+    <button data-filter="alaska" class="gt-filter" style="background:#f0f3fa; color:#1a2b6b; border:none; padding:10px 18px; border-radius:20px; font-size:13px; cursor:pointer; min-height:44px;">Alaska</button>
+    <button data-filter="asia" class="gt-filter" style="background:#f0f3fa; color:#1a2b6b; border:none; padding:10px 18px; border-radius:20px; font-size:13px; cursor:pointer; min-height:44px;">Asia</button>
+    <button data-filter="norway" class="gt-filter" style="background:#f0f3fa; color:#1a2b6b; border:none; padding:10px 18px; border-radius:20px; font-size:13px; cursor:pointer; min-height:44px;">Norway</button>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=400&h=130&fit=crop" />
+      <div class="dest-label">Caribbean</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=130&fit=crop" />
+      <div class="dest-label">Mediterranean</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=130&fit=crop" />
+      <div class="dest-label">Alaska</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=130&fit=crop" />
+      <div class="dest-label">Asia</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=400&h=130&fit=crop" />
+      <div class="dest-label">Norway</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED CRUISE DEALS -->
+<section class="section gray-bg px-4 md:px-10">
+  <div class="section-header">
+    <h2>Featured Cruise Deals</h2>
+    <a href="cruise.html">View All →</a>
+  </div>
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" data-filter-list="cruises">
+    <div class="card" data-category="caribbean">
+      <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Caribbean Paradise 7-Night Cruise</h3>
+        <p><i class="fa-solid fa-anchor" style="color:#1a2b6b;"></i> Miami · 7 nights</p>
+        <p class="price">From $799/person</p>
+      </div>
+    </div>
+    <div class="card" data-category="mediterranean">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Seller</span>
+        <h3>Mediterranean Magic 14-Night Cruise</h3>
+        <p><i class="fa-solid fa-anchor" style="color:#1a2b6b;"></i> Barcelona · 14 nights</p>
+        <p class="price">From $1,499/person</p>
+      </div>
+    </div>
+    <div class="card" data-category="norway">
+      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Norwegian Fjords 10-Night Cruise</h3>
+        <p><i class="fa-solid fa-anchor" style="color:#1a2b6b;"></i> Bergen · 10 nights</p>
+        <p class="price">From $1,199/person</p>
+      </div>
+    </div>
+    <div class="card" data-category="asia">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Asia Discovery 12-Night Cruise</h3>
+        <p><i class="fa-solid fa-anchor" style="color:#1a2b6b;"></i> Singapore · 12 nights</p>
+        <p class="price">From $1,350/person</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section px-4 md:px-10">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+    <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=550&h=380&fit=crop" style="border-radius:12px; width:100%;" />
+    <div>
+      <p style="color:#4a90d9; font-size:13px; font-weight:600; margin-bottom:8px;">ABOUT GOTRIP CRUISES</p>
+      <h2 style="color:#1a2b6b; font-size:28px; margin-bottom:15px;">GoTrip Is a World Leading Cruise Booking Platform</h2>
+      <p style="color:#777; font-size:14px; line-height:1.8; margin-bottom:20px;">We partner with the world's top cruise lines to bring you exclusive deals on the most stunning voyages. From luxury ocean liners to intimate river cruises, we have the perfect sailing experience for every traveler.</p>
+      <div style="display:flex; gap:30px; margin-bottom:25px; flex-wrap:wrap;">
+        <div>
+          <h3 style="font-size:28px; font-weight:700; color:#1a2b6b;">500+</h3>
+          <p style="color:#777; font-size:13px;">Cruise Routes</p>
+        </div>
+        <div>
+          <h3 style="font-size:28px; font-weight:700; color:#1a2b6b;">50+</h3>
+          <p style="color:#777; font-size:13px;">Cruise Lines</p>
+        </div>
+        <div>
+          <h3 style="font-size:28px; font-weight:700; color:#1a2b6b;">2M+</h3>
+          <p style="color:#777; font-size:13px;">Happy Sailors</p>
+        </div>
+      </div>
+      <button class="btn-register">Explore All Cruises</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section gray-bg px-4 md:px-10">
+  <h2 class="text-center">Why Choose Us</h2>
+  <p class="subtitle text-center">The best cruise booking experience starts here</p>
+  <div class="cards-grid-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="margin-top:30px; text-align:center;">
+    <div style="padding:30px;">
+      <i class="fa-solid fa-ship" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Best Cruise Selection</h3>
+      <p style="color:#777; font-size:14px;">Browse hundreds of cruises from top cruise lines worldwide.</p>
+    </div>
+    <div style="padding:30px;">
+      <i class="fa-solid fa-medal" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Best Price Guarantee</h3>
+      <p style="color:#777; font-size:14px;">We guarantee the lowest cruise prices on the market.</p>
+    </div>
+    <div style="padding:30px;">
+      <i class="fa-solid fa-headset" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">24/7 Support</h3>
+      <p style="color:#777; font-size:14px;">Our cruise experts are always ready to help you plan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDED CRUISES -->
+<section class="section px-4 md:px-10">
+  <div class="section-header">
+    <h2>Recommended Cruises</h2>
+    <a href="cruise.html">View All →</a>
+  </div>
+  <div class="cards-grid-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Paris & Seine River Cruise</h3>
+        <p><i class="fa-solid fa-anchor" style="color:#1a2b6b;"></i> Paris, France · 5 nights</p>
+        <p class="price">From $650/person</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Seller</span>
+        <h3>Greek Islands Luxury Cruise</h3>
+        <p><i class="fa-solid fa-anchor" style="color:#1a2b6b;"></i> Athens · 8 nights</p>
+        <p class="price">From $1,100/person</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Alaska Glacier Discovery Cruise</h3>
+        <p><i class="fa-solid fa-anchor" style="color:#1a2b6b;"></i> Seattle · 7 nights</p>
+        <p class="price">From $899/person</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL - DARK -->
+<section class="px-4 md:px-10" style="background:#0f1d4e; color:#fff; padding:60px 0; text-align:center;">
+  <i class="fa-solid fa-quote-left" style="font-size:36px; color:#4a90d9; margin-bottom:20px;"></i>
+  <p style="max-width:700px; margin:0 auto 25px; font-size:16px; line-height:1.9; opacity:0.9;">The Mediterranean cruise we booked through GoTrip was the trip of a lifetime. Every detail was perfect — from the ship to the ports. The team handled everything and the price was incredible. We are already planning our next cruise!</p>
+  <div style="display:flex; align-items:center; justify-content:center; gap:15px; margin-bottom:30px;">
+    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=55&h=55&fit=crop" style="width:55px; height:55px; border-radius:50%; object-fit:cover; border:3px solid #4a90d9;" />
+    <div style="text-align:left;">
+      <h4 style="font-size:15px;">Amanda Clarke</h4>
+      <span style="color:#f5c518;">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- INSPIRATION -->
+<section class="section px-4 md:px-10">
+  <h2 class="text-center">Get Inspiration For Your Next Trip</h2>
+  <p class="subtitle text-center">Cruise guides and travel tips from our experts</p>
+  <div class="inspiration-grid" style="margin-top:25px">
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Best Caribbean cruises for families</h4>
+        <p>August 01, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Top Mediterranean cruise ports to visit</h4>
+        <p>August 08, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>What to pack for a cruise holiday</h4>
+        <p>August 15, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Hidden gem cruise destinations 2024</h4>
+        <p>August 22, 2022</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section px-4 md:px-10">
+  <h2 class="text-2xl sm:text-3xl font-bold">Your Travel Journey Starts Here</h2>
+  <p>Sign up and we'll send the best cruise deals to you</p>
+  <div class="cta-input">
+    <input type="email" placeholder="Your email address" />
+    <button><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10">
+  <div class="footer-grid">
+    <div>
+      <h3>Go<span style="color:#4a90d9">Trip</span></h3>
+      <p style="font-size:13px;margin-bottom:15px">Find next place to visit</p>
+      <div class="app-badges">
+        <a href="https://apps.apple.com/app/gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-apple"></i> App Store
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-google-play"></i> Google Play
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Other Services</h3>
+      <ul>
+        <li><a href="hotel.html">Hotels</a></li>
+        <li><a href="tour.html">Tours</a></li>
+        <li><a href="activity.html">Activities</a></li>
+        <li><a href="rental.html">Rentals</a></li>
+        <li><a href="car.html">Car Hire</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>More</h3>
+      <ul>
+        <li><a href="cruise.html">Cruises</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="#">Travel Insurance</a></li>
+        <li><a href="#">Airport Transfers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+    <div style="display:flex; gap:15px;">
+      <a href="https://facebook.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Facebook">
+        <i class="fa-brands fa-facebook" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://twitter.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Twitter">
+        <i class="fa-brands fa-twitter" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://instagram.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Instagram">
+        <i class="fa-brands fa-instagram" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://linkedin.com/company/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on LinkedIn">
+        <i class="fa-brands fa-linkedin" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+<script src="js/script.js"></script>
+</body>
+</html>

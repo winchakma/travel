@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="GoTrip - Your one-stop travel booking platform. Find and book hotels, flights, tours, car rentals, cruises, and activities worldwide. Best prices guaranteed!" />
+  <meta name="keywords" content="travel booking, hotels, flights, tours, car rental, cruises, travel deals, GoTrip" />
+  <meta name="author" content="GoTrip" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gotrip.com/" />
+  <meta property="og:title" content="GoTrip - Find Your Dream Luxury Hotel & Travel Deals" />
+  <meta property="og:description" content="Book hotels, flights, tours, and more with GoTrip. Best travel deals worldwide!" />
+  <meta property="og:image" content="https://gotrip.com/images/og-home.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://gotrip.com/" />
+  <meta property="twitter:title" content="GoTrip - Find Your Dream Luxury Hotel & Travel Deals" />
+  <meta property="twitter:description" content="Book hotels, flights, tours, and more with GoTrip. Best travel deals worldwide!" />
+  <meta property="twitter:image" content="https://gotrip.com/images/og-home.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  
+  <title>GoTrip - Find Your Dream Luxury Hotel & Travel Deals</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn-login">Sign In</button>
+    <button class="btn-register">Register</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero px-4 md:px-10">
+  <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight">Find Your Dream Luxury Hotel</h1>
+  <p>Discover the best hotels at the best prices worldwide</p>
+  <div class="search-bar">
+    <input type="text" placeholder="Where are you going?" />
+    <input type="date" />
+    <input type="date" />
+    <select>
+      <option>1 Guest</option>
+      <option>2 Guests</option>
+      <option>3 Guests</option>
+    </select>
+    <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+  </div>
+</section>
+
+<!-- DESTINATIONS TRAVELLERS LOVE -->
+<section class="section px-4 md:px-10">
+  <div class="section-header">
+    <h2>Destinations Travellers Love</h2>
+    <a href="tour.html">View All →</a>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=130&fit=crop" />
+      <div class="dest-label">New York</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=130&fit=crop" />
+      <div class="dest-label">London</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&h=130&fit=crop" />
+      <div class="dest-label">Paris</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=130&fit=crop" />
+      <div class="dest-label">Bali</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=130&fit=crop" />
+      <div class="dest-label">Rome</div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR HOTELS -->
+<section class="section gray-bg px-4 md:px-10">
+  <div class="section-header">
+    <h2>Popular Hotels</h2>
+    <a href="hotel.html">View All Hotels →</a>
+  </div>
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>The Westin New York Grand Central</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.8 · New York, USA</p>
+        <p class="price">From $220/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Rated</span>
+        <h3>The Ritz Carlton Hotel London</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.9 · London, UK</p>
+        <p class="price">From $350/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Four Seasons Resort Bali at Sayan</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.9 · Bali, Indonesia</p>
+        <p class="price">From $480/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Burj Al Arab Jumeirah Dubai</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 5.0 · Dubai, UAE</p>
+        <p class="price">From $1200/night</p>
+      </div>
+    </div>
+  </div>
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="margin-top:20px">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Rated</span>
+        <h3>Mandarin Oriental Bangkok</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.7 · Bangkok, Thailand</p>
+        <p class="price">From $180/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Hotel Arts Barcelona Spain</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.6 · Barcelona, Spain</p>
+        <p class="price">From $290/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>The Blue Palace Resort & Spa Greece</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.8 · Crete, Greece</p>
+        <p class="price">From $320/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Park Hyatt Sydney Harbour View</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.7 · Sydney, Australia</p>
+        <p class="price">From $410/night</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="margin-top:20px">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Rated</span>
+        <h3>The Skyline Suites Tokyo</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.8 · Tokyo, Japan</p>
+        <p class="price">From $260/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501117716987-c8e1ecb2100c?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Oceanview Resort & Spa</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.7 · Phuket, Thailand</p>
+        <p class="price">From $190/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Alpine Lodge Zermatt</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.8 · Zermatt, Switzerland</p>
+        <p class="price">From $310/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Rated</span>
+        <h3>Desert Pearl Hotel</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.6 · Marrakech, Morocco</p>
+        <p class="price">From $140/night</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="margin-top:20px">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Harbour Lights Sydney</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.7 · Sydney, Australia</p>
+        <p class="price">From $285/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Old Town Heritage Inn</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.8 · Prague, Czechia</p>
+        <p class="price">From $155/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1505692952047-1a78307da8f2?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Rated</span>
+        <h3>Central Park Boutique NYC</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.6 · New York, USA</p>
+        <p class="price">From $240/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Seaside Grand Hotel</h3>
+        <p><i class="fa-solid fa-star" style="color:#f5c518;"></i> 4.5 · Barcelona, Spain</p>
+        <p class="price">From $205/night</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BANNER -->
+<section class="px-4 md:px-10" style="background:#2d4a9e; color:#fff; padding:60px 0; text-align:center;">
+  <h2 class="text-2xl sm:text-3xl font-bold" style="margin-bottom:10px;">Get Amazing Stays at Hotels Worldwide</h2>
+  <p style="opacity:0.8; margin-bottom:40px;">Book with confidence — best price guaranteed</p>
+  <div style="display:flex; justify-content:center; gap:80px; flex-wrap:wrap;">
+    <div>
+      <h3 style="font-size:36px; font-weight:700;">4,938</h3>
+      <p style="opacity:0.7;"><i class="fa-solid fa-hotel"></i> Total Hotels</p>
+    </div>
+    <div>
+      <h3 style="font-size:36px; font-weight:700;">2,869</h3>
+      <p style="opacity:0.7;"><i class="fa-solid fa-face-smile"></i> Happy Clients</p>
+    </div>
+    <div>
+      <h3 style="font-size:36px; font-weight:700;">314</h3>
+      <p style="opacity:0.7;"><i class="fa-solid fa-trophy"></i> Awards Won</p>
+    </div>
+    <div>
+      <h3 style="font-size:36px; font-weight:700;">$74,974</h3>
+      <p style="opacity:0.7;"><i class="fa-solid fa-piggy-bank"></i> Total Savings</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section px-4 md:px-10">
+  <h2 class="text-center">Why Choose Us</h2>
+  <p class="subtitle text-center">We make hotel booking easy, fast and affordable</p>
+  <div class="cards-grid-3" style="margin-top:30px; text-align:center;">
+    <div style="padding:30px;">
+      <i class="fa-solid fa-medal" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Best Price Guarantee</h3>
+      <p style="color:#777; font-size:14px;">We guarantee the best rates for all hotels on our platform.</p>
+    </div>
+    <div style="padding:30px;">
+      <i class="fa-solid fa-lock" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Secure Booking</h3>
+      <p style="color:#777; font-size:14px;">Your payments and personal data are always safe with us.</p>
+    </div>
+    <div style="padding:30px;">
+      <i class="fa-solid fa-headset" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">24/7 Support</h3>
+      <p style="color:#777; font-size:14px;">Our team is always here to help you anytime, anywhere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDITOR'S CHOICE -->
+<section class="section gray-bg px-4 md:px-10">
+  <div class="section-header">
+    <h2>Editor's Choice Of Hotels</h2>
+    <a href="hotel.html">View All →</a>
+  </div>
+  <div class="cards-grid-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <h3>Anantara Golden Triangle Resort</h3>
+        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Chiang Rai, Thailand</p>
+        <p class="price">From $260/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <h3>Amangiri Resort Utah Desert</h3>
+        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Utah, USA</p>
+        <p class="price">From $1800/night</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1455587734955-081b22074882?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <h3>Singita Sasakwa Lodge Tanzania</h3>
+        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Serengeti, Tanzania</p>
+        <p class="price">From $2200/night</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section px-4 md:px-10">
+  <div class="testimonial-inner">
+    <div>
+      <h2>What Our Customers Are Saying Us?</h2>
+      <p>Millions of happy travelers trust GoTrip for their hotel bookings worldwide.</p>
+      <div class="stats">
+        <div class="stat">
+          <h3>13m+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat">
+          <h3>4.88</h3>
+          <p>Overall Rating</p>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <p>The hotel recommendations were spot on! Booked the Four Seasons through GoTrip and got an amazing deal. The process was smooth and customer support was very helpful throughout.</p>
+      <div class="reviewer">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=45&h=45&fit=crop" />
+        <div>
+          <h4>James Anderson</h4>
+          <span>
+            <i class="fa-solid fa-star" style="color:#f5c518;"></i>
+            <i class="fa-solid fa-star" style="color:#f5c518;"></i>
+            <i class="fa-solid fa-star" style="color:#f5c518;"></i>
+            <i class="fa-solid fa-star" style="color:#f5c518;"></i>
+            <i class="fa-solid fa-star" style="color:#f5c518;"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSPIRATION -->
+<section class="section px-4 md:px-10">
+  <h2 class="text-center">Get Inspiration For Your Next Trip</h2>
+  <p class="subtitle text-center">Explore our travel guides and find your perfect hotel destination</p>
+  <div class="inspiration-grid" style="margin-top:25px">
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Top 10 luxury hotels in Europe</h4>
+        <p>June 12, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Best beach hotels for families</h4>
+        <p>June 15, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Hidden gem hotels you must visit</h4>
+        <p>June 20, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Most romantic hotels around the world</h4>
+        <p>June 25, 2022</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section px-4 md:px-10">
+  <h2 class="text-2xl sm:text-3xl font-bold">Your Travel Journey Starts Here</h2>
+  <p>Sign up and we'll send the best hotel deals to you</p>
+  <div class="cta-input">
+    <input type="email" placeholder="Your email address" />
+    <button><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10">
+  <div class="footer-grid">
+    <div>
+      <h3>Go<span style="color:#4a90d9">Trip</span></h3>
+      <p style="font-size:13px;margin-bottom:15px">Find next place to visit</p>
+      <div class="app-badges">
+        <a href="https://apps.apple.com/app/gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-apple"></i> App Store
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-google-play"></i> Google Play
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Other Services</h3>
+      <ul>
+        <li><a href="hotel.html">Hotels</a></li>
+        <li><a href="tour.html">Tours</a></li>
+        <li><a href="activity.html">Activities</a></li>
+        <li><a href="rental.html">Rentals</a></li>
+        <li><a href="car.html">Car Hire</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>More</h3>
+      <ul>
+        <li><a href="cruise.html">Cruises</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="#">Travel Insurance</a></li>
+        <li><a href="#">Airport Transfers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+    <div style="display:flex; gap:15px;">
+      <a href="https://facebook.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Facebook">
+        <i class="fa-brands fa-facebook" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://twitter.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Twitter">
+        <i class="fa-brands fa-twitter" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://instagram.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Instagram">
+        <i class="fa-brands fa-instagram" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://linkedin.com/company/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on LinkedIn">
+        <i class="fa-brands fa-linkedin" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+<script src="js/script.js"></script>
+</body>
+</html>

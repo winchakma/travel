@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoTrip - Best Travel Experience</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn-login">Sign In</button>
+    <button class="btn-register">Register</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero px-4 md:px-10" style="background: linear-gradient(135deg, #e8f0fb 0%, #c8d8f5 100%); color:#1a2b6b;">
+  <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight" style="color:#1a2b6b;">Best Travel <span style="color:#4a90d9;">Experience</span></h1>
+  <p style="color:#555;">Find and book amazing tours around the world</p>
+  <div class="search-bar">
+    <input type="text" placeholder="Where are you going?" />
+    <input type="date" />
+    <select>
+      <option>1 Guest</option>
+      <option>2 Guests</option>
+      <option>3 Guests</option>
+    </select>
+    <button class="btn-search">Search</button>
+  </div>
+</section>
+
+<!-- MOST POPULAR TOURS -->
+<section class="section px-4 md:px-10">
+  <div class="section-header">
+    <h2>Most Popular Tours</h2>
+    <a href="tour.html">View All →</a>
+  </div>
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Portugal Walking Tour & Best Experience</h3>
+        <p>⭐ 4.8 · Lisbon, Portugal</p>
+        <p class="price">From $65</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Seller</span>
+        <h3>Indonesia Volcano Trek Adventure Tour</h3>
+        <p>⭐ 4.7 · Bali, Indonesia</p>
+        <p class="price">From $95</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Paris New Tour & Best Experience</h3>
+        <p>⭐ 4.9 · Paris, France</p>
+        <p class="price">From $120</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Santorini Island Highlights Full Day</h3>
+        <p>⭐ 4.8 · Santorini, Greece</p>
+        <p class="price">From $110</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHOOSE TOUR TYPE -->
+<section class="section gray-bg px-4 md:px-10">
+  <h2 class="text-center">Choose Tour Types</h2>
+  <p class="subtitle text-center">Browse tours by the type of experience you want</p>
+  <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-top:25px;">
+    <div style="background:#1a2b6b; color:#fff; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px;">
+      <i class="fa-solid fa-umbrella-beach" style="font-size:28px;"></i>
+      <p style="font-size:13px; margin-top:10px;">Beach Tour</p>
+    </div>
+    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+      <i class="fa-solid fa-mountain" style="font-size:28px;"></i>
+      <p style="font-size:13px; margin-top:10px;">Adventure Tour</p>
+    </div>
+    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+      <i class="fa-solid fa-landmark" style="font-size:28px;"></i>
+      <p style="font-size:13px; margin-top:10px;">Cultural Tour</p>
+    </div>
+    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+      <i class="fa-solid fa-utensils" style="font-size:28px;"></i>
+      <p style="font-size:13px; margin-top:10px;">Food Tour</p>
+    </div>
+    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+      <i class="fa-solid fa-ship" style="font-size:28px;"></i>
+      <p style="font-size:13px; margin-top:10px;">Cruise Tour</p>
+    </div>
+    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+      <i class="fa-solid fa-leaf" style="font-size:28px;"></i>
+      <p style="font-size:13px; margin-top:10px;">Nature Tour</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE TOP LOCATIONS -->
+<section class="section px-4 md:px-10">
+  <div class="section-header">
+    <h2>Explore Top Locations</h2>
+    <a href="tour.html">View All →</a>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=130&fit=crop" />
+      <div class="dest-label">New York</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=130&fit=crop" />
+      <div class="dest-label">Rome</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=130&fit=crop" />
+      <div class="dest-label">Bali</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&h=130&fit=crop" />
+      <div class="dest-label">Sydney</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=130&fit=crop" />
+      <div class="dest-label">London</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALS & DISCOUNTS -->
+<section class="section gray-bg px-4 md:px-10">
+  <div class="section-header">
+    <h2>Deals & Discounts</h2>
+    <a href="tour.html">View All →</a>
+  </div>
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div class="card" style="border:2px solid #1a2b6b;">
+      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Book Early To Save</span>
+        <h3>Early Bird Special — Save 30%</h3>
+        <p>⭐ 4.7 · Multiple Destinations</p>
+        <p class="price">From $49</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1682686581498-5e85c7228119?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Seller</span>
+        <h3>Matching Tour Guide Worldwide</h3>
+        <p>⭐ 4.6 · Worldwide</p>
+        <p class="price">From $75</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Portugal Walking Tour & Museum Visit</h3>
+        <p>⭐ 4.8 · Lisbon, Portugal</p>
+        <p class="price">From $85</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Paris City Highlights & Seine Cruise</h3>
+        <p>⭐ 4.9 · Paris, France</p>
+        <p class="price">From $99</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="px-4 md:px-10" style="background:#fff; padding:50px 0;">
+  <div style="display:flex; justify-content:center; gap:80px; flex-wrap:wrap; text-align:center;">
+    <div>
+      <h3 style="font-size:36px; font-weight:700; color:#1a2b6b;">4,938</h3>
+      <p style="color:#777;">Total Tours</p>
+    </div>
+    <div>
+      <h3 style="font-size:36px; font-weight:700; color:#1a2b6b;">2,869</h3>
+      <p style="color:#777;">Happy Clients</p>
+    </div>
+    <div>
+      <h3 style="font-size:36px; font-weight:700; color:#1a2b6b;">314</h3>
+      <p style="color:#777;">Awards Won</p>
+    </div>
+    <div>
+      <h3 style="font-size:36px; font-weight:700; color:#1a2b6b;">$74,974</h3>
+      <p style="color:#777;">Total Savings</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section gray-bg px-4 md:px-10">
+  <h2 class="text-center">Why Check Us</h2>
+  <p class="subtitle text-center">Here's why millions of travelers choose GoTrip tours</p>
+  <div style="display:flex; flex-direction:column; gap:15px; max-width:600px; margin:25px auto 0;">
+    <div style="display:flex; align-items:center; gap:15px; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+      <i class="fa-solid fa-tag" style="font-size:24px; color:#1a2b6b;"></i>
+      <div>
+        <h4 style="color:#1a2b6b;">Its Free To Purchase</h4>
+        <p style="color:#777; font-size:13px;">No hidden fees — what you see is what you pay.</p>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:15px; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+      <i class="fa-solid fa-star" style="font-size:24px; color:#1a2b6b;"></i>
+      <div>
+        <h4 style="color:#1a2b6b;">Hand Picked Tours</h4>
+        <p style="color:#777; font-size:13px;">Every tour is carefully selected for quality and value.</p>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:15px; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+      <i class="fa-solid fa-headset" style="font-size:24px; color:#1a2b6b;"></i>
+      <div>
+        <h4 style="color:#1a2b6b;">Support 24/7</h4>
+        <p style="color:#777; font-size:13px;">Our team is always here to help you anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section px-4 md:px-10">
+  <div class="testimonial-inner">
+    <div>
+      <h2>What Our Customers Are Saying Us?</h2>
+      <p>Millions of happy travelers trust GoTrip for the best tour experiences worldwide.</p>
+      <div class="stats">
+        <div class="stat">
+          <h3>13m+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat">
+          <h3>4.88</h3>
+          <p>Overall Rating</p>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <p>The tour was absolutely amazing! Our guide was knowledgeable and fun. GoTrip made the whole booking process so easy. Will definitely book again for our next trip!</p>
+      <div class="reviewer">
+        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=45&h=45&fit=crop" />
+        <div>
+          <h4>Sarah Johnson</h4>
+          <span>⭐⭐⭐⭐⭐</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSPIRATION -->
+<section class="section px-4 md:px-10">
+  <h2 class="text-center">Get Inspiration For Your Next Trip</h2>
+  <p class="subtitle text-center">Explore our travel guides for the best tour ideas</p>
+  <div class="inspiration-grid" style="margin-top:25px">
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Best tours in Europe this summer</h4>
+        <p>May 05, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Top adventure tours for thrill seekers</h4>
+        <p>May 10, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Cultural tours you cannot miss</h4>
+        <p>May 15, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Family friendly tours around the world</h4>
+        <p>May 20, 2022</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOT A MEMBER -->
+<section class="px-4 md:px-10" style="background:#f7f8fc; padding:50px 0; text-align:center;">
+  <h2 class="text-2xl sm:text-3xl font-bold" style="color:#1a2b6b; margin-bottom:10px;">Not A Member Yet?</h2>
+  <p style="color:#777; margin-bottom:25px;">Join thousands of travelers getting the best tour deals</p>
+  <div style="display:flex; justify-content:center; gap:15px;">
+    <button class="btn-register">Sign Up</button>
+    <button style="background:#4a90d9; color:#fff; border:none; padding:10px 25px; border-radius:6px; font-size:14px; cursor:pointer;">Register</button>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section px-4 md:px-10">
+  <h2 class="text-2xl sm:text-3xl font-bold">Your Travel Journey Starts Here</h2>
+  <p>Sign up and we'll send the best tour deals to you</p>
+  <div class="cta-input">
+    <input type="email" placeholder="Your email address" />
+    <button>Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10">
+  <div class="footer-grid">
+    <div>
+      <h3>Go<span style="color:#4a90d9">Trip</span></h3>
+      <p style="font-size:13px;margin-bottom:15px">Find next place to visit</p>
+      <div class="app-badges">
+        <div class="app-badge"><i class="fa-brands fa-apple"></i> App Store</div>
+        <div class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</div>
+      </div>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Other Services</h3>
+      <ul>
+        <li><a href="hotel.html">Hotels</a></li>
+        <li><a href="tour.html">Tours</a></li>
+        <li><a href="activity.html">Activities</a></li>
+        <li><a href="rental.html">Rentals</a></li>
+        <li><a href="car.html">Car Hire</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>More</h3>
+      <ul>
+        <li><a href="cruise.html">Cruises</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="#">Travel Insurance</a></li>
+        <li><a href="#">Airport Transfers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+    <div style="display:flex; gap:15px;">
+      <a href="https://facebook.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Facebook">
+        <i class="fa-brands fa-facebook" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://twitter.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Twitter">
+        <i class="fa-brands fa-twitter" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://instagram.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Instagram">
+        <i class="fa-brands fa-instagram" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://linkedin.com/company/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on LinkedIn">
+        <i class="fa-brands fa-linkedin" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+<script src="js/script.js"></script>
+</body>
+</html>

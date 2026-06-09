@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Search for the best car hire deals with GoTrip. Compare hundreds of car rental suppliers and find the perfect ride for your trip. Best prices guaranteed!" />
+  <meta name="keywords" content="car rental, car hire, rent a car, car booking, vehicle rental, travel booking, GoTrip" />
+  <meta name="author" content="GoTrip" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gotrip.com/car.html" />
+  <meta property="og:title" content="GoTrip - Search for the Best Car Hire Deals" />
+  <meta property="og:description" content="Search for the best car hire deals with GoTrip. Compare hundreds of car rental suppliers and find the perfect ride." />
+  <meta property="og:image" content="https://gotrip.com/images/og-car.jpg" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://gotrip.com/car.html" />
+  <meta property="twitter:title" content="GoTrip - Search for the Best Car Hire Deals" />
+  <meta property="twitter:description" content="Search for the best car hire deals with GoTrip. Compare hundreds of car rental suppliers and find the perfect ride." />
+  <meta property="twitter:image" content="https://gotrip.com/images/og-car.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  
+  <title>GoTrip - Search for the Best Car Hire Deals | Car Rental</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .hero-car {
+      background: #f5c518;
+      padding: 60px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .hero-car-text h1 {
+      font-size: clamp(26px, 5vw, 38px);
+      line-height: 1.15;
+      font-weight: 700;
+      color: #1a2b6b;
+      margin-bottom: 10px;
+    }
+    .hero-car-text p {
+      color: #444;
+      font-size: 15px;
+      margin-bottom: 25px;
+    }
+    .hero-car img {
+      width: 420px;
+      border-radius: 12px;
+    }
+    .faq-item {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 0;
+    }
+    .faq-item h4 {
+      color: #1a2b6b;
+      font-size: 15px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .faq-item p {
+      color: #777;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn-login">Sign In</button>
+    <button class="btn-register">Register</button>
+  </div>
+</nav>
+
+<!-- HERO - YELLOW like screenshot -->
+<section class="hero-car px-4 md:px-10">
+  <div class="hero-car-text">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight">Search for the Best<br/>Car Hire Deals</h1>
+    <p>Compare hundreds of car hire deals and find the perfect ride for your trip</p>
+    <div class="search-bar" style="max-width:550px; margin:0;">
+      <input type="text" placeholder="Pick-up location" />
+      <input type="date" />
+      <input type="date" />
+      <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+    </div>
+  </div>
+  <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=420&h=280&fit=crop" class="w-full max-w-sm md:max-w-md rounded-xl" />
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section px-4 md:px-10">
+  <h2 class="text-center">Why Choose Us</h2>
+  <p class="subtitle text-center">The best car hire experience starts here</p>
+  <div class="cards-grid-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="margin-top:30px; text-align:center;">
+    <div style="padding:30px;">
+      <i class="fa-solid fa-tag" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Best Price Guaranteed</h3>
+      <p style="color:#777; font-size:14px;">We compare hundreds of suppliers to get you the best deal.</p>
+    </div>
+    <div style="padding:30px;">
+      <i class="fa-solid fa-car" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Huge Car Selection</h3>
+      <p style="color:#777; font-size:14px;">From economy to luxury — we have every type of car.</p>
+    </div>
+    <div style="padding:30px;">
+      <i class="fa-solid fa-headset" style="font-size:40px; color:#1a2b6b; margin-bottom:15px;"></i>
+      <h3 style="color:#1a2b6b; margin-bottom:8px;">Full Support 24/7</h3>
+      <p style="color:#777; font-size:14px;">Our team is always ready to assist you on the road.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR CAR HIRE -->
+<section class="section gray-bg px-4 md:px-10">
+  <div class="section-header">
+    <h2>Popular Car Hire</h2>
+    <a href="car.html">View All →</a>
+  </div>
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>BMW 5 Series — Premium Sedan</h3>
+        <p><i class="fa-solid fa-users" style="color:#1a2b6b;"></i> 5 seats &nbsp; <i class="fa-solid fa-gear" style="color:#1a2b6b;"></i> Automatic</p>
+        <p class="price">From $85/day</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge blue">Top Rated</span>
+        <h3>Mercedes GLE — Luxury SUV</h3>
+        <p><i class="fa-solid fa-users" style="color:#1a2b6b;"></i> 7 seats &nbsp; <i class="fa-solid fa-gear" style="color:#1a2b6b;"></i> Automatic</p>
+        <p class="price">From $120/day</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Toyota Corolla — Economy</h3>
+        <p><i class="fa-solid fa-users" style="color:#1a2b6b;"></i> 5 seats &nbsp; <i class="fa-solid fa-gear" style="color:#1a2b6b;"></i> Manual</p>
+        <p class="price">From $35/day</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=400&h=180&fit=crop" />
+      <div class="card-body">
+        <span class="badge">Featured</span>
+        <h3>Range Rover Sport — 4WD</h3>
+        <p><i class="fa-solid fa-users" style="color:#1a2b6b;"></i> 5 seats &nbsp; <i class="fa-solid fa-gear" style="color:#1a2b6b;"></i> Automatic</p>
+        <p class="price">From $150/day</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP DESTINATIONS -->
+<section class="section px-4 md:px-10">
+  <div class="section-header">
+    <h2>Top Destinations To Drive</h2>
+    <a href="tour.html">View All →</a>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=130&fit=crop" />
+      <div class="dest-label">Los Angeles</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&h=130&fit=crop" />
+      <div class="dest-label">Chicago</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=130&fit=crop" />
+      <div class="dest-label">London</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&h=130&fit=crop" />
+      <div class="dest-label">Sydney</div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=130&fit=crop" />
+      <div class="dest-label">Miami</div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER REVIEWS - DARK SECTION -->
+<section class="px-4 md:px-10" style="background:#0f1d4e; color:#fff; padding:60px 0;">
+  <h2 class="text-2xl sm:text-3xl font-bold" style="text-align:center; margin-bottom:8px;">Customer Reviews</h2>
+  <p style="text-align:center; opacity:0.7; margin-bottom:40px;">What our happy drivers are saying</p>
+  <div class="cards-grid-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap:25px;">
+    <div style="background:#1a2b6b; border-radius:12px; padding:25px;">
+      <i class="fa-solid fa-quote-left" style="font-size:24px; color:#4a90d9; margin-bottom:12px;"></i>
+      <p style="font-size:14px; line-height:1.8; opacity:0.9; margin-bottom:20px;">Renting a car through GoTrip was so easy. The BMW was spotless and the price was unbeatable. Will definitely use again!</p>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=45&h=45&fit=crop" style="width:45px; height:45px; border-radius:50%; object-fit:cover;" />
+        <div>
+          <h4 style="font-size:14px;">James Wilson</h4>
+          <span style="color:#f5c518; font-size:12px;">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div style="background:#1a2b6b; border-radius:12px; padding:25px;">
+      <i class="fa-solid fa-quote-left" style="font-size:24px; color:#4a90d9; margin-bottom:12px;"></i>
+      <p style="font-size:14px; line-height:1.8; opacity:0.9; margin-bottom:20px;">Amazing selection of cars and super fast booking. Got a great SUV for our family road trip at a fantastic price. Highly recommend!</p>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=45&h=45&fit=crop" style="width:45px; height:45px; border-radius:50%; object-fit:cover;" />
+        <div>
+          <h4 style="font-size:14px;">Sarah Mitchell</h4>
+          <span style="color:#f5c518; font-size:12px;">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div style="background:#1a2b6b; border-radius:12px; padding:25px;">
+      <i class="fa-solid fa-quote-left" style="font-size:24px; color:#4a90d9; margin-bottom:12px;"></i>
+      <p style="font-size:14px; line-height:1.8; opacity:0.9; margin-bottom:20px;">The Range Rover was perfect for our mountain drive. GoTrip made the whole process stress-free from start to finish. Five stars!</p>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=45&h=45&fit=crop" style="width:45px; height:45px; border-radius:50%; object-fit:cover;" />
+        <div>
+          <h4 style="font-size:14px;">David Lee</h4>
+          <span style="color:#f5c518; font-size:12px;">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex; justify-content:center; gap:80px; margin-top:50px; flex-wrap:wrap; text-align:center;">
+    <div>
+      <h3 style="font-size:36px; font-weight:700;">13m+</h3>
+      <p style="opacity:0.7;">Happy Customers</p>
+    </div>
+    <div>
+      <h3 style="font-size:36px; font-weight:700;">4.88</h3>
+      <p style="opacity:0.7;">Overall Rating</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section px-4 md:px-10">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; flex-wrap:wrap;">
+    <div>
+      <h2 style="color:#1a2b6b; font-size:28px; margin-bottom:15px;">GoTrip Is a World Leading Car Hire Booking Platform</h2>
+      <p style="color:#777; font-size:14px; line-height:1.8; margin-bottom:20px;">We partner with hundreds of trusted car hire suppliers worldwide to bring you the best selection and prices. Whether you need a city runaround or a luxury road trip vehicle, we've got you covered.</p>
+      <button class="btn-register">Learn More</button>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; text-align:center;">
+      <div style="background:#f7f8fc; padding:25px; border-radius:10px;">
+        <h3 style="font-size:32px; font-weight:700; color:#1a2b6b;">4,938</h3>
+        <p style="color:#777; font-size:13px;"><i class="fa-solid fa-car" style="color:#1a2b6b;"></i> Cars Available</p>
+      </div>
+      <div style="background:#f7f8fc; padding:25px; border-radius:10px;">
+        <h3 style="font-size:32px; font-weight:700; color:#1a2b6b;">2,869</h3>
+        <p style="color:#777; font-size:13px;"><i class="fa-solid fa-face-smile" style="color:#1a2b6b;"></i> Happy Clients</p>
+      </div>
+      <div style="background:#f7f8fc; padding:25px; border-radius:10px;">
+        <h3 style="font-size:32px; font-weight:700; color:#1a2b6b;">3M</h3>
+        <p style="color:#777; font-size:13px;"><i class="fa-solid fa-road" style="color:#1a2b6b;"></i> Miles Driven</p>
+      </div>
+      <div style="background:#f7f8fc; padding:25px; border-radius:10px;">
+        <h3 style="font-size:32px; font-weight:700; color:#1a2b6b;">$74,974</h3>
+        <p style="color:#777; font-size:13px;"><i class="fa-solid fa-piggy-bank" style="color:#1a2b6b;"></i> Total Savings</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSPIRATION -->
+<section class="section gray-bg px-4 md:px-10">
+  <h2 class="text-center">Get Inspiration For Your Next Trip</h2>
+  <p class="subtitle text-center">Road trip ideas and car hire guides</p>
+  <div class="inspiration-grid" style="margin-top:25px">
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Best road trips in the USA</h4>
+        <p>July 01, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Top scenic drives in Europe</h4>
+        <p>July 08, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Tips for renting a car abroad</h4>
+        <p>July 15, 2022</p>
+      </div>
+    </div>
+    <div class="insp-card">
+      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=200&fit=crop" />
+      <div class="insp-text">
+        <h4>Luxury cars worth splurging on</h4>
+        <p>July 22, 2022</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP DOWNLOAD - YELLOW -->
+<section class="px-4 md:px-10" style="background:#f5c518; padding:60px 0;">
+  <div style="display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; flex-wrap:wrap; gap:30px;">
+    <div style="max-width:500px;">
+      <h2 style="font-size:28px; color:#1a2b6b; margin-bottom:12px;">Download the App</h2>
+      <p style="color:#444; margin-bottom:25px;">Book your car hire on the go. Get exclusive app-only deals and manage your booking anytime.</p>
+      <div style="display:flex; gap:15px; flex-wrap:wrap;">
+        <div class="app-badge"><i class="fa-brands fa-apple"></i> App Store</div>
+        <div class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</div>
+      </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=200&fit=crop" class="w-full max-w-xs md:max-w-sm rounded-xl" />
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section px-4 md:px-10">
+  <h2 class="text-center">Frequently Asked Questions</h2>
+  <p class="subtitle text-center">Everything you need to know about car hire</p>
+  <div style="max-width:750px; margin:30px auto 0;">
+    <div class="faq-item">
+      <h4><i class="fa-solid fa-circle-question" style="color:#1a2b6b;"></i> &nbsp; What documents do I need to hire a car?</h4>
+      <p>You'll need a valid driving licence, passport or ID, and a credit card in the driver's name.</p>
+    </div>
+    <div class="faq-item">
+      <h4><i class="fa-solid fa-circle-question" style="color:#1a2b6b;"></i> &nbsp; Can I cancel my car hire booking?</h4>
+      <p>Yes, most bookings can be cancelled for free up to 48 hours before pick-up.</p>
+    </div>
+    <div class="faq-item">
+      <h4><i class="fa-solid fa-circle-question" style="color:#1a2b6b;"></i> &nbsp; Is insurance included in the price?</h4>
+      <p>Basic insurance is included. You can add extra coverage during checkout for full peace of mind.</p>
+    </div>
+    <div class="faq-item">
+      <h4><i class="fa-solid fa-circle-question" style="color:#1a2b6b;"></i> &nbsp; What is the minimum age to rent a car?</h4>
+      <p>The minimum age is usually 21, though some suppliers accept drivers from age 18 with a young driver fee.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section px-4 md:px-10">
+  <h2 class="text-2xl sm:text-3xl font-bold">Your Travel Journey Starts Here</h2>
+  <p>Sign up and we'll send the best car hire deals to you</p>
+  <div class="cta-input">
+    <input type="email" placeholder="Your email address" />
+    <button><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10">
+  <div class="footer-grid">
+    <div>
+      <h3>Go<span style="color:#4a90d9">Trip</span></h3>
+      <p style="font-size:13px;margin-bottom:15px">Find next place to visit</p>
+      <div class="app-badges">
+        <a href="https://apps.apple.com/app/gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-apple"></i> App Store
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge" style="cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-google-play"></i> Google Play
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Other Services</h3>
+      <ul>
+        <li><a href="hotel.html">Hotels</a></li>
+        <li><a href="tour.html">Tours</a></li>
+        <li><a href="activity.html">Activities</a></li>
+        <li><a href="rental.html">Rentals</a></li>
+        <li><a href="car.html">Car Hire</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>More</h3>
+      <ul>
+        <li><a href="cruise.html">Cruises</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="#">Travel Insurance</a></li>
+        <li><a href="#">Airport Transfers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+    <div style="display:flex; gap:15px;">
+      <a href="https://facebook.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Facebook">
+        <i class="fa-brands fa-facebook" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://twitter.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Twitter">
+        <i class="fa-brands fa-twitter" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://instagram.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Instagram">
+        <i class="fa-brands fa-instagram" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+      <a href="https://linkedin.com/company/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on LinkedIn">
+        <i class="fa-brands fa-linkedin" style="font-size:16px; cursor:pointer; transition:color 0.3s;"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+<script src="js/script.js"></script>
+</body>
+</html>

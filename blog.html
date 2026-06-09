@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoTrip Blog — Travel Guides & Tips</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar px-4 md:px-10">
+  <div class="logo">Go<span>Trip</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="tour.html">Tour</a></li>
+    <li><a href="activity.html">Activity</a></li>
+    <li><a href="rental.html">Rental</a></li>
+    <li><a href="car.html">Car</a></li>
+    <li><a href="cruise.html">Cruise</a></li>
+    <li><a href="flights.html">Flights</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <button class="btn-login">Sign In</button>
+    <button class="btn-register">Register</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero px-4 md:px-10" style="background:linear-gradient(135deg,#0f1d4e 0%, #1a2b6b 60%, #2d4a9e 100%);">
+  <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight">GoTrip Blog</h1>
+  <p>Travel guides, deal alerts, and pro tips for your next trip</p>
+  <div class="search-bar" style="max-width:680px;">
+    <input type="text" placeholder="Search posts (mock)" />
+    <select>
+      <option>All Categories</option>
+      <option>Hotels</option>
+      <option>Tours</option>
+      <option>Flights</option>
+      <option>Cruises</option>
+    </select>
+    <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+  </div>
+</section>
+
+<section class="section px-4 md:px-10 gray-bg">
+  <div class="section-header">
+    <h2>Latest Posts</h2>
+    <a href="index.html">Back to Home →</a>
+  </div>
+
+  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=450&fit=crop" alt="Mountains" />
+      <div class="card-body">
+        <span class="badge blue">Guide</span>
+        <h3>7-day itinerary: Switzerland by train</h3>
+        <p>Best routes, towns, and hotel picks for a stress-free trip.</p>
+        <p class="price">Read in 6 min</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&h=450&fit=crop" alt="Beach" />
+      <div class="card-body">
+        <span class="badge yellow">Deals</span>
+        <h3>How to spot real hotel discounts</h3>
+        <p>A checklist to avoid “fake” markdowns and book smarter.</p>
+        <p class="price">Read in 5 min</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=450&fit=crop" alt="Plane" />
+      <div class="card-body">
+        <span class="badge">Tips</span>
+        <h3>Cheapest days to fly (and why)</h3>
+        <p>Timing, flexibility, and alerts that actually work.</p>
+        <p class="price">Read in 4 min</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&h=450&fit=crop" alt="Cruise" />
+      <div class="card-body">
+        <span class="badge blue">Cruise</span>
+        <h3>First-time cruise packing list</h3>
+        <p>What to bring, what to skip, and what to wear.</p>
+        <p class="price">Read in 7 min</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=450&fit=crop" alt="Hotel" />
+      <div class="card-body">
+        <span class="badge">Hotels</span>
+        <h3>How to choose the perfect neighborhood</h3>
+        <p>Stay close to what matters and save time every day.</p>
+        <p class="price">Read in 6 min</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&h=450&fit=crop" alt="Santorini" />
+      <div class="card-body">
+        <span class="badge yellow">Bestseller</span>
+        <h3>Top 10 places to visit this summer</h3>
+        <p>Classic favorites + underrated gems for 2026.</p>
+        <p class="price">Read in 8 min</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer px-4 md:px-10">
+  <div class="footer-grid">
+    <div>
+      <h3>Go<span style="color:#4a90d9">Trip</span></h3>
+      <p style="font-size:13px;margin-bottom:15px">Find next place to visit</p>
+      <div class="app-badges">
+        <a href="https://apps.apple.com/app/gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge"><i class="fa-brands fa-apple"></i> App Store</div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.gotrip" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+          <div class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>More</h3>
+      <ul>
+        <li><a href="cruise.html">Cruises</a></li>
+        <li><a href="flights.html">Flights</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 GoTrip. All rights reserved.</span>
+    <div style="display:flex; gap:15px;">
+      <a href="https://facebook.com/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on Facebook">
+        <i class="fa-brands fa-facebook" style="font-size:16px;"></i>
+      </a>
+      <a href="https://linkedin.com/company/gotrip" target="_blank" rel="noopener" style="color:#ccc; text-decoration:none;" title="Follow us on LinkedIn">
+        <i class="fa-brands fa-linkedin" style="font-size:16px;"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+<script src="js/script.js"></script>
+</body>
+</html>
