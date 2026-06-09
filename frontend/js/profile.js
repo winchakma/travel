@@ -1,10 +1,106 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  if (!isLoggedIn()) {
+document.addEventListener("DOMContentLoaded", () => {
+  if (!getToken()) {
     window.location.href = "index.html";
     return;
   }
+  initProfile();
+  setupTabs();
+});
 
-  // Load Countries
+function setupTabs() {
+  const tabs = document.querySelectorAll(".profile-tab");
+  const sections = document.querySelectorAll(".profile-section");
+
+  // Check URL hash on load
+  const hash = window.location.hash || "#personal";
+  
+  function switchTab(targetHash) {
+    let targetTab = Array.from(tabs).find(t => t.getAttribute("href") === targetHash);
+    if (!targetTab) targetTab = tabs[0];
+    
+    // Update active tab styles
+    tabs.forEach(t => {
+      t.classList.remove("bg-blue-50", "border-[#1a2b6b]", "text-[#1a2b6b]", "active");
+      t.classList.add("text-gray-600", "border-transparent", "hover:bg-gray-50", "hover:text-[#1a2b6b]");
+    });
+    
+    targetTab.classList.remove("text-gray-600", "border-transparent", "hover:bg-gray-50", "hover:text-[#1a2b6b]");
+    targetTab.classList.add("bg-blue-50", "border-[#1a2b6b]", "text-[#1a2b6b]", "active");
+    
+    // Show correct section
+    const targetId = targetTab.getAttribute("data-target");
+    sections.forEach(s => {
+      s.classList.remove("block");
+      s.classList.add("hidden");
+    });
+    
+    const activeSection = document.getElementById(targetId);
+    if (activeSection) {
+      activeSection.classList.remove("hidden");
+      activeSection.classList.add("block");
+    }
+
+    // Load bookings if that tab is clicked
+    if (targetId === "section-bookings") {
+      loadProfileBookings();
+    }
+  }
+
+  // Handle click events
+  tabs.forEach(tab => {
+    tab.addEventListener("click", (e) => {
+      // Don't prevent default if it's a hash link, let URL update
+      if (tab.getAttribute("href").startsWith("#")) {
+        // Just let it change the hash, the hashchange event will catch it
+        // Or we can manually switch it and prevent default to avoid scrolling jumping
+        e.preventDefault();
+        window.history.pushState(null, null, tab.getAttribute("href"));
+        switchTab(tab.getAttribute("href"));
+      }
+    });
+  });
+
+  // Handle browser back/forward
+  window.addEventListener("hashchange", () => {
+    switchTab(window.location.hash || "#personal");
+  });
+
+  // Initial setup
+  switchTab(hash);
+}
+
+async function loadProfileBookings() {
+  const list = document.getElementById("profile-bookings-list");
+  list.innerHTML = `<p class="text-gray-500">Loading bookings...</p>`;
+  try {
+    const res = await fetch(`${window.ELITE_API_URL || "https://mygym-p9rd.onrender.com"}/api/bookings/me`, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    });
+    if (!res.ok) throw new Error("Failed to load");
+    const data = await res.json();
+    if (data.length === 0) {
+      list.innerHTML = `<p class="text-gray-500">You have no active bookings.</p>`;
+      return;
+    }
+    list.innerHTML = data.map(b => `
+      <div class="border border-gray-100 rounded-lg p-4 flex justify-between items-center hover:bg-gray-50 transition-colors">
+        <div>
+          <p class="font-bold text-[#1a2b6b]">${b.itemName || b.itemType}</p>
+          <p class="text-sm text-gray-500">Date: ${b.bookingDate || 'N/A'}</p>
+          <p class="text-sm text-gray-500">Status: <span class="text-green-600 font-medium">${b.status}</span></p>
+        </div>
+        <div class="text-right">
+          <p class="font-bold text-gray-800">$${b.totalPrice}</p>
+          <p class="text-xs text-gray-400">ID: ${b.id.substring(0,6)}...</p>
+        </div>
+      </div>
+    `).join("");
+  } catch (err) {
+    list.innerHTML = `<p class="text-red-500">Error loading bookings: ${err.message}</p>`;
+  }
+}
+
+async function initProfile() {
   await loadCountries();
 
   // Load Profile Data
