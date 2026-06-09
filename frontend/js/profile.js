@@ -108,8 +108,47 @@ async function initProfile() {
 
   // Event Listeners
   document.getElementById("profile-upload").addEventListener("change", handleProfilePictureUpload);
+  document.getElementById("prof-edit-btn").addEventListener("click", toggleEditMode);
   document.getElementById("prof-save-btn").addEventListener("click", handleProfileSave);
   document.getElementById("pw-save-btn").addEventListener("click", handleChangePassword);
+}
+
+function toggleEditMode() {
+  const inputs = ["prof-firstName", "prof-lastName", "prof-phone", "prof-address", "prof-city"];
+  const select = document.getElementById("prof-country");
+  
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    el.removeAttribute("readonly");
+    el.classList.remove("border-transparent", "bg-transparent");
+    el.classList.add("border-gray-300", "bg-white");
+  });
+  
+  select.removeAttribute("disabled");
+  select.classList.remove("border-transparent", "bg-transparent", "appearance-none", "cursor-default");
+  select.classList.add("border-gray-300", "bg-white");
+
+  document.getElementById("prof-edit-btn").classList.add("hidden");
+  document.getElementById("prof-save-btn").classList.remove("hidden");
+}
+
+function disableEditMode() {
+  const inputs = ["prof-firstName", "prof-lastName", "prof-phone", "prof-address", "prof-city"];
+  const select = document.getElementById("prof-country");
+  
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    el.setAttribute("readonly", "readonly");
+    el.classList.remove("border-gray-300", "bg-white");
+    el.classList.add("border-transparent", "bg-transparent");
+  });
+  
+  select.setAttribute("disabled", "disabled");
+  select.classList.remove("border-gray-300", "bg-white");
+  select.classList.add("border-transparent", "bg-transparent", "appearance-none", "cursor-default");
+
+  document.getElementById("prof-save-btn").classList.add("hidden");
+  document.getElementById("prof-edit-btn").classList.remove("hidden");
 }
 
 async function loadCountries() {
@@ -228,6 +267,9 @@ async function handleProfileSave() {
     
     document.getElementById("sidebar-name").textContent = `${data.user.firstName} ${data.user.lastName}`;
     updateNavbar();
+    
+    // Switch back to read-only mode
+    disableEditMode();
   } catch (err) {
     showToast("Save failed: " + err.message);
   } finally {
