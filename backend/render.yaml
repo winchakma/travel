@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: gotrip-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: ALLOWED_ORIGINS
+        value: "https://gotrip.vercel.app,https://your-vercel-deployment.vercel.app"
+      - key: MONGODB_URL
+        value: "mongodb+srv://<USER>:<PASSWORD>@<YOUR_CLUSTER>.mongodb.net/gotrip_db"
+      - key: JWT_SECRET
+        value: "generate_a_secure_random_string_here"
+      # Add Chatbot API keys below:
+      - key: CHATBOT_API_KEY
+        value: "your_chatbot_api_key_here"

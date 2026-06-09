@@ -5,12 +5,12 @@
 
 // Auto-detect API URL - works on localhost and production!
 const API = (() => {
+  if (window.ELITE_API_URL) return window.ELITE_API_URL + "/api";
   const hostname = window.location.hostname;
   if (hostname === 'localhost' || hostname === '127.0.0.1') {
-    return "http://localhost:5000/api";
+    return "http://localhost:10000/api";
   }
-  // For production, change this to your actual domain
-  return "http://localhost:5000/api"; // Change this when you deploy!
+  return "https://gotrip-backend.onrender.com/api";
 })();
 
 const getToken = () => localStorage.getItem("gotrip_token");
