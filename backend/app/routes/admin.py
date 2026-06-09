@@ -1,8 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, status, Form, File, UploadFile
 from app.models.user import User
 from app.models.admin import Booking, Activity, Order, ClassSchedule, Notification, Video, UserFeedback, MentorshipRequest
-from app.models.workout import Workout
-from app.models.progress import WeightProgress
 from app.schemas.user import UserResponse
 from typing import List, Optional
 import jwt
@@ -397,8 +395,6 @@ async def get_user_progress(email: str, token: str):
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    workouts = await Workout.find(Workout.user_id == str(user.id)).sort("-date").to_list()
-    weight_history = await WeightProgress.find(WeightProgress.userEmail == email).sort("-timestamp").to_list()
     bookings = await Booking.find(Booking.userEmail == email).sort("-date").to_list()
     from app.models.user import AttendanceLog
     attendance = await AttendanceLog.find(AttendanceLog.user_id == str(user.id)).sort("-date").to_list()

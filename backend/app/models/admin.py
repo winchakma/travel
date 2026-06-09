@@ -3,15 +3,11 @@ from datetime import datetime
 from typing import Optional
 
 class Booking(Document):
-    userId: Optional[str] = None
-    userEmail: str
-    userName: Optional[str] = None
-    classId: Optional[str] = None
-    className: str
-    trainerName: Optional[str] = None
-    time: Optional[str] = None
-    date: datetime = datetime.utcnow()
-    status: str = "confirmed" # confirmed, canceled, completed
+    user_email: str
+    type: str  # flight, hotel, car, cruise, activity
+    details: dict
+    price: int
+    status: str = "confirmed" # confirmed, canceled, pending
     created_at: datetime = datetime.utcnow()
 
     class Settings:

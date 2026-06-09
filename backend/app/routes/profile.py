@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, Form, UploadFile, File
 from app.models.user import User
 from app.models.admin import Activity, Notification, ClassSchedule, Video, Booking, UserFeedback
-from app.models.workout import Workout
 from app.models.community import CommunityPost
 from app.schemas.user import ChangePasswordRequest
 from app.routes.auth import get_current_user, pwd_context
@@ -76,9 +75,7 @@ async def get_ai_insights(token: str):
     from datetime import datetime, timezone
     
     today_start = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-    todays_workouts = await Workout.find(
-        {"user_id": str(user.id), "date": {"$gte": today_start}}
-    ).to_list()
+    todays_workouts = []
     
     burned_today = sum(w.calories for w in todays_workouts)
     
@@ -564,27 +561,8 @@ async def get_live_feed():
     # 2. Activity
     activities = []
     
-    # Workouts
-    recent_workouts = await Workout.find_all().sort("-date").limit(10).to_list()
-    for w in recent_workouts:
-        user = await User.get(PydanticObjectId(w.user_id)) if w.user_id else None
-        name = "Unknown"
-        if user:
-            name = getattr(user, 'firstName', user.email.split('@')[0])
-            last = getattr(user, 'lastName', '')
-            if last:
-                name = f"{name} {last[0]}."
-                
-        def get_ts(dt):
-            return dt.timestamp() if dt.tzinfo else dt.replace(tzinfo=timezone.utc).timestamp()
-            
-        activities.append({
-            "type": "workout",
-            "userName": name,
-            "text": f"verified {w.calories}kcal video proof.",
-            "timestamp": w.date.isoformat(),
-            "ts": get_ts(w.date)
-        })
+    def get_ts(dt):
+        return dt.timestamp() if dt.tzinfo else dt.replace(tzinfo=timezone.utc).timestamp()
 
     # Posts
     recent_posts = await CommunityPost.find_all().sort("-timestamp").limit(10).to_list()

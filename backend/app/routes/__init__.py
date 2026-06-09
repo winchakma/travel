@@ -1,1 +1,1 @@
-from . import auth, profile, workout, community, chat, admin, store
+from . import auth, profile, bookings, community, chat, admin, store

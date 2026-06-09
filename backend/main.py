@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # Ensure .env is loaded from the correct path
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
 
-from app.routes import auth, profile, workout, community, chat, admin, store, public, support, support_ws
+from app.routes import auth, profile, bookings, community, chat, admin, store, public, support, support_ws
 from app.database import init_db
 
 @contextlib.asynccontextmanager
@@ -137,7 +137,7 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 # Routes
 app.include_router(auth.router, prefix="/api")
 app.include_router(profile.router, prefix="/api")
-app.include_router(workout.router, prefix="/api")
+app.include_router(bookings.router, prefix="/api")
 app.include_router(community.router, prefix="/api")
 app.include_router(chat.router, prefix="/api")
 app.include_router(admin.router, prefix="/api")
