@@ -110,7 +110,7 @@ async function initProfile() {
   document.getElementById("profile-upload").addEventListener("change", handleProfilePictureUpload);
   document.getElementById("prof-save-btn").addEventListener("click", handleProfileSave);
   document.getElementById("pw-save-btn").addEventListener("click", handleChangePassword);
-});
+}
 
 async function loadCountries() {
   const countrySelect = document.getElementById("prof-country");
