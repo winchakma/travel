@@ -175,8 +175,7 @@ body.gt-menu-open {
 
 /* ===== HERO ===== */
 .hero {
-  background: url('../images/home.jpg') center/contain no-repeat;
-  background-color: #0a1128; /* dark background for the empty space on the sides */
+  background: url('../images/homeimg.jpg') center/cover no-repeat;
   color: #fff;
   text-align: center;
   min-height: 500px; /* Made smaller as requested */
