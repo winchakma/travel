@@ -9,6 +9,7 @@ class Booking(Document):
     price: int
     status: str = "confirmed" # confirmed, canceled, pending
     created_at: datetime = datetime.utcnow()
+    cancel_reason: Optional[str] = None
 
     class Settings:
         name = "bookings"

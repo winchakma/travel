@@ -82,7 +82,13 @@ async function loadProfileBookings() {
       list.innerHTML = `<p class="text-gray-500">You have no active bookings.</p>`;
       return;
     }
-    list.innerHTML = data.map(b => `
+    list.innerHTML = data.map(b => {
+      const bId = b._id || b.id || "000000";
+      const createdDate = new Date(b.created_at || b.createdAt || Date.now());
+      const hoursSinceCreation = (new Date() - createdDate) / (1000 * 60 * 60);
+      const canCancel = hoursSinceCreation <= 24 && b.status !== "cancelled";
+
+      return `
       <div class="border border-gray-100 rounded-lg p-4 flex justify-between items-center hover:bg-gray-50 transition-colors">
         <div>
           <p class="font-bold text-[#1a2b6b]">${b.itemName || b.itemType || (b.details && b.details.name) || "Booking"}</p>
@@ -91,12 +97,42 @@ async function loadProfileBookings() {
         </div>
         <div class="text-right">
           <p class="font-bold text-gray-800">$${b.totalPrice || b.price}</p>
-          <p class="text-xs text-gray-400">ID: ${(b._id || b.id || "000000").substring(0,6)}...</p>
+          <p class="text-xs text-gray-400 mb-1">ID: ${bId.substring(0,6)}...</p>
+          ${canCancel ? `<button onclick="cancelProfileBooking('${bId}')" class="text-xs text-red-500 hover:text-red-700 underline font-medium">Cancel Booking</button>` : ''}
         </div>
       </div>
-    `).join("");
+    `;
+    }).join("");
   } catch (err) {
     list.innerHTML = `<p class="text-red-500">Error loading bookings: ${err.message}</p>`;
+  }
+}
+
+window.cancelProfileBooking = async function(id) {
+  const reason = prompt("Please provide a reason for cancelling this booking:");
+  if (reason === null) return; // User cancelled the prompt
+  if (reason.trim() === "") {
+    alert("Cancellation reason is required.");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${window.ELITE_API_URL || "https://travel-xyyl.onrender.com"}/api/bookings/${id}`, {
+      method: 'DELETE',
+      headers: { 
+        'Authorization': `Bearer ${getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ reason })
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.detail || "Failed to cancel");
+    }
+    alert("Booking cancelled successfully.");
+    loadProfileBookings(); // Reload the list
+  } catch (err) {
+    alert("Error: " + err.message);
   }
 }
 
