@@ -357,10 +357,16 @@ function updateNavbar() {
     const user = getUser();
     const displayName = user.firstName || "User";
     const profileIcon = user.profilePicture ? `<img src="${user.profilePicture}" alt="Profile" style="width:24px;height:24px;border-radius:50%;object-fit:cover;">` : `👤`;
+    
+    const adminButton = (user.role === 'admin' || user.role === 'super_admin') 
+      ? `<button class="btn-login" style="background:#e5c414;color:#1a2b6b;" onclick="window.location.href='admin.html'">Admin Panel</button>`
+      : '';
+
     navButtons.innerHTML = `
       <a href="profile.html" style="font-size:14px;color:#1a2b6b;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px;cursor:pointer;">
         ${profileIcon} <span style="border-bottom:1px solid transparent;transition:border 0.2s;" onmouseover="this.style.borderBottom='1px solid #1a2b6b'" onmouseout="this.style.borderBottom='1px solid transparent'">${displayName}</span>
       </a>
+      ${adminButton}
       <button class="btn-register" onclick="window.location.href='profile.html#bookings'">My Bookings</button>
       <button class="btn-login" onclick="logout()">Sign Out</button>
     `;
