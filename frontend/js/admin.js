@@ -167,9 +167,10 @@ function showCustomAlert(title, message, type) {
 }
 
 window.switchAdminTab = function(tabId, element) {
-    // Hide all views
+    // Hide all views by adding 'hidden' class
     document.querySelectorAll('.admin-view').forEach(view => {
-        view.style.display = 'none';
+        view.classList.add('hidden');
+        view.style.display = ''; // Clear any inline display styles
     });
     
     // Remove active class from all links
@@ -180,9 +181,9 @@ window.switchAdminTab = function(tabId, element) {
     // Show target view if it exists
     const targetView = document.getElementById(`view-${tabId}`);
     if (targetView) {
-        targetView.style.display = 'block';
+        targetView.classList.remove('hidden');
     } else {
-        document.getElementById('view-dashboard').style.display = 'block';
+        document.getElementById('view-dashboard').classList.remove('hidden');
     }
     
     // Add active class to clicked link
