@@ -105,43 +105,12 @@
     <h2>Houses Guests Love</h2>
     <a href="rental.html">View All →</a>
   </div>
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Luxury Villa with Private Pool Bali</h3>
-        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Seminyak, Bali</p>
-        <p class="price">From $180/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge blue">Top Rated</span>
-        <h3>Modern Apartment in Central Paris</h3>
-        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Paris, France</p>
-        <p class="price">From $120/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge yellow">Bestseller</span>
-        <h3>Beachfront Cottage in Maldives</h3>
-        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Maldives</p>
-        <p class="price">From $350/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Cozy Mountain Cabin in the Alps</h3>
-        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Swiss Alps</p>
-        <p class="price">From $210/night</p>
-      </div>
-    </div>
+  <div id="live-rentals-loading" style="text-align:center; padding: 40px; color: #1a2b6b;">
+    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+    <p style="margin-top: 10px;">Fetching live rental data...</p>
+  </div>
+  <div id="live-rentals-grid" class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="display:none;">
+    <!-- Live rentals will be injected here -->
   </div>
 </section>
 

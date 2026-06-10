@@ -51,43 +51,12 @@
     <h2>Most Popular Tours</h2>
     <a href="tour.html">View All →</a>
   </div>
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Portugal Walking Tour & Best Experience</h3>
-        <p>⭐ 4.8 · Lisbon, Portugal</p>
-        <p class="price">From $65</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge blue">Top Seller</span>
-        <h3>Indonesia Volcano Trek Adventure Tour</h3>
-        <p>⭐ 4.7 · Bali, Indonesia</p>
-        <p class="price">From $95</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge yellow">Bestseller</span>
-        <h3>Paris New Tour & Best Experience</h3>
-        <p>⭐ 4.9 · Paris, France</p>
-        <p class="price">From $120</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Santorini Island Highlights Full Day</h3>
-        <p>⭐ 4.8 · Santorini, Greece</p>
-        <p class="price">From $110</p>
-      </div>
-    </div>
+  <div id="live-tours-loading" style="text-align:center; padding: 40px; color: #1a2b6b;">
+    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+    <p style="margin-top: 10px;">Fetching live tour data...</p>
+  </div>
+  <div id="live-tours-grid" class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="display:none;">
+    <!-- Live tours will be injected here -->
   </div>
 </section>
 

@@ -1402,3 +1402,120 @@ async function fetchLiveFlights(origin, dest, date, passengers, iataToCity = {})
   }
 }
 
+// --- LIVE RENTALS FETCH (RAPIDAPI) ---
+async function fetchLiveRentals(query = "Bali") {
+  const grid = document.getElementById("live-rentals-grid");
+  const loading = document.getElementById("live-rentals-loading");
+  if (!grid || !loading) return;
+
+  try {
+    const res = await fetch(`${API}/rentals?query=${encodeURIComponent(query)}`);
+    const data = await res.json();
+
+    if (data.status === "success" && data.data && data.data.length > 0) {
+      loading.style.display = "none";
+      grid.style.display = "grid";
+      grid.innerHTML = "";
+
+      data.data.forEach(rental => {
+        const priceText = rental.price ? `From $${Math.round(rental.price)}/night` : "Check prices";
+        const ratingHtml = rental.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${rental.rating}` : "New";
+        const imgUrl = rental.image || "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=180&fit=crop";
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${imgUrl}" alt="${rental.name}" onerror="this.src='https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=180&fit=crop'" />
+          <div class="card-body">
+            <span class="badge">Rental</span>
+            <h3>${rental.name}</h3>
+            <p>${ratingHtml} · ${rental.reviews} reviews</p>
+            <p class="price">${priceText}</p>
+          </div>
+        `;
+        // Wire up the card to the details modal
+        card.addEventListener("click", () => {
+           showDetailModal("rental", {
+               destination: rental.name,
+               price: Math.round(rental.price) || 150,
+               rating: rental.rating || 4.5,
+               image: imgUrl
+           });
+        });
+        grid.appendChild(card);
+      });
+    } else {
+      loading.innerHTML = "<p>No rentals found for this destination at the moment.</p>";
+    }
+  } catch (error) {
+    console.error("Error fetching live rentals:", error);
+    loading.innerHTML = "<p>Error loading live rental data. Please try again later.</p>";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("live-rentals-grid")) {
+    // Basic search setup, defaults to Bali or URL query
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query') || 'Bali';
+    fetchLiveRentals(query);
+  }
+
+  if (document.getElementById("live-tours-grid")) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query') || 'Paris';
+    fetchLiveTours(query);
+  }
+});
+
+// --- LIVE TOURS FETCH ---
+async function fetchLiveTours(query = "Paris") {
+  const grid = document.getElementById("live-tours-grid");
+  const loading = document.getElementById("live-tours-loading");
+  if (!grid || !loading) return;
+
+  try {
+    const res = await fetch(`${API}/tours?query=${encodeURIComponent(query)}`);
+    const data = await res.json();
+
+    if (data.status === "success" && data.data && data.data.length > 0) {
+      loading.style.display = "none";
+      grid.style.display = "grid";
+      grid.innerHTML = "";
+
+      data.data.forEach(tour => {
+        const priceText = tour.price ? `From $${Math.round(tour.price)}` : "Check prices";
+        const ratingHtml = tour.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${tour.rating}` : "New";
+        const imgUrl = tour.image || "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=180&fit=crop";
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${imgUrl}" alt="${tour.name}" onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=180&fit=crop'" />
+          <div class="card-body">
+            <span class="badge blue">Tour</span>
+            <h3>${tour.name}</h3>
+            <p>${ratingHtml} · ${tour.reviews} reviews</p>
+            <p class="price">${priceText}</p>
+          </div>
+        `;
+        // Wire up the card to the details modal
+        card.addEventListener("click", () => {
+           showDetailModal("tour", {
+               destination: tour.name,
+               price: Math.round(tour.price) || 85,
+               rating: tour.rating || 4.5,
+               image: imgUrl
+           });
+        });
+        grid.appendChild(card);
+      });
+    } else {
+      loading.innerHTML = "<p>No tours found for this destination at the moment.</p>";
+    }
+  } catch (error) {
+    console.error("Error fetching live tours:", error);
+    loading.innerHTML = "<p>Error loading tour data. Please try again later.</p>";
+  }
+}
+
