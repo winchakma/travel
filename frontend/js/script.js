@@ -1475,13 +1475,14 @@ async function fetchLiveTours(query = "Paris") {
   if (!grid || !loading) return;
 
   try {
+    loading.style.display = "block";
+    grid.innerHTML = "";
     const res = await fetch(`${API}/tours?query=${encodeURIComponent(query)}`);
     const data = await res.json();
 
     if (data.status === "success" && data.data && data.data.length > 0) {
       loading.style.display = "none";
       grid.style.display = "grid";
-      grid.innerHTML = "";
 
       data.data.forEach(tour => {
         const priceText = tour.price ? `From $${Math.round(tour.price)}` : "Check prices";
@@ -1521,22 +1522,17 @@ async function fetchLiveTours(query = "Paris") {
 
 // --- LIVE ACTIVITIES FETCH ---
 async function fetchLiveActivities(query = "Hiking") {
-  const container = document.getElementById("liveActivitiesContainer");
-  if (!container) return; // If we aren't on a page that has this container, ignore
+  const grid = document.getElementById("live-activities-grid");
+  const loading = document.getElementById("live-activities-loading");
+  if (!grid || !loading) return; // If we aren't on a page that has this container, ignore
 
-  const grid = container.querySelector(".cards-grid");
-  const loading = container.querySelector(".loading");
-
-  if (grid) grid.innerHTML = "";
-  if (loading) {
-    loading.style.display = "block";
-    loading.innerHTML = "<p>Finding best activities...</p>";
-  }
+  grid.innerHTML = "";
+  loading.style.display = "block";
 
   try {
     const res = await fetch(`${API}/activities?query=${encodeURIComponent(query)}`);
     const data = await res.json();
-    if (loading) loading.style.display = "none";
+    loading.style.display = "none";
 
     if (data && data.data && data.data.length > 0) {
       data.data.forEach(act => {
@@ -1566,17 +1562,13 @@ async function fetchLiveActivities(query = "Hiking") {
         grid.appendChild(card);
       });
     } else {
-      if (loading) {
-        loading.style.display = "block";
-        loading.innerHTML = "<p>No activities found for this category at the moment.</p>";
-      }
+      loading.style.display = "block";
+      loading.innerHTML = "<p>No activities found for this category at the moment.</p>";
     }
   } catch (error) {
     console.error("Error fetching live activities:", error);
-    if (loading) {
-      loading.style.display = "block";
-      loading.innerHTML = "<p>Error loading activities. Please try again later.</p>";
-    }
+    loading.style.display = "block";
+    loading.innerHTML = "<p>Error loading activities. Please try again later.</p>";
   }
 }
 
