@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         let contentHtml = msg.content.replace(/\n/g, "<br>");
         
-        msgDiv.innerHTML = \`<div style="font-size: 9px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; color: \${isUser ? '#000' : '#888'};">\${isUser ? 'You' : msg.sender_name}</div>\${contentHtml}\`;
+        msgDiv.innerHTML = `<div style="font-size: 9px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; color: ${isUser ? '#000' : '#888'};">${isUser ? 'You' : msg.sender_name}</div>${contentHtml}`;
         messagesContainer.appendChild(msgDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
