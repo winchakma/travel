@@ -66,43 +66,18 @@ async def search_hotels(query: str = Query("Bali")):
             
     except Exception as e:
         print(f"RapidAPI Error: {e}")
-        # Return fallback mock data if RapidAPI limit is exceeded
-        mock_data = [
-            {
-                "id": 1,
-                "name": f"{query.capitalize()} Luxury Resort & Spa",
-                "price": 250,
+        # Return 20 mock hotels with dynamic query-based images
+        mock_data = []
+        safe_query = query.replace(' ', '%20')
+        for i in range(1, 21):
+            mock_data.append({
+                "id": i,
+                "name": f"{query.capitalize()} Hotel & Resort {i}",
+                "price": 100 + (i * 15),
                 "currency": "USD",
-                "rating": 4.8,
-                "reviews": 1240,
-                "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=180&fit=crop"
-            },
-            {
-                "id": 2,
-                "name": f"Oceanview Paradise {query.capitalize()}",
-                "price": 310,
-                "currency": "USD",
-                "rating": 4.9,
-                "reviews": 850,
-                "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=180&fit=crop"
-            },
-            {
-                "id": 3,
-                "name": "City Center Plaza Hotel",
-                "price": 180,
-                "currency": "USD",
-                "rating": 4.5,
-                "reviews": 3200,
-                "image": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=400&h=180&fit=crop"
-            },
-            {
-                "id": 4,
-                "name": "Mountain Retreat Lodge",
-                "price": 150,
-                "currency": "USD",
-                "rating": 4.7,
-                "reviews": 512,
-                "image": "https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=400&h=180&fit=crop"
-            }
-        ]
+                "rating": round(4.0 + (i % 10) * 0.1, 1),
+                "reviews": 100 + (i * 45),
+                "image": f"https://image.pollinations.ai/prompt/beautiful%20luxury%20hotel%20building%20in%20{safe_query}?width=400&height=180&nologo=true&seed={i}"
+            })
+            
         return {"status": "success", "data": mock_data}
