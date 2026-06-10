@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("gotrip-support-widget")) return;
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("gotrip_token");
 
     const supportHTML = `
-    <div id="gotrip-support-widget" style="position: fixed; bottom: 20px; left: 20px; z-index: 9999; font-family: 'Inter', sans-serif;">
+    <div id="gotrip-support-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Inter', sans-serif;">
         <div id="support-window" style="display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); flex-direction: column; overflow: hidden; margin-bottom: 15px; border: 1px solid #333;">
             <div style="background: #000; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333;">
                 <div style="display: flex; align-items: center; gap: 10px;">
@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `}
         </div>
-        <button id="support-toggle-btn" style="width: 60px; height: 60px; background: #000; color: #e5c414; border: 2px solid #e5c414; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 28px; float: left; transition: transform 0.2s; font-weight: bold; font-family: monospace;">
-            !
+        <button id="support-toggle-btn" style="width: 60px; height: 60px; background: #facc15; color: #000; border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 24px; float: right; transition: transform 0.2s; font-weight: bold; font-family: monospace;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
         </button>
     </div>
     `;

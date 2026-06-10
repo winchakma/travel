@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("gotrip-ai-chatbot")) return;
 
     const chatbotHTML = `
-    <div id="gotrip-ai-chatbot" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Inter', sans-serif;">
+    <div id="gotrip-ai-chatbot" style="position: fixed; bottom: 95px; right: 20px; z-index: 9999; font-family: 'Inter', sans-serif;">
         <div id="chatbot-window" style="display: none; width: 350px; height: 500px; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); flex-direction: column; overflow: hidden; margin-bottom: 15px; border: 1px solid #eee;">
             <div style="background: #1a2b6b; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
                 <div style="display: flex; align-items: center; gap: 10px;">
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button id="chatbot-send-btn" style="background: #e5c414; color: #1a2b6b; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-weight: bold;">➤</button>
             </div>
         </div>
-        <button id="chatbot-toggle-btn" style="width: 60px; height: 60px; background: #e5c414; color: #1a2b6b; border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 28px; float: right; transition: transform 0.2s;">
-            ✨
+        <button id="chatbot-toggle-btn" style="width: 60px; height: 60px; background: #facc15; color: #000; border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 24px; float: right; transition: transform 0.2s;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1v-4h3v2z"></path><path d="M3 19a2 2 0 0 0 2 2h1v-4H3v2z"></path><path d="M14 21c0 1-1 2-2 2s-2-1-2-2"></path></svg>
         </button>
     </div>
     `;
