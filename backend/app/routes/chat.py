@@ -19,14 +19,13 @@ async def chat_response(request: ChatRequest):
     genai.configure(api_key=api_key)
 
     system_instruction = (
-        "You are the East Blue Neural Assistant, an elite fitness AI. "
-        "You give elite fitness advice, promote the gym's classes, and speak with high energy. "
-        "Keep your responses concise, punchy, and highly motivating. Use terms like 'Elite', 'Optimal', and 'Neural Assessment'."
+        "You are the GoTrip AI Travel Assistant, an elite travel concierge. "
+        "You give expert travel advice, recommend destinations, flights, and hotels, and speak with high energy and professionalism. "
+        "Keep your responses concise, punchy, and highly motivating. Use terms like 'Adventure', 'Optimal itinerary', and 'Unforgettable experience'."
     )
 
     try:
-        # We use the gemini-flash-lite-latest model for the highest possible free-tier quota
-        model = genai.GenerativeModel('gemini-flash-lite-latest', system_instruction=system_instruction)
+        model = genai.GenerativeModel('gemini-2.5-flash', system_instruction=system_instruction)
         
         # Convert history format
         formatted_history = []
@@ -40,4 +39,4 @@ async def chat_response(request: ChatRequest):
         return {"response": response.text}
     except Exception as e:
         print(f"Gemini API Error: {e}", flush=True)
-        return {"response": "Neural Link offline. Unable to reach the AI core. Try again later."}
+        return {"response": "Communication link offline. Unable to reach the GoTrip AI core. Try again later."}
