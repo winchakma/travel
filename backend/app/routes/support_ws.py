@@ -48,7 +48,7 @@ class ConnectionManager:
         # target_role is "Normal Admin" (trainer) or "Super Admin" (superadmin)
         mapped_role = "superadmin" if target_role == "Super Admin" else "trainer"
         for email, role in self.admin_roles.items():
-            if role == mapped_role and email != exclude_email:
+            if (role == "superadmin" or role == mapped_role) and email != exclude_email:
                 for connection in self.active_connections.get(email, []):
                     try:
                         await connection.send_text(json.dumps(message))
@@ -77,9 +77,9 @@ async def support_chat_endpoint(websocket: WebSocket, token: str):
         await websocket.close(code=1008)
         return
     db_role = user.role.lower() if user.role else "user"
-    if db_role in ["super_admin", "superadmin", "owner"]:
+    if db_role in ["super_admin", "superadmin", "owner", "admin"]:
         role = "superadmin"
-    elif db_role in ["admin", "trainer"]:
+    elif db_role in ["trainer"]:
         role = "trainer"
     else:
         role = "user"
@@ -178,8 +178,10 @@ async def support_chat_endpoint(websocket: WebSocket, token: str):
                 if role == "user":
                     continue
                 
-                target_role = "Super Admin" if role == "superadmin" else "Normal Admin"
-                sessions = await SupportSession.find(SupportSession.targetRole == target_role, SupportSession.status == "open").to_list()
+                if role == "superadmin":
+                    sessions = await SupportSession.find(SupportSession.status == "open").to_list()
+                else:
+                    sessions = await SupportSession.find(SupportSession.targetRole == "Normal Admin", SupportSession.status == "open").to_list()
                 
                 session_list = []
                 for s in sessions:
