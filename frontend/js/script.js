@@ -1594,4 +1594,23 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchLiveTours();
     fetchLiveActivities();
   }
+
+  // --- DYNAMIC CATEGORY BUTTON HOVER & ACTIVE STATES ---
+  const categoryBtns = document.querySelectorAll("div[onclick^='fetchLive']");
+  categoryBtns.forEach(btn => {
+      btn.addEventListener("click", function() {
+          const container = this.parentElement;
+          const siblingBtns = container.querySelectorAll("div[onclick^='fetchLive']");
+          
+          siblingBtns.forEach(b => {
+              b.style.background = "#fff";
+              b.style.color = "#1a2b6b";
+              b.style.boxShadow = "0 2px 10px rgba(0,0,0,0.08)";
+          });
+          
+          this.style.background = "#1a2b6b";
+          this.style.color = "#fff";
+          this.style.boxShadow = "none";
+      });
+  });
 });
