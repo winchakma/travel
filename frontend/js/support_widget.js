@@ -171,7 +171,12 @@ document.addEventListener("DOMContentLoaded", () => {
         msgDiv.style.lineHeight = "1.4";
         msgDiv.style.border = isUser ? "none" : "1px solid #333";
         
-        let contentHtml = msg.content.replace(/\n/g, "<br>");
+        let contentHtml = "";
+        if (msg.message_type === "image") {
+            contentHtml = `<img src="${msg.content}" style="max-width: 200px; border-radius: 8px; margin-top: 5px; cursor: pointer;" onclick="window.open('${msg.content}', '_blank')">`;
+        } else {
+            contentHtml = `<div style="word-break: break-word;">${msg.content.replace(/\n/g, '<br>')}</div>`;
+        }
         
         msgDiv.innerHTML = `<div style="font-size: 9px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; color: ${isUser ? '#000' : '#888'};">${isUser ? 'You' : msg.sender_name}</div>${contentHtml}`;
         messagesContainer.appendChild(msgDiv);
