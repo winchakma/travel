@@ -175,7 +175,8 @@ body.gt-menu-open {
 
 /* ===== HERO ===== */
 .hero {
-  background: url('../images/homeimg.jpg') center/cover no-repeat;
+  background: url('../images/homeimg.jpg') no-repeat;
+  background-size: 100% 100%; /* Force the full image to fit exactly into the container */
   color: #fff;
   text-align: center;
   min-height: 500px; /* Made smaller as requested */
