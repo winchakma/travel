@@ -1157,6 +1157,44 @@ async function fetchLiveHotels(query = "Bali") {
 // Call fetchLiveHotels on page load if the container exists
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("live-hotels-grid")) {
-    fetchLiveHotels("Bali");
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query') || 'Bali';
+    fetchLiveHotels(query);
+  }
+
+  // Wire up Global Search Bar
+  const searchBtn = document.getElementById("global-search-btn");
+  const searchInput = document.getElementById("global-search-input");
+  
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener("click", () => {
+      const query = searchInput.value.trim();
+      if (!query) return;
+      
+      // If we are already on hotel.html, just fetch and update
+      if (window.location.pathname.endsWith("hotel.html")) {
+        const loading = document.getElementById("live-hotels-loading");
+        const grid = document.getElementById("live-hotels-grid");
+        if (loading) loading.style.display = "block";
+        if (grid) grid.style.display = "none";
+        
+        // Update URL without reloading page
+        const newUrl = new URL(window.location);
+        newUrl.searchParams.set('query', query);
+        window.history.pushState({}, '', newUrl);
+        
+        fetchLiveHotels(query);
+      } else {
+        // Redirect to hotel.html with query
+        window.location.href = `hotel.html?query=${encodeURIComponent(query)}`;
+      }
+    });
+
+    // Also search on enter key
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        searchBtn.click();
+      }
+    });
   }
 });

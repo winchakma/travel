@@ -55,7 +55,7 @@
   <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight">Find Your Dream Luxury Hotel</h1>
   <p>Discover the best hotels at the best prices worldwide</p>
   <div class="search-bar">
-    <input type="text" placeholder="Where are you going?" />
+    <input type="text" id="global-search-input" placeholder="Where are you going?" />
     <input type="date" />
     <input type="date" />
     <select>
@@ -63,7 +63,7 @@
       <option>2 Guests</option>
       <option>3 Guests</option>
     </select>
-    <button class="btn-search">Search</button>
+    <button class="btn-search" id="global-search-btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
   </div>
 </section>
 
@@ -97,168 +97,17 @@
   </div>
 </section>
 
-<!-- POPULAR HOTELS -->
+<!-- ALL HOTELS (LIVE DATA) -->
 <section class="section gray-bg px-4 md:px-10">
   <div class="section-header">
-    <h2>Popular Hotels</h2>
-    <a href="hotel.html">View All Hotels →</a>
+    <h2>All Hotels (Live Data)</h2>
   </div>
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>The Westin New York Grand Central</h3>
-        <p>⭐ 4.8 · New York, USA</p>
-        <p class="price">From $220/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge blue">Top Rated</span>
-        <h3>The Ritz Carlton Hotel London</h3>
-        <p>⭐ 4.9 · London, UK</p>
-        <p class="price">From $350/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge yellow">Bestseller</span>
-        <h3>Four Seasons Resort Bali at Sayan</h3>
-        <p>⭐ 4.9 · Bali, Indonesia</p>
-        <p class="price">From $480/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Burj Al Arab Jumeirah Dubai</h3>
-        <p>⭐ 5.0 · Dubai, UAE</p>
-        <p class="price">From $1200/night</p>
-      </div>
-    </div>
+  <div id="live-hotels-loading" style="text-align:center; padding: 40px; color: #1a2b6b;">
+    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+    <p style="margin-top: 10px;">Fetching live hotel data from Booking.com...</p>
   </div>
-  <!-- Second row -->
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="margin-top:20px">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge blue">Top Rated</span>
-        <h3>Mandarin Oriental Bangkok</h3>
-        <p>⭐ 4.7 · Bangkok, Thailand</p>
-        <p class="price">From $180/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Hotel Arts Barcelona Spain</h3>
-        <p>⭐ 4.6 · Barcelona, Spain</p>
-        <p class="price">From $290/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge yellow">Bestseller</span>
-        <h3>The Blue Palace Resort & Spa Greece</h3>
-        <p>⭐ 4.8 · Crete, Greece</p>
-        <p class="price">From $320/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Park Hyatt Sydney Harbour View</h3>
-        <p>⭐ 4.7 · Sydney, Australia</p>
-        <p class="price">From $410/night</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Third row -->
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="margin-top:20px">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge blue">Top Rated</span>
-        <h3>The Skyline Suites Tokyo</h3>
-        <p>⭐ 4.8 · Tokyo, Japan</p>
-        <p class="price">From $260/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1501117716987-c8e1ecb2100c?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Oceanview Resort & Spa</h3>
-        <p>⭐ 4.7 · Phuket, Thailand</p>
-        <p class="price">From $190/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge yellow">Bestseller</span>
-        <h3>Casa Verde Boutique Hotel</h3>
-        <p>⭐ 4.9 · Lisbon, Portugal</p>
-        <p class="price">From $175/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge blue">Top Rated</span>
-        <h3>Alpine Lodge Zermatt</h3>
-        <p>⭐ 4.8 · Zermatt, Switzerland</p>
-        <p class="price">From $310/night</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Fourth row -->
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="margin-top:20px">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Desert Pearl Hotel</h3>
-        <p>⭐ 4.6 · Marrakech, Morocco</p>
-        <p class="price">From $140/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge yellow">Bestseller</span>
-        <h3>Harbour Lights Sydney</h3>
-        <p>⭐ 4.7 · Sydney, Australia</p>
-        <p class="price">From $285/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge blue">Top Rated</span>
-        <h3>Old Town Heritage Inn</h3>
-        <p>⭐ 4.8 · Prague, Czechia</p>
-        <p class="price">From $155/night</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1505692952047-1a78307da8f2?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Central Park Boutique NYC</h3>
-        <p>⭐ 4.6 · New York, USA</p>
-        <p class="price">From $240/night</p>
-      </div>
-    </div>
+  <div id="live-hotels-grid" class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="display:none;">
+    <!-- Live hotels will be injected here -->
   </div>
 </section>
 
