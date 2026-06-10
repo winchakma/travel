@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const supportHTML = `
     <div id="gotrip-support-widget" style="position: fixed; bottom: 95px; right: 20px; z-index: 9999; font-family: 'Inter', sans-serif;">
-        <div id="support-window" style="display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); flex-direction: column; overflow: hidden; margin-bottom: 15px; border: 1px solid #333;">
+        <div id="support-window" style="position: fixed; bottom: 170px; right: 20px; display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); flex-direction: column; overflow: hidden; border: 1px solid #333;">
             <div style="background: #000; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333;">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <button id="support-back-btn" style="display: none; background: transparent; border: none; color: white; cursor: pointer; font-size: 18px; padding: 0 5px;">&larr;</button>
@@ -50,6 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
     toggleBtn.addEventListener("click", () => {
         supportWindow.style.display = supportWindow.style.display === "none" ? "flex" : "none";
+        if (supportWindow.style.display === "flex") {
+            const chatWin = document.getElementById("chatbot-window");
+            if (chatWin) chatWin.style.display = "none";
+        }
     });
     
     closeBtn.addEventListener("click", () => {

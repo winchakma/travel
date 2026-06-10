@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const chatbotHTML = `
     <div id="gotrip-ai-chatbot" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Inter', sans-serif;">
-        <div id="chatbot-window" style="display: none; width: 350px; height: 500px; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); flex-direction: column; overflow: hidden; margin-bottom: 15px; border: 1px solid #eee;">
+        <div id="chatbot-window" style="position: fixed; bottom: 170px; right: 20px; display: none; width: 350px; height: 500px; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); flex-direction: column; overflow: hidden; border: 1px solid #eee;">
             <div style="background: #1a2b6b; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <div style="width: 32px; height: 32px; background: #e5c414; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px;">✨</div>
@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
         chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
         if (chatWindow.style.display === "flex") {
             inputField.focus();
+            const supportWin = document.getElementById("support-window");
+            if (supportWin) supportWin.style.display = "none";
         }
     });
 
