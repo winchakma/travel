@@ -347,3 +347,64 @@ window.addAdminManually = function() {
         }
     };
 };
+
+window.promoteFromDashboard = async function() {
+    const emailInput = document.getElementById("dashboard-admin-email").value.trim();
+    if (!emailInput) {
+        showCustomAlert("Error", "Please enter an email address.", "error");
+        return;
+    }
+    
+    // Create custom confirmation modal instead of confirm()
+    const overlay = document.createElement("div");
+    overlay.className = "gt-overlay active";
+    overlay.style.zIndex = "999999";
+    
+    overlay.innerHTML = `
+      <div style="background: rgba(0,0,0,0.5); position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 24px; border-radius: 12px; max-width: 400px; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+          <h3 style="font-size: 18px; color: #1a2b6b; font-weight: bold; margin-bottom: 12px;">Promote to Admin?</h3>
+          <p style="font-size: 14px; color: #555; margin-bottom: 24px;">Are you sure you want to promote <strong>${emailInput}</strong> to Admin privileges?</p>
+          <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button id="dashboard-promote-cancel" style="padding: 8px 16px; border-radius: 6px; background: #f3f4f6; color: #374151; font-weight: 500; cursor: pointer; border: none;">Cancel</button>
+            <button id="dashboard-promote-confirm" style="padding: 8px 16px; border-radius: 6px; background: #3b82f6; color: white; font-weight: 500; cursor: pointer; border: none;">Promote</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(overlay);
+
+    document.getElementById("dashboard-promote-cancel").onclick = () => {
+        document.body.removeChild(overlay);
+    };
+
+    document.getElementById("dashboard-promote-confirm").onclick = async () => {
+        const btn = document.getElementById("dashboard-promote-confirm");
+        btn.textContent = "Promoting...";
+        btn.disabled = true;
+
+        const token = getToken();
+        try {
+            const res = await fetch(`${API}/admin/promote?email=${encodeURIComponent(emailInput)}&token=${encodeURIComponent(token)}`, {
+                method: 'POST'
+            });
+            if (res.ok) {
+                document.body.removeChild(overlay);
+                showCustomAlert("Success", `${emailInput} is now an Admin.`, "success");
+                document.getElementById("dashboard-admin-email").value = "";
+                // If customers view is loaded, might want to refresh it
+                if (document.getElementById("view-customers").style.display !== "none") {
+                    fetchCustomers();
+                }
+            } else {
+                const errData = await res.json().catch(() => ({}));
+                throw new Error(errData.detail || "Failed to find or promote user.");
+            }
+        } catch (err) {
+            console.error(err);
+            document.body.removeChild(overlay);
+            showCustomAlert("Error", err.message, "error");
+        }
+    };
+};
