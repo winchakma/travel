@@ -1237,6 +1237,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       fetchLiveFlights(origin, dest, date, pass);
     });
+
+    // Automatically load default flights on page load if container exists
+    if (document.getElementById("live-flights-container")) {
+      const d = new Date();
+      d.setDate(d.getDate() + 14);
+      const dateStr = d.toISOString().split('T')[0];
+      fetchLiveFlights("LHR", "JFK", dateStr, 1);
+    }
   }
 });
 
