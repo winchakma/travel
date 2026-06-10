@@ -583,7 +583,7 @@ async def get_live_feed():
         
     # Sort activities combined by timestamp
     activities.sort(key=lambda x: x["ts"], reverse=True)
-    top_activities = activities[:10]
+    top_activities = activities[:4]
     
     for a in top_activities:
         del a["ts"]

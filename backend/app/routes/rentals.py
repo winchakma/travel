@@ -69,7 +69,7 @@ async def search_rentals(query: str = Query("Bali")):
         if 'data' in hotels_data and 'hotels' in hotels_data['data']:
             results = []
             local_images = get_local_images()
-            for i, h in enumerate(hotels_data['data']['hotels'][:20]):
+            for i, h in enumerate(hotels_data['data']['hotels'][:4]):
                 prop = h.get('property', {})
                 image = prop.get('photoUrls', [''])[0] if prop.get('photoUrls') else local_images[i % len(local_images)]
                 
@@ -105,7 +105,7 @@ async def search_rentals(query: str = Query("Bali")):
         # Use images tailored to the specific category they clicked
         category_images = get_local_images(query if query in categories else None)
         
-        for i in range(20):
+        for i in range(4):
             mock_data.append({
                 "id": i + 1,
                 "name": name_templates[i].format(cap_query),

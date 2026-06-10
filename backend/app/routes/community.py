@@ -780,7 +780,7 @@ async def get_trending(token: str):
             for t in p.tags:
                 tag_counts[t] = tag_counts.get(t, 0) + 1
     
-    trending_tags = sorted(tag_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+    trending_tags = sorted(tag_counts.items(), key=lambda x: x[1], reverse=True)[:4]
     
     # Get high-engagement posts for discovery
     discovery_posts = sorted(all_posts, key=lambda x: len(x.likes) + x.views, reverse=True)[:15]
@@ -819,7 +819,7 @@ async def get_public_rankings(token: str):
     
     # Sort by points descending
     rankings.sort(key=lambda x: x["points"], reverse=True)
-    return rankings[:20] # Return top 20 for public view
+    return rankings[:4] # Return top 20 for public view
 
 @router.get("/search/global")
 async def search_global(q: str, token: str):

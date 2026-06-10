@@ -55,7 +55,7 @@ async def search_tours(query: str = Query("Paris")):
         if 'data' in attractions_data and 'hotels' in attractions_data['data']:
             results = []
             local_images = get_local_images()
-            for i, h in enumerate(attractions_data['data']['hotels'][:20]):
+            for i, h in enumerate(attractions_data['data']['hotels'][:4]):
                 prop = h.get('property', {})
                 image = prop.get('photoUrls', [''])[0] if prop.get('photoUrls') else local_images[i % len(local_images)]
                 
@@ -88,7 +88,7 @@ async def search_tours(query: str = Query("Paris")):
         cap_query = query.capitalize()
         local_images = get_local_images()
         
-        for i in range(20):
+        for i in range(4):
             mock_data.append({
                 "id": i + 1,
                 "name": name_templates[i].format(cap_query),

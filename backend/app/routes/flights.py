@@ -85,7 +85,7 @@ def search_flights(
         offers.sort(key=lambda x: float(x.get('total_amount', 0)))
         
         # Return top 20 offers
-        for offer in offers[:20]:
+        for offer in offers[:4]:
             slice_data = offer.get("slices", [{}])[0]
             segments = slice_data.get("segments", [])
             

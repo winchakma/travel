@@ -103,7 +103,7 @@ async def forgot_password(request: ForgotPasswordRequest):
         return {"message": "If this email is registered, a temporary password has been sent."}
     
     # Generate random 10-character password
-    temp_pass = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(10))
+    temp_pass = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(4))
     
     # Send Email first to make sure SMTP works
     from app.utils.notifications import NotificationService
