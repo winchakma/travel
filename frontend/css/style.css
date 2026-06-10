@@ -175,26 +175,25 @@ body.gt-menu-open {
 
 /* ===== HERO ===== */
 .hero {
-  background: #1a2b6b; /* Fallback */
+  background: transparent;
   color: #fff;
   text-align: center;
-  padding: 220px 20px 180px; /* Greatly increased padding to make section taller */
-  min-height: 80vh; /* Make it take up 80% of screen height so video isn't cropped */
+  height: 100vh; /* Make hero exactly full screen */
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  overflow: hidden;
 }
 
 .hero-video-container,
 .hero-video-container video,
 .hero-overlay {
-  position: absolute;
+  position: fixed; /* Fix to background for parallax "hover" effect */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  z-index: -2;
 }
 
 .hero-video-container video {
@@ -208,14 +207,11 @@ body.gt-menu-open {
 }
 
 .hero-overlay {
-  background: rgba(26, 43, 107, 0.5); /* Semi-transparent blue tint */
-  z-index: 1;
+  background: rgba(26, 43, 107, 0.4);
+  z-index: -1;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
+
 
 .hero h1 {
   font-size: 42px;
@@ -287,6 +283,9 @@ body.gt-menu-open {
 /* ===== SECTION TITLES ===== */
 .section {
   padding: 60px 40px;
+  background: #fff;
+  position: relative;
+  z-index: 1;
 }
 
 .section-header {
@@ -492,6 +491,8 @@ body.gt-menu-open {
 .testimonial-section {
   background: #eef3fb;
   padding: 60px 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .testimonial-section.dark {
@@ -615,6 +616,8 @@ body.gt-menu-open {
   color: #fff;
   text-align: center;
   padding: 60px 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .cta-section h2 {
@@ -660,6 +663,8 @@ body.gt-menu-open {
   background: #0f1d4e;
   color: #ccc;
   padding: 60px 40px 30px;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-grid {
