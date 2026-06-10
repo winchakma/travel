@@ -61,8 +61,8 @@ async def create_checkout_session(req: BookingRequest, user: User = Depends(get_
                 'price_data': {
                     'currency': 'usd',
                     'product_data': {
-                        'name': f"{req.type.capitalize()} Booking",
-                        'description': str(req.details.get('destination', req.details.get('from', 'Travel Booking'))),
+                        'name': f"{req.type.capitalize()} Booking: {req.details.get('name', 'Package')}",
+                        'description': str(req.details.get('destination') or req.details.get('from') or 'Travel Booking'),
                     },
                     'unit_amount': int(req.price * 100), # Stripe uses cents
                 },
