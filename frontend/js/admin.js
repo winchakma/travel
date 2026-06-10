@@ -92,22 +92,76 @@ async function fetchBookings(token) {
     });
 }
 
-window.deleteBooking = async function(id) {
-    if (!confirm("Are you sure you want to permanently delete this booking?")) return;
+window.deleteBooking = function(id) {
+    // Create custom confirmation modal overlay
+    const overlay = document.createElement("div");
+    overlay.className = "gt-overlay active";
+    overlay.style.zIndex = "999999";
     
-    const token = getToken();
-    try {
-        const res = await fetch(`${API}/admin/bookings/${id}?token=${encodeURIComponent(token)}`, {
-            method: 'DELETE'
-        });
-        if (res.ok) {
-            alert("Booking deleted.");
-            fetchBookings(token); // reload table
-        } else {
-            alert("Failed to delete booking.");
+    // Add custom styling that matches the app
+    overlay.innerHTML = `
+      <div style="background: rgba(0,0,0,0.5); position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 24px; border-radius: 12px; max-width: 400px; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+          <h3 style="font-size: 18px; color: #1a2b6b; font-weight: bold; margin-bottom: 12px;">Delete Booking?</h3>
+          <p style="font-size: 14px; color: #555; margin-bottom: 24px;">Are you sure you want to permanently delete this booking? This action cannot be undone.</p>
+          <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button id="admin-delete-cancel" style="padding: 8px 16px; border-radius: 6px; background: #f3f4f6; color: #374151; font-weight: 500; cursor: pointer; border: none;">Cancel</button>
+            <button id="admin-delete-confirm" style="padding: 8px 16px; border-radius: 6px; background: #ef4444; color: white; font-weight: 500; cursor: pointer; border: none;">Delete</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(overlay);
+
+    document.getElementById("admin-delete-cancel").onclick = () => {
+        document.body.removeChild(overlay);
+    };
+
+    document.getElementById("admin-delete-confirm").onclick = async () => {
+        const btn = document.getElementById("admin-delete-confirm");
+        btn.textContent = "Deleting...";
+        btn.disabled = true;
+        
+        const token = getToken();
+        try {
+            const res = await fetch(`${API}/admin/bookings/${id}?token=${encodeURIComponent(token)}`, {
+                method: 'DELETE'
+            });
+            if (res.ok) {
+                document.body.removeChild(overlay);
+                showCustomAlert("Success", "Booking deleted successfully.", "success");
+                fetchBookings(token); // reload table
+            } else {
+                throw new Error("Failed to delete booking.");
+            }
+        } catch (err) {
+            console.error(err);
+            document.body.removeChild(overlay);
+            showCustomAlert("Error", "An error occurred while deleting the booking.", "error");
         }
-    } catch (err) {
-        console.error(err);
-        alert("An error occurred.");
-    }
+    };
 };
+
+function showCustomAlert(title, message, type) {
+    const overlay = document.createElement("div");
+    overlay.className = "gt-overlay active";
+    overlay.style.zIndex = "999999";
+    
+    const color = type === 'error' ? '#ef4444' : '#10b981';
+    
+    overlay.innerHTML = `
+      <div style="background: rgba(0,0,0,0.5); position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 24px; border-radius: 12px; max-width: 400px; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.2); text-align: center;">
+          <h3 style="font-size: 20px; color: ${color}; font-weight: bold; margin-bottom: 12px;">${title}</h3>
+          <p style="font-size: 15px; color: #555; margin-bottom: 24px;">${message}</p>
+          <button id="admin-alert-ok" style="padding: 8px 24px; border-radius: 6px; background: #1a2b6b; color: white; font-weight: 500; cursor: pointer; border: none;">OK</button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    document.getElementById("admin-alert-ok").onclick = () => {
+        document.body.removeChild(overlay);
+    };
+}
