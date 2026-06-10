@@ -1300,6 +1300,17 @@ async function fetchLiveFlights(origin, dest, date, passengers) {
 
         const priceText = flight.price ? `$${flight.price}` : "Check prices";
 
+        let segmentsHtml = "";
+        if (flight.segments && flight.segments.length > 0) {
+          segmentsHtml = `<div id="seg-${flight.id}" style="width: 100%; font-size: 12px; color: #555; background: #f9f9f9; padding: 10px; border-radius: 6px; margin-top: 10px; display: none; line-height: 1.5;"><strong>Flight Details:</strong><br/>`;
+          flight.segments.forEach((seg, i) => {
+            const sDep = new Date(seg.departing_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            const sArr = new Date(seg.arriving_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            segmentsHtml += `• ${seg.origin} → ${seg.destination} | ${seg.airline} ${seg.flight_number} | ${sDep} - ${sArr}<br/>`;
+          });
+          segmentsHtml += `</div>`;
+        }
+
         const card = document.createElement("div");
         card.style = "background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;";
         card.innerHTML = `
@@ -1311,6 +1322,7 @@ async function fetchLiveFlights(origin, dest, date, passengers) {
             <div>
               <h4 style="color:#1a2b6b; font-size:15px;">${origin} → ${dest}</h4>
               <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> ${durStr} &nbsp; ${flight.stops}</p>
+              <a href="javascript:void(0)" onclick="const e=document.getElementById('seg-${flight.id}'); e.style.display = e.style.display==='none' ? 'block' : 'none';" style="font-size: 11px; color: #4a90d9; text-decoration: underline;">View Details</a>
             </div>
           </div>
           <div style="text-align:center;">
@@ -1324,10 +1336,24 @@ async function fetchLiveFlights(origin, dest, date, passengers) {
           <div style="text-align:right;">
             <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">${priceText} ${flight.currency}</h3>
             <p style="color:#777; font-size:12px;">total price</p>
-            <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;" onclick="alert('Flight booking integration coming soon!')">Book Now</button>
+            <button class="btn-register" id="book-btn-${flight.id}" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
           </div>
+          ${segmentsHtml}
         `;
         container.appendChild(card);
+
+        // Wire up the button to openBookingDetail
+        const btn = document.getElementById(`book-btn-${flight.id}`);
+        if (btn) {
+          btn.addEventListener("click", () => {
+            openBookingDetail({
+              name: flight.airline + " Flight",
+              price: flight.price,
+              location: origin + " to " + dest,
+              badge: flight.stops
+            });
+          });
+        }
       });
     } else {
       container.innerHTML = "<p style='text-align:center; padding: 20px;'>No flights found for this route. Try different IATA codes or dates (e.g. LHR to JFK).</p>";

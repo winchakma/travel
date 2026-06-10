@@ -76,6 +76,17 @@ def search_flights(
             stops = len(segments) - 1
             stop_text = "Direct" if stops == 0 else f"{stops} Stop(s)"
             
+            formatted_segments = []
+            for seg in segments:
+                formatted_segments.append({
+                    "origin": seg.get("origin", {}).get("iata_code", "N/A"),
+                    "destination": seg.get("destination", {}).get("iata_code", "N/A"),
+                    "departing_at": seg.get("departing_at", ""),
+                    "arriving_at": seg.get("arriving_at", ""),
+                    "airline": seg.get("operating_carrier", {}).get("name", airline),
+                    "flight_number": seg.get("operating_carrier_flight_number", "")
+                })
+
             formatted_flights.append({
                 "id": offer.get("id"),
                 "airline": airline,
@@ -84,7 +95,8 @@ def search_flights(
                 "duration": duration, # Need parsing in JS
                 "departure_time": dep_time,
                 "arrival_time": arr_time,
-                "stops": stop_text
+                "stops": stop_text,
+                "segments": formatted_segments
             })
             
         return {"status": "success", "flights": formatted_flights}
