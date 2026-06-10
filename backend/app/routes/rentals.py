@@ -12,7 +12,11 @@ async def search_rentals(query: str = Query("Bali")):
     if not RAPID_API_KEY:
         raise HTTPException(status_code=500, detail="RapidAPI Key not configured.")
         
+    categories = ["Villa", "Apartment", "Cabin", "Camping", "Beachfront", "Mountain"]
+    
     try:
+        if query in categories:
+            raise Exception("Category search, using fallback data")
         # Step 1: Resolve destination query to a dest_id
         dest_url = "https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination"
         headers = {
@@ -52,8 +56,16 @@ async def search_rentals(query: str = Query("Bali")):
         if 'data' in hotels_data and 'hotels' in hotels_data['data']:
             # Return a simplified list of rentals
             results = []
-            for h in hotels_data['data']['hotels'][:20]: # Limit to 20 per user request
+            unsplash_ids = [
+                "1518780664697-55e3ad937233", "1502672260266-1c1ef2d93688", "1499793983690-e29da59ef1c2",
+                "1464822759023-fed622ff2c3b", "1497362962297-baa4567217ca", "1480074568708-e7b720bb3f09",
+                "1493809842364-4981ca31c964", "1512918728675-ed5a9ec8fa62", "1499856871958-5b9627545d1a",
+                "1522708323590-d24dbb6b0267"
+            ]
+            for i, h in enumerate(hotels_data['data']['hotels'][:20]): # Limit to 20 per user request
                 prop = h.get('property', {})
+                image = prop.get('photoUrls', [''])[0] if prop.get('photoUrls') else f"https://images.unsplash.com/photo-{unsplash_ids[i % len(unsplash_ids)]}?w=400&h=180&fit=crop"
+                
                 results.append({
                     "id": prop.get('id'),
                     "name": prop.get('name'),
@@ -61,7 +73,7 @@ async def search_rentals(query: str = Query("Bali")):
                     "currency": prop.get('priceBreakdown', {}).get('grossPrice', {}).get('currency', 'USD'),
                     "rating": prop.get('reviewScore', 0),
                     "reviews": prop.get('reviewCount', 0),
-                    "image": prop.get('photoUrls', [''])[0] if prop.get('photoUrls') else ''
+                    "image": image
                 })
             return {"status": "success", "data": results}
         else:
