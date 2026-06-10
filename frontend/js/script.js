@@ -1322,7 +1322,7 @@ async function fetchLiveFlights(origin, dest, date, passengers) {
             <div>
               <h4 style="color:#1a2b6b; font-size:15px;">${origin} → ${dest}</h4>
               <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> ${durStr} &nbsp; ${flight.stops}</p>
-              <a href="javascript:void(0)" onclick="const e=document.getElementById('seg-${flight.id}'); e.style.display = e.style.display==='none' ? 'block' : 'none';" style="font-size: 11px; color: #4a90d9; text-decoration: underline;">View Details</a>
+              <span onclick="document.getElementById('seg-${flight.id}').style.display = document.getElementById('seg-${flight.id}').style.display === 'none' ? 'block' : 'none';" style="font-size: 12px; color: #4a90d9; text-decoration: underline; cursor: pointer; display: inline-block; margin-top: 4px;">View Details</span>
             </div>
           </div>
           <div style="text-align:center;">
