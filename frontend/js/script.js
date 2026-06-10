@@ -1219,62 +1219,78 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Wire up Flight Search
+  // Wire up Flight Search and Autocomplete
   const flightSearchBtn = document.getElementById("flight-search-btn");
   if (flightSearchBtn) {
+    let globalIataMap = {
+      "JFK": "New York", "LHR": "London", "DAC": "Dhaka", "KTM": "Kathmandu"
+    };
+
+    const setupAutocomplete = (inputId, dropdownId) => {
+      const input = document.getElementById(inputId);
+      const dropdown = document.getElementById(dropdownId);
+      if (!input || !dropdown) return;
+
+      let timeout = null;
+      input.addEventListener("input", (e) => {
+        clearTimeout(timeout);
+        const val = e.target.value.trim();
+        if (val.length < 2) {
+          dropdown.style.display = "none";
+          return;
+        }
+
+        timeout = setTimeout(async () => {
+          try {
+            const res = await fetch(`${API}/places?query=${val}`);
+            const data = await res.json();
+            if (data.status === "success" && data.places.length > 0) {
+              dropdown.innerHTML = "";
+              data.places.forEach(p => {
+                globalIataMap[p.iata_code] = p.name; // Cache the name
+                const div = document.createElement("div");
+                div.style = "padding:10px; border-bottom:1px solid #eee; cursor:pointer; font-size:13px; color:#333;";
+                div.innerHTML = `<strong>${p.name}</strong> (${p.iata_code}) <span style="color:#888; font-size:11px; float:right;">${p.type === 'city' ? 'City' : 'Airport'}</span>`;
+                div.addEventListener("click", () => {
+                  input.value = p.name;
+                  input.dataset.iata = p.iata_code;
+                  dropdown.style.display = "none";
+                });
+                div.addEventListener("mouseenter", () => div.style.background = "#f0f3fa");
+                div.addEventListener("mouseleave", () => div.style.background = "#fff");
+                dropdown.appendChild(div);
+              });
+              dropdown.style.display = "block";
+            } else {
+              dropdown.style.display = "none";
+            }
+          } catch (err) {
+            console.error("Places API error:", err);
+          }
+        }, 300);
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (e.target !== input && !dropdown.contains(e.target)) {
+          dropdown.style.display = "none";
+        }
+      });
+    };
+
+    setupAutocomplete("flight-origin", "origin-autocomplete");
+    setupAutocomplete("flight-dest", "dest-autocomplete");
+
     flightSearchBtn.addEventListener("click", () => {
-      let origin = document.getElementById("flight-origin")?.value.trim().toUpperCase() || "LHR";
-      let dest = document.getElementById("flight-dest")?.value.trim().toUpperCase() || "JFK";
+      const originInput = document.getElementById("flight-origin");
+      const destInput = document.getElementById("flight-dest");
+      
+      // Use dataset iata if selected from dropdown, otherwise fallback to typed text
+      let origin = (originInput?.dataset.iata || originInput?.value.trim()).toUpperCase() || "LHR";
+      let dest = (destInput?.dataset.iata || destInput?.value.trim()).toUpperCase() || "JFK";
+      
       let date = document.getElementById("flight-date")?.value;
       const pass = document.getElementById("flight-passengers")?.value || 1;
-
-      // Smart mapping so users can type city names instead of just IATA codes
-      const cityToIATA = {
-        "NEW YORK": "JFK",
-        "LONDON": "LHR",
-        "DHAKA": "DAC",
-        "BANGLADESH": "DAC",
-        "DHAKA, BANGLADESH": "DAC",
-        "KATHMANDU": "KTM",
-        "NEPAL": "KTM",
-        "KATHMANDU, NEPAL": "KTM",
-        "PARIS": "CDG",
-        "TOKYO": "HND",
-        "SYDNEY": "SYD",
-        "DUBAI": "DXB",
-        "BALI": "DPS",
-        "LOS ANGELES": "LAX",
-        "ROME": "FCO",
-        "MADRID": "MAD",
-        "BARCELONA": "BCN",
-        "BERLIN": "BER",
-        "AMSTERDAM": "AMS",
-        "SINGAPORE": "SIN",
-        "BANGKOK": "BKK"
-      };
-
-      const iataToCity = {
-        "JFK": "New York",
-        "LHR": "London",
-        "DAC": "Dhaka",
-        "KTM": "Kathmandu",
-        "CDG": "Paris",
-        "HND": "Tokyo",
-        "SYD": "Sydney",
-        "DXB": "Dubai",
-        "DPS": "Bali",
-        "LAX": "Los Angeles",
-        "FCO": "Rome",
-        "MAD": "Madrid",
-        "BCN": "Barcelona",
-        "BER": "Berlin",
-        "AMS": "Amsterdam",
-        "SIN": "Singapore",
-        "BKK": "Bangkok"
-      };
-
-      if (cityToIATA[origin]) origin = cityToIATA[origin];
-      if (cityToIATA[dest]) dest = cityToIATA[dest];
 
       if (!date) {
         // default to 14 days from now if empty
@@ -1283,7 +1299,7 @@ document.addEventListener("DOMContentLoaded", () => {
         date = d.toISOString().split('T')[0];
       }
 
-      fetchLiveFlights(origin, dest, date, pass, iataToCity);
+      fetchLiveFlights(origin, dest, date, pass, globalIataMap);
     });
 
     // Automatically load default flights on page load if container exists
@@ -1291,13 +1307,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const d = new Date();
       d.setDate(d.getDate() + 14);
       const dateStr = d.toISOString().split('T')[0];
-      
-      const iataToCity = {
-        "JFK": "New York", "LHR": "London", "DAC": "Dhaka", "KTM": "Kathmandu",
-        "CDG": "Paris", "HND": "Tokyo", "SYD": "Sydney", "DXB": "Dubai",
-        "DPS": "Bali", "LAX": "Los Angeles", "FCO": "Rome"
-      };
-      fetchLiveFlights("LHR", "JFK", dateStr, 1, iataToCity);
+      fetchLiveFlights("LHR", "JFK", dateStr, 1, globalIataMap);
     }
   }
 });

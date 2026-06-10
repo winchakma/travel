@@ -68,8 +68,14 @@
         </label>
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
-        <input type="text" id="flight-origin" placeholder="From (IATA Code, e.g. LHR)" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
-        <input type="text" id="flight-dest" placeholder="To (IATA Code, e.g. JFK)" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+        <div style="position:relative;">
+          <input type="text" id="flight-origin" placeholder="From (City or Airport)" autocomplete="off" style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+          <div id="origin-autocomplete" style="position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ddd; border-radius:4px; max-height:250px; overflow-y:auto; z-index:1000; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+        </div>
+        <div style="position:relative;">
+          <input type="text" id="flight-dest" placeholder="To (City or Airport)" autocomplete="off" style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+          <div id="dest-autocomplete" style="position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ddd; border-radius:4px; max-height:250px; overflow-y:auto; z-index:1000; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+        </div>
         <input type="date" id="flight-date" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
         <input type="date" placeholder="Return" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
       </div>

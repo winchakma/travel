@@ -13,6 +13,38 @@ headers = {
     "Content-Type": "application/json"
 }
 
+@router.get("/places")
+def search_places(query: str = Query(..., description="Search query for city or airport")):
+    if not DUFFEL_API_KEY:
+        raise HTTPException(status_code=500, detail="Duffel API key not configured")
+    try:
+        req_res = requests.get(f"{DUFFEL_BASE_URL}/places/suggestions?query={query}", headers=headers)
+        if req_res.status_code != 200:
+            return {"status": "error", "message": f"Duffel API error: {req_res.text}"}
+        
+        data = req_res.json().get("data", [])
+        
+        # Format the response to be clean for autocomplete
+        formatted_places = []
+        for place in data:
+            if place.get("iata_code"):
+                # if it's a city, we might want to show "City (Code)"
+                # if it's an airport, we show "Airport Name (Code)"
+                place_type = place.get("type", "unknown")
+                country = place.get("iata_country_code", "")
+                
+                formatted_places.append({
+                    "id": place.get("id"),
+                    "name": place.get("name"),
+                    "iata_code": place.get("iata_code"),
+                    "type": place_type,
+                    "country": country
+                })
+        
+        return {"status": "success", "places": formatted_places}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @router.get("/search")
 def search_flights(
     origin: str = Query(..., description="IATA code for origin, e.g., LHR"),
