@@ -104,7 +104,7 @@ function initAdminSupport() {
                 
                 const tempId = "img-" + Date.now();
                 const historyEl = document.getElementById('admin-support-chat-history');
-                historyEl.insertAdjacentHTML('beforeend', \`<div id="\${tempId}" class="self-end text-[10px] text-[#888]">Uploading image...</div>\`);
+                historyEl.insertAdjacentHTML('beforeend', `<div id="${tempId}" class="self-end text-[10px] text-[#888]">Uploading image...</div>`);
                 historyEl.scrollTop = historyEl.scrollHeight;
                 
                 const formData = new FormData();
