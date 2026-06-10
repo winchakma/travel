@@ -432,8 +432,8 @@ function buildFields(type, info) {
       <input class="gt-input" id="bd-notes" placeholder="Any special requests?" /></div>`;
 }
 
-function openBookingDetail(info) {
-  const type = getPageType();
+function openBookingDetail(info, overrideType) {
+  const type = (overrideType || getPageType()).toUpperCase();
   const infoStr = encodeURIComponent(JSON.stringify(info));
   document.getElementById("gt-detail-content").innerHTML = `
     ${info.img ? `<img src="${info.img}" class="gt-detail-img" onerror="this.style.display='none'" />` : ''}
@@ -571,6 +571,11 @@ async function cancelBooking(id) {
 
 function wireCards() {
   document.querySelectorAll(".card").forEach(card => {
+    // Only wire cards that don't already have an onclick handler
+    // to avoid triggering both this and the fetchLive ones
+    if (card.hasAttribute("data-wired")) return;
+    card.setAttribute("data-wired", "true");
+    
     card.style.cursor = "pointer";
     card.addEventListener("click", function() {
       const name     = this.querySelector("h3")?.textContent?.trim() || "Item";
@@ -579,7 +584,12 @@ function wireCards() {
       const img      = this.querySelector("img")?.src || "";
       const location = this.querySelector("p:not(.price)")?.textContent?.replace(/[^\w\s,]/g,"").trim() || "";
       const badge    = this.querySelector(".badge")?.textContent?.trim() || "";
-      openBookingDetail({ name, price, img, location, badge });
+      
+      let typeStr = getPageType();
+      if (document.title.toLowerCase().includes("hotel") || window.location.href.includes("hotel")) {
+        typeStr = "HOTEL";
+      }
+      openBookingDetail({ name, price, img, location, badge }, typeStr);
     });
   });
   // Flight row Book Now buttons
@@ -1147,12 +1157,12 @@ async function fetchLiveHotels(query = "Bali") {
         `;
         // Wire up the card to the details modal
         card.addEventListener("click", () => {
-           showDetailModal("hotel", {
-               destination: hotel.name,
+           openBookingDetail({
+               name: hotel.name,
                price: Math.round(hotel.price) || 250,
-               rating: hotel.rating || 4.5,
-               image: imgUrl
-           });
+               badge: hotel.rating ? "⭐ " + hotel.rating : "Top Rated",
+               img: imgUrl
+           }, "HOTEL");
         });
         grid.appendChild(card);
       });
@@ -1435,12 +1445,12 @@ async function fetchLiveRentals(query = "Bali") {
         `;
         // Wire up the card to the details modal
         card.addEventListener("click", () => {
-           showDetailModal("rental", {
-               destination: rental.name,
+           openBookingDetail({
+               name: rental.name,
                price: Math.round(rental.price) || 150,
-               rating: rental.rating || 4.5,
-               image: imgUrl
-           });
+               badge: rental.rating ? "⭐ " + rental.rating : "Top Rated",
+               img: imgUrl
+           }, "RENTAL");
         });
         grid.appendChild(card);
       });
@@ -1502,12 +1512,12 @@ async function fetchLiveTours(query = "Paris") {
         `;
         // Wire up the card to the details modal
         card.addEventListener("click", () => {
-           showDetailModal("tour", {
-               destination: tour.name,
-               price: Math.round(tour.price) || 85,
-               rating: tour.rating || 4.5,
-               image: imgUrl
-           });
+           openBookingDetail({
+               name: tour.name,
+               price: Math.round(tour.price) || 80,
+               badge: tour.rating ? "⭐ " + tour.rating : "Top Rated",
+               img: imgUrl
+           }, "TOUR");
         });
         grid.appendChild(card);
       });
@@ -1552,12 +1562,12 @@ async function fetchLiveActivities(query = "Hiking") {
           </div>
         `;
         card.addEventListener("click", () => {
-           showDetailModal("activity", {
-               destination: act.name,
+           openBookingDetail({
+               name: act.name,
                price: Math.round(act.price) || 50,
-               rating: act.rating || 4.5,
-               image: imgUrl
-           });
+               badge: act.rating ? "⭐ " + act.rating : "Top Rated",
+               img: imgUrl
+           }, "ACTIVITY");
         });
         grid.appendChild(card);
       });
