@@ -504,15 +504,39 @@ async function submitBookingDetail(infoStr) {
 
   const errEl = document.getElementById("gt-detail-error");
   try {
-    const res  = await fetch(`${API}/bookings`, {
+    const btn = document.querySelector("#gt-detail-overlay .gt-btn-primary");
+    const origText = btn ? btn.textContent : "Confirm Booking";
+    if (btn) {
+      btn.textContent = "Redirecting to secure checkout...";
+      btn.disabled = true;
+    }
+
+    const res  = await fetch(`${API}/bookings/create-checkout-session`, {
       method:"POST",
       headers:{"Content-Type":"application/json", Authorization:`Bearer ${getToken()}`},
       body: JSON.stringify({ type, details, price: info.price || 0 }),
     });
     const data = await res.json();
-    if (!res.ok) { if(errEl){errEl.textContent=data.error||"Booking failed.";errEl.style.display="block";} }
-    else { closeModal("gt-detail-overlay"); showToast("🎉 Booking confirmed! View it in 'My Bookings'."); }
-  } catch { if(errEl){errEl.textContent="Cannot reach server.";errEl.style.display="block";} }
+    if (!res.ok) { 
+      if(errEl){errEl.textContent=data.error||data.detail||"Booking failed.";errEl.style.display="block";} 
+      if (btn) { btn.textContent = origText; btn.disabled = false; }
+    }
+    else { 
+      // Initialize Stripe and Redirect
+      const stripe = Stripe(window.STRIPE_PUBLIC_KEY);
+      stripe.redirectToCheckout({ sessionId: data.sessionId }).then(function (result) {
+        if (result.error && errEl) {
+          errEl.textContent = result.error.message;
+          errEl.style.display = "block";
+          if (btn) { btn.textContent = origText; btn.disabled = false; }
+        }
+      });
+    }
+  } catch { 
+    if(errEl){errEl.textContent="Cannot reach server.";errEl.style.display="block";} 
+    const btn = document.querySelector("#gt-detail-overlay .gt-btn-primary");
+    if (btn) { btn.textContent = "Confirm Booking"; btn.disabled = false; }
+  }
 }
 
 async function showMyBookings() {

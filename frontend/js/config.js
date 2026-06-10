@@ -39,3 +39,17 @@ document.addEventListener('contextmenu', function(e) {
     configurable: true
   });
 }, true /* capture phase runs before Three.js */);
+
+// Stripe Configuration
+window.STRIPE_PUBLIC_KEY = "pk_test_51Te9WEPovaPbJRoDlxyfZhwXsETrZM1hkHsM8UnpmOUYi8fmCIyEkto6XlRPEJ5hztYcROxweC3lq4mcL6sGN6V000x9IUnMaV";
+
+// Dynamically inject Stripe.js so it's available globally without modifying every HTML file manually
+(function() {
+    if (!document.getElementById("stripe-js-script")) {
+        const script = document.createElement('script');
+        script.id = "stripe-js-script";
+        script.src = "https://js.stripe.com/v3/";
+        script.async = true;
+        document.head.appendChild(script);
+    }
+})();

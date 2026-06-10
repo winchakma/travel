@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Successful - GoTrip</title>
+  <title>Payment Cancelled - GoTrip</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     body { background: #f4f6fa; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
@@ -16,15 +16,10 @@
 </head>
 <body>
   <div class="success-card">
-    <div class="icon">✅</div>
-    <h1>Payment Successful!</h1>
-    <p>Thank you for your booking. Your transaction was completed successfully and your itinerary is now confirmed.</p>
-    <a href="profile.html#bookings" class="btn">View My Bookings</a>
+    <div class="icon">❌</div>
+    <h1>Payment Cancelled</h1>
+    <p>Your payment was cancelled and your booking has not been confirmed. You have not been charged.</p>
+    <a href="index.html" class="btn">Return Home</a>
   </div>
-  <script>
-    setTimeout(() => {
-      window.location.href = "profile.html#bookings";
-    }, 5000);
-  </script>
 </body>
 </html>
