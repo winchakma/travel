@@ -408,3 +408,10 @@ window.promoteFromDashboard = async function() {
         }
     };
 };
+
+window.logout = function(event) {
+    if (event) event.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "index.html";
+};
