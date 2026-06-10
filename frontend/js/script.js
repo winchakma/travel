@@ -1402,27 +1402,3 @@ async function fetchLiveFlights(origin, dest, date, passengers, iataToCity = {})
   }
 }
 
-// Initialize Hero Video Slider
-document.addEventListener("DOMContentLoaded", () => {
-  const vids = [
-    document.getElementById("hero-vid-0"),
-    document.getElementById("hero-vid-1"),
-    document.getElementById("hero-vid-2")
-  ].filter(Boolean);
-
-  if (vids.length > 0) {
-    let currentIdx = 0;
-    vids[currentIdx].classList.add("active");
-
-    vids.forEach((vid) => {
-      vid.addEventListener("ended", () => {
-        vid.classList.remove("active");
-        vid.currentTime = 0;
-        currentIdx = (currentIdx + 1) % vids.length;
-        const nextVid = vids[currentIdx];
-        nextVid.classList.add("active");
-        nextVid.play().catch(e => console.log("Autoplay blocked:", e));
-      });
-    });
-  }
-});
