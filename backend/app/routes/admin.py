@@ -54,19 +54,18 @@ async def get_stats(token: str):
     total_orders = await Order.count()
     recent_activities = await Activity.find().sort("-timestamp").limit(30).to_list()
     
-    # Revenue from memberships + orders
-    pro_count = await User.find(User.membershipType == "PRO MONTHLY").count()
-    elite_count = await User.find(User.membershipType == "ELITE ANNUAL").count()
-    membership_rev = (pro_count * 89) + (elite_count * 149)
+    # Revenue from bookings (sum of prices)
+    bookings = await Booking.find_all().to_list()
+    booking_rev = sum(b.price for b in bookings if hasattr(b, 'price') and b.price)
     
     orders = await Order.find_all().to_list()
-    order_rev = sum(o.total for o in orders)
+    order_rev = sum(o.total for o in orders if hasattr(o, 'total'))
     
     return {
         "totalUsers": total_users,
         "totalBookings": total_bookings,
         "totalOrders": total_orders,
-        "estimatedRevenue": membership_rev + order_rev,
+        "estimatedRevenue": booking_rev + order_rev,
         "recentActivities": recent_activities
     }
 
@@ -154,17 +153,8 @@ async def promote_user(email: str, token: str):
 @router.get("/bookings")
 async def list_bookings(token: str):
     await get_current_admin_or_trainer(token)
-    from app.utils.booking_utils import is_booking_expired
-    all_bookings = await Booking.find().sort("-date").to_list()
-    
-    active_bookings = []
-    for b in all_bookings:
-        if is_booking_expired(b):
-            await b.delete()
-        else:
-            active_bookings.append(b)
-            
-    return active_bookings
+    all_bookings = await Booking.find().sort("-createdAt").to_list()
+    return all_bookings
 
 @router.delete("/bookings/{id}")
 async def delete_booking(id: str, token: str):

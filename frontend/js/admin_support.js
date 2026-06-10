@@ -17,7 +17,7 @@ function initAdminSupport() {
     if (!token) return;
 
     // Use the same API host logic
-    const activeAPI = window.ELITE_API_URL || "https://mygym-p9rd.onrender.com";
+    const activeAPI = window.ELITE_API_URL || "https://travel-xyyl.onrender.com";
     let wsUrl = activeAPI.replace(/^http/, 'ws') + `/api/support-ws/chat?token=${encodeURIComponent(token)}`;
 
     // Fallback to local if on localhost and no ELITE_API_URL
