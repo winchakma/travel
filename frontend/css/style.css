@@ -175,10 +175,11 @@ body.gt-menu-open {
 
 /* ===== HERO ===== */
 .hero {
-  background: url('https://images.unsplash.com/photo-1542314831-c6a4d27ce6a2?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+  background: url('../images/home.jpg') center/cover no-repeat;
   color: #fff;
   text-align: center;
-  min-height: calc(100vh - 80px); /* Full screen minus navbar */
+  min-height: 500px; /* Made smaller as requested */
+  padding: 80px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
