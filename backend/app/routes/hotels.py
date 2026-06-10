@@ -69,9 +69,11 @@ async def search_hotels(query: str = Query("Bali")):
                     "reviews": prop.get('reviewCount', 0),
                     "image": image
                 })
+            if not results:
+                raise Exception("Empty hotels data from RapidAPI")
             return {"status": "success", "data": results}
         else:
-            return {"status": "success", "data": []}
+            raise Exception("No 'hotels' data in RapidAPI response")
             
     except Exception as e:
         print(f"Fallback triggered for Hotels: {e}")
