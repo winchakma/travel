@@ -135,20 +135,31 @@ async def update_user_fee(email: str, data: dict, token: str):
     await target.save()
     return {"message": f"User {email} fee status updated."}
 
+@router.get("/users")
+async def list_users(token: str):
+    await get_current_admin(token)
+    # Fetch all users, excluding passwords
+    all_users = await User.find().sort("-created_at").to_list()
+    # Exclude hashed_password explicitly just in case Pydantic exposes it
+    users_data = []
+    for u in all_users:
+        u_dict = u.dict(exclude={"hashed_password"})
+        # Convert ObjectId to string
+        u_dict["_id"] = str(u.id) if hasattr(u, 'id') else None
+        users_data.append(u_dict)
+    return users_data
+
 @router.post("/promote")
 async def promote_user(email: str, token: str):
-    await get_super_admin(token)
+    await get_current_admin(token)
     email_clean = email.strip().lower()
     target = await User.find_one(User.email == email_clean)
     if not target:
         raise HTTPException(status_code=404, detail="User not found")
     
-    # Super Admin can add unlimited trainers
-        
-    target.role = "trainer"
-    target.admissionStatus = "approved"
+    target.role = "admin"
     await target.save()
-    return {"message": f"User {email} promoted to Trainer."}
+    return {"message": f"User {email} promoted to Admin."}
 
 @router.get("/bookings")
 async def list_bookings(token: str):

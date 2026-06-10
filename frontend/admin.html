@@ -47,24 +47,21 @@
     <div class="text-xs text-gray-400 tracking-wider">WORKSPACE ADMIN</div>
   </div>
   <nav class="mt-6 flex flex-col gap-2 px-4">
-    <a href="admin.html" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
+    <a href="#" onclick="switchAdminTab('dashboard', this)" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
       <i class="fa-solid fa-house w-5"></i> Dashboard
     </a>
-    <a href="#" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
+    <a href="#" onclick="switchAdminTab('bookings', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
       <i class="fa-solid fa-calendar-check w-5"></i> Bookings
     </a>
-    <a href="#" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
-      <i class="fa-solid fa-hotel w-5"></i> My Hotels
-    </a>
-    <a href="#" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
-      <i class="fa-solid fa-map-location-dot w-5"></i> My Tours
-    </a>
-    <a href="#" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
+    <a href="#" onclick="switchAdminTab('customers', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
       <i class="fa-solid fa-address-book w-5"></i> Customers
     </a>
   </nav>
-  <div class="absolute bottom-0 w-64 p-4">
-    <a href="index.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-900/30">
+  <div class="absolute bottom-0 w-64 p-4 flex flex-col gap-2">
+    <a href="index.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800">
+      <i class="fa-solid fa-arrow-left w-5"></i> Back to Site
+    </a>
+    <a href="#" onclick="logout()" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-900/30">
       <i class="fa-solid fa-right-from-bracket w-5"></i> Logout
     </a>
   </div>
@@ -99,7 +96,9 @@
   <!-- CONTENT AREA -->
   <div class="flex-1 overflow-auto p-6">
     
-    <!-- STATS CARDS -->
+    <!-- DASHBOARD VIEW -->
+    <div id="view-dashboard" class="admin-view" style="display: block;">
+      <!-- STATS CARDS -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       <div class="dashboard-card bg-white p-6 rounded-xl border border-gray-100 border-t-4 border-t-blue-500">
         <div class="flex justify-between items-start">
@@ -189,6 +188,39 @@
             <!-- Bookings will be dynamically injected here -->
           </tbody>
         </table>
+      </div>
+    </div>
+
+    </div>
+    
+    <!-- CUSTOMERS VIEW -->
+    <div id="view-customers" class="admin-view" style="display: none;">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">System Overview & Customers</h2>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-white">
+          <h2 class="text-lg font-semibold text-gray-800">User Management</h2>
+          <div class="flex gap-2">
+            <button onclick="fetchCustomers()" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded-md text-sm font-medium transition-colors">
+              <i class="fa-solid fa-rotate-right mr-1"></i> Refresh
+            </button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                <th class="px-6 py-4 font-medium">Name</th>
+                <th class="px-6 py-4 font-medium">Email</th>
+                <th class="px-6 py-4 font-medium">Role</th>
+                <th class="px-6 py-4 font-medium">Joined</th>
+                <th class="px-6 py-4 font-medium text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm text-gray-700 divide-y divide-gray-100" id="admin-customers-table">
+              <!-- Customers will be dynamically injected here -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 

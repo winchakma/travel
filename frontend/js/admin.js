@@ -165,3 +165,123 @@ function showCustomAlert(title, message, type) {
         document.body.removeChild(overlay);
     };
 }
+
+window.switchAdminTab = function(tabId, element) {
+    // Hide all views
+    document.querySelectorAll('.admin-view').forEach(view => {
+        view.style.display = 'none';
+    });
+    
+    // Remove active class from all links
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Show target view if it exists
+    const targetView = document.getElementById(`view-${tabId}`);
+    if (targetView) {
+        targetView.style.display = 'block';
+    } else {
+        document.getElementById('view-dashboard').style.display = 'block';
+    }
+    
+    // Add active class to clicked link
+    if (element) {
+        element.classList.add('active');
+    }
+
+    // Load data if switching to customers
+    if (tabId === 'customers') {
+        fetchCustomers();
+    }
+};
+
+window.fetchCustomers = async function() {
+    const token = getToken();
+    try {
+        const res = await fetch(`${API}/admin/users?token=${encodeURIComponent(token)}`);
+        if (!res.ok) throw new Error("Failed to fetch users");
+        const users = await res.json();
+        
+        const tableBody = document.getElementById("admin-customers-table");
+        tableBody.innerHTML = "";
+        
+        if (users.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No users found.</td></tr>`;
+            return;
+        }
+
+        users.forEach(u => {
+            const roleBadge = u.role === 'admin' 
+                ? `<span class="px-2.5 py-1 rounded-md text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200">Admin</span>`
+                : `<span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">User</span>`;
+                
+            const actionBtn = u.role === 'admin' 
+                ? `<button disabled class="text-gray-300 cursor-not-allowed" title="Already Admin"><i class="fa-solid fa-shield-halved"></i></button>`
+                : `<button class="text-blue-500 hover:text-blue-700 font-medium" onclick="promoteToAdmin('${u.email}')" title="Promote to Admin"><i class="fa-solid fa-arrow-up"></i> Make Admin</button>`;
+
+            const rowHTML = `
+                <tr class="admin-table-row">
+                  <td class="px-6 py-4 font-medium text-gray-800">${u.firstName || ''} ${u.lastName || ''}</td>
+                  <td class="px-6 py-4">${u.email}</td>
+                  <td class="px-6 py-4">${roleBadge}</td>
+                  <td class="px-6 py-4">${u.created_at ? new Date(u.created_at).toLocaleDateString() : 'N/A'}</td>
+                  <td class="px-6 py-4 text-right">${actionBtn}</td>
+                </tr>
+            `;
+            tableBody.insertAdjacentHTML('beforeend', rowHTML);
+        });
+    } catch (err) {
+        console.error(err);
+        showCustomAlert("Error", "Failed to load customers.", "error");
+    }
+};
+
+window.promoteToAdmin = function(email) {
+    const overlay = document.createElement("div");
+    overlay.className = "gt-overlay active";
+    overlay.style.zIndex = "999999";
+    
+    overlay.innerHTML = `
+      <div style="background: rgba(0,0,0,0.5); position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 24px; border-radius: 12px; max-width: 400px; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+          <h3 style="font-size: 18px; color: #1a2b6b; font-weight: bold; margin-bottom: 12px;">Promote to Admin?</h3>
+          <p style="font-size: 14px; color: #555; margin-bottom: 24px;">Are you sure you want to promote <strong>${email}</strong> to Admin privileges?</p>
+          <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button id="admin-promote-cancel" style="padding: 8px 16px; border-radius: 6px; background: #f3f4f6; color: #374151; font-weight: 500; cursor: pointer; border: none;">Cancel</button>
+            <button id="admin-promote-confirm" style="padding: 8px 16px; border-radius: 6px; background: #3b82f6; color: white; font-weight: 500; cursor: pointer; border: none;">Promote</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(overlay);
+
+    document.getElementById("admin-promote-cancel").onclick = () => {
+        document.body.removeChild(overlay);
+    };
+
+    document.getElementById("admin-promote-confirm").onclick = async () => {
+        const btn = document.getElementById("admin-promote-confirm");
+        btn.textContent = "Promoting...";
+        btn.disabled = true;
+        
+        const token = getToken();
+        try {
+            const res = await fetch(`${API}/admin/promote?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}`, {
+                method: 'POST'
+            });
+            if (res.ok) {
+                document.body.removeChild(overlay);
+                showCustomAlert("Success", `${email} has been promoted to Admin.`, "success");
+                fetchCustomers(); // reload table
+            } else {
+                throw new Error("Failed to promote user.");
+            }
+        } catch (err) {
+            console.error(err);
+            document.body.removeChild(overlay);
+            showCustomAlert("Error", "An error occurred while promoting the user.", "error");
+        }
+    };
+};
