@@ -178,22 +178,23 @@ body.gt-menu-open {
   background: transparent;
   color: #fff;
   text-align: center;
-  height: 100vh; /* Make hero exactly full screen */
+  min-height: calc(100vh - 80px); /* Full screen minus navbar */
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
+  overflow: hidden; /* Important so absolute video doesn't overflow */
 }
 
 .hero-video-container,
 .hero-video-container video,
 .hero-overlay {
-  position: fixed; /* Fix to background for parallax "hover" effect */
+  position: absolute; /* Back to absolute, no parallax */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  z-index: -2;
+  height: 100%;
+  z-index: 0;
 }
 
 .hero-video-container video {
@@ -208,7 +209,12 @@ body.gt-menu-open {
 
 .hero-overlay {
   background: rgba(26, 43, 107, 0.4);
-  z-index: -1;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 
