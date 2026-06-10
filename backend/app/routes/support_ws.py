@@ -171,9 +171,8 @@ async def support_chat_endpoint(websocket: WebSocket, token: str):
                     "created_at": chat_msg.created_at.isoformat()
                 }
 
-                await manager.send_personal_message(payload, email)
-                if session.userEmail != email:
-                    await manager.send_personal_message(payload, session.userEmail)
+                await manager.send_personal_message(payload, session.userEmail)
+                await manager.broadcast_to_admins(payload, session.targetRole, exclude_email=session.userEmail)
 
             elif action == "fetch_sessions":
                 if role == "user":
