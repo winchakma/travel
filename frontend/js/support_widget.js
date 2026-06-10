@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div id="support-window" style="display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); flex-direction: column; overflow: hidden; margin-bottom: 15px; border: 1px solid #333;">
             <div style="background: #000; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333;">
                 <div style="display: flex; align-items: center; gap: 10px;">
+                    <button id="support-back-btn" style="display: none; background: transparent; border: none; color: white; cursor: pointer; font-size: 18px; padding: 0 5px;">&larr;</button>
                     <span style="font-weight: 800; font-size: 14px; letter-spacing: 1px;">ELITE SUPPORT</span>
                 </div>
                 <button id="support-close-btn" style="background: transparent; border: none; color: white; cursor: pointer; font-size: 20px;">&times;</button>
@@ -62,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const messagesContainer = document.getElementById("support-messages");
     const inputField = document.getElementById("support-input");
     const sendBtn = document.getElementById("support-send-btn");
+    const backBtn = document.getElementById("support-back-btn");
     const roleBtns = document.querySelectorAll(".support-role-btn");
 
     roleBtns.forEach(btn => {
@@ -123,8 +125,20 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedRole = btn.getAttribute("data-role");
             roleSelector.style.display = "none";
             chatArea.style.display = "flex";
+            backBtn.style.display = "block";
             initWebSocket();
         });
+    });
+
+    backBtn.addEventListener("click", () => {
+        if (ws) {
+            ws.close();
+            ws = null;
+        }
+        chatArea.style.display = "none";
+        roleSelector.style.display = "flex";
+        backBtn.style.display = "none";
+        selectedRole = null;
     });
 
     function appendMessage(msg) {
