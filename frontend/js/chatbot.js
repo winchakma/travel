@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div id="chatbot-window" style="display: none; width: 350px; height: 500px; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); flex-direction: column; overflow: hidden; margin-bottom: 15px; border: 1px solid #eee;">
             <div style="background: #1a2b6b; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <div style="width: 32px; height: 32px; background: #e5c414; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px;">🤖</div>
+                    <div style="width: 32px; height: 32px; background: #e5c414; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px;">✨</div>
                     <span style="font-weight: 600; font-size: 16px;">GoTrip AI</span>
                 </div>
                 <button id="chatbot-close-btn" style="background: transparent; border: none; color: white; cursor: pointer; font-size: 20px;">&times;</button>
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         </div>
         <button id="chatbot-toggle-btn" style="width: 60px; height: 60px; background: #e5c414; color: #1a2b6b; border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 28px; float: right; transition: transform 0.2s;">
-            💬
+            ✨
         </button>
     </div>
     `;

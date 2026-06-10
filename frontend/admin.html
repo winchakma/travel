@@ -56,6 +56,10 @@
     <a href="#" onclick="switchAdminTab('customers', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
       <i class="fa-solid fa-address-book w-5"></i> Customers
     </a>
+    <a href="#" onclick="switchAdminTab('support', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium relative">
+      <i class="fa-solid fa-headset w-5"></i> Support Inbox
+      <span id="support-unread-badge" class="hidden absolute top-3 right-4 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">!</span>
+    </a>
   </nav>
   <div class="absolute bottom-0 w-64 p-4 flex flex-col gap-2">
     <a href="index.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800">
@@ -237,6 +241,44 @@
               <!-- Customers will be dynamically injected here -->
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUPPORT INBOX VIEW -->
+    <div id="view-support" class="admin-view flex gap-6 h-[calc(100vh-140px)]" style="display: none;">
+      <!-- Left side: Session List -->
+      <div class="w-1/3 bg-[#111] rounded-xl overflow-hidden flex flex-col border border-gray-800 shadow-xl">
+        <div class="p-4 bg-[#0a0a0a] border-b border-white/5 flex justify-between items-center">
+          <h3 class="text-white font-bold text-sm tracking-wider uppercase">Active Threads</h3>
+          <span id="admin-support-status" class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Connecting...</span>
+        </div>
+        <div id="admin-support-sessions" class="flex-1 overflow-y-auto">
+          <!-- Sessions injected here -->
+        </div>
+      </div>
+      
+      <!-- Right side: Chat Window -->
+      <div class="flex-1 bg-[#111] rounded-xl overflow-hidden flex flex-col border border-gray-800 shadow-xl relative">
+        <!-- Chat Header -->
+        <div class="p-4 bg-[#0a0a0a] border-b border-white/5 flex justify-between items-center">
+          <h3 id="admin-support-chat-title" class="text-white font-bold text-sm tracking-wider uppercase">Select a session</h3>
+          <span class="text-[10px] text-green-500 font-bold uppercase tracking-widest">Live</span>
+        </div>
+        
+        <!-- Chat History -->
+        <div id="admin-support-chat-history" class="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
+          <!-- Messages injected here -->
+        </div>
+        
+        <!-- Chat Form -->
+        <div id="admin-support-chat-form" class="p-4 bg-[#0a0a0a] border-t border-white/5 hidden">
+          <div class="flex gap-2">
+            <input type="text" id="admin-support-input" class="flex-1 bg-[#1a1a1a] text-white border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-yellow-400" placeholder="Type your reply...">
+            <button id="admin-support-send" class="bg-yellow-400 text-black px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-yellow-300 transition-colors">
+              Send
+            </button>
+          </div>
         </div>
       </div>
     </div>

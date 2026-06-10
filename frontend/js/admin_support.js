@@ -7,7 +7,7 @@ let currentSupportSessionId = null;
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     // Only init if we are on a page that has the support section
-    if (document.getElementById('section-support')) {
+    if (document.getElementById('view-support')) {
         initAdminSupport();
     }
 });

@@ -194,6 +194,12 @@ window.switchAdminTab = function(tabId, element) {
     if (tabId === 'customers') {
         fetchCustomers();
     }
+    
+    // Clear unread badge if switching to support
+    if (tabId === 'support') {
+        const badge = document.getElementById('support-unread-badge');
+        if (badge) badge.classList.add('hidden');
+    }
 };
 
 window.fetchCustomers = async function() {
