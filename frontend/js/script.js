@@ -598,18 +598,8 @@ function wireCards() {
 }
 
 function wireSearchBars() {
-  const btn = document.querySelector(".btn-search");
-  if (!btn) return;
-  btn.addEventListener("click", () => {
-    const inputs = document.querySelectorAll(".search-bar input, .search-bar select");
-    const type   = getPageType();
-    let info = { name:"Search Result", price:0 };
-    if (type === "flight") info = { name:`${inputs[0]?.value||'?'} → ${inputs[1]?.value||'?'}`, from:inputs[0]?.value, to:inputs[1]?.value };
-    else if (type === "hotel" || type === "rental") info = { name:inputs[0]?.value||"Property", destination:inputs[0]?.value };
-    else if (type === "car") info = { name:inputs[0]?.value||"Car Hire", pickupLocation:inputs[0]?.value };
-    else info = { name:inputs[0]?.value||"Experience" };
-    openBookingDetail(info);
-  });
+  // Legacy search modal logic removed.
+  // Search is now handled by dedicated Live API logic in flights.html / hotel.html
 }
 
 function wireSubscribe() {
