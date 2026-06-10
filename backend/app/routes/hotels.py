@@ -49,7 +49,7 @@ async def search_hotels(query: str = Query("Bali")):
         if 'data' in hotels_data and 'hotels' in hotels_data['data']:
             # Return a simplified list of hotels
             results = []
-            for h in hotels_data['data']['hotels'][:10]: # Limit to 10 to save bandwidth on frontend
+            for h in hotels_data['data']['hotels'][:20]: # Limit to 20 per user request
                 prop = h.get('property', {})
                 results.append({
                     "id": prop.get('id'),
