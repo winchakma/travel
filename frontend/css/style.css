@@ -178,7 +178,11 @@ body.gt-menu-open {
   background: #1a2b6b; /* Fallback */
   color: #fff;
   text-align: center;
-  padding: 160px 20px 140px; /* Made slightly bigger */
+  padding: 220px 20px 180px; /* Greatly increased padding to make section taller */
+  min-height: 80vh; /* Make it take up 80% of screen height so video isn't cropped */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   overflow: hidden;
 }
