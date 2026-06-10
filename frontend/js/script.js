@@ -1244,7 +1244,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "DUBAI": "DXB",
         "BALI": "DPS",
         "LOS ANGELES": "LAX",
-        "ROME": "FCO"
+        "ROME": "FCO",
+        "MADRID": "MAD",
+        "BARCELONA": "BCN",
+        "BERLIN": "BER",
+        "AMSTERDAM": "AMS",
+        "SINGAPORE": "SIN",
+        "BANGKOK": "BKK"
       };
 
       const iataToCity = {
@@ -1258,7 +1264,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "DXB": "Dubai",
         "DPS": "Bali",
         "LAX": "Los Angeles",
-        "FCO": "Rome"
+        "FCO": "Rome",
+        "MAD": "Madrid",
+        "BCN": "Barcelona",
+        "BER": "Berlin",
+        "AMS": "Amsterdam",
+        "SIN": "Singapore",
+        "BKK": "Bangkok"
       };
 
       if (cityToIATA[origin]) origin = cityToIATA[origin];
