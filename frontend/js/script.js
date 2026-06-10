@@ -1242,7 +1242,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         timeout = setTimeout(async () => {
           try {
-            const res = await fetch(`${API}/places?query=${val}`);
+            const res = await fetch(`${API}/flights/places?query=${val}`);
             const data = await res.json();
             if (data.status === "success" && data.places.length > 0) {
               dropdown.innerHTML = "";
