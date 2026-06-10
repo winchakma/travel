@@ -457,27 +457,6 @@ function openBookingDetail(info, overrideType) {
       </div>
       <h4 style="color:#1a2b6b;margin-bottom:14px;font-size:15px;">📋 Fill in your details</h4>
       <div class="gt-detail-grid" style="margin-bottom: 20px;">${buildFields(type, info)}</div>
-      
-      <h4 style="color:#1a2b6b;margin-bottom:14px;font-size:15px;border-top:1px solid #eee;padding-top:15px;">💳 Payment Details</h4>
-      <div class="gt-detail-grid">
-        <div class="gt-detail-field" style="grid-column:1/-1;">
-          <label>Name on Card</label>
-          <input class="gt-input" id="bd-cc-name" placeholder="John Doe" />
-        </div>
-        <div class="gt-detail-field" style="grid-column:1/-1;">
-          <label>Card Number</label>
-          <input class="gt-input" id="bd-cc-num" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" />
-        </div>
-        <div class="gt-detail-field">
-          <label>Expiry Date</label>
-          <input class="gt-input" id="bd-cc-exp" placeholder="MM/YY" maxlength="5" />
-        </div>
-        <div class="gt-detail-field">
-          <label>CVV</label>
-          <input class="gt-input" id="bd-cc-cvv" type="password" placeholder="123" maxlength="4" />
-        </div>
-      </div>
-      
       <div id="gt-detail-error" class="gt-error"></div>
       <button class="gt-btn" style="margin-top: 10px;" onclick="submitBookingDetail('${infoStr}')">💳 Pay & Confirm Booking</button>
       <button class="gt-btn-outline" onclick="closeModal('gt-detail-overlay')">Cancel</button>
@@ -503,6 +482,13 @@ async function submitBookingDetail(infoStr) {
   else details = { name:info.name, date:g("bd-date"), guests:g("bd-guests"), notes:g("bd-notes") };
 
   const errEl = document.getElementById("gt-detail-error");
+  if(errEl) errEl.style.display="none";
+
+  if (type === "flight" && !details.departureDate) { if(errEl){errEl.textContent="Please select a departure date.";errEl.style.display="block";} return; }
+  else if (type === "hotel" && !details.checkIn) { if(errEl){errEl.textContent="Please select a check-in date.";errEl.style.display="block";} return; }
+  else if (type === "car" && !details.pickupDate) { if(errEl){errEl.textContent="Please select a pickup date.";errEl.style.display="block";} return; }
+  else if (document.getElementById("bd-date") && !details.date) { if(errEl){errEl.textContent="Please select a date.";errEl.style.display="block";} return; }
+
   try {
     const btn = document.querySelector("#gt-detail-overlay .gt-btn-primary");
     const origText = btn ? btn.textContent : "Confirm Booking";
