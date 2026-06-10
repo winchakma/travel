@@ -285,3 +285,65 @@ window.promoteToAdmin = function(email) {
         }
     };
 };
+
+window.addAdminManually = function() {
+    const overlay = document.createElement("div");
+    overlay.className = "gt-overlay active";
+    overlay.style.zIndex = "999999";
+    
+    overlay.innerHTML = `
+      <div style="background: rgba(0,0,0,0.5); position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 24px; border-radius: 12px; max-width: 400px; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+          <h3 style="font-size: 18px; color: #1a2b6b; font-weight: bold; margin-bottom: 12px;">Add New Admin</h3>
+          <p style="font-size: 14px; color: #555; margin-bottom: 16px;">Enter the exact email address of the user you want to grant Admin privileges to:</p>
+          <input type="email" id="admin-manual-email" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-[#1a2b6b]" style="width: 100%; margin-bottom: 20px;" placeholder="user@example.com" />
+          <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button id="admin-manual-cancel" style="padding: 8px 16px; border-radius: 6px; background: #f3f4f6; color: #374151; font-weight: 500; cursor: pointer; border: none;">Cancel</button>
+            <button id="admin-manual-confirm" style="padding: 8px 16px; border-radius: 6px; background: #1e293b; color: white; font-weight: 500; cursor: pointer; border: none;">Grant Access</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    
+    setTimeout(() => {
+        const input = document.getElementById("admin-manual-email");
+        if (input) input.focus();
+    }, 100);
+
+    document.getElementById("admin-manual-cancel").onclick = () => {
+        document.body.removeChild(overlay);
+    };
+
+    document.getElementById("admin-manual-confirm").onclick = async () => {
+        const emailInput = document.getElementById("admin-manual-email").value.trim();
+        if (!emailInput) {
+            alert("Please enter an email address.");
+            return;
+        }
+
+        const btn = document.getElementById("admin-manual-confirm");
+        btn.textContent = "Processing...";
+        btn.disabled = true;
+        
+        const token = getToken();
+        try {
+            const res = await fetch(`${API}/admin/promote?email=${encodeURIComponent(emailInput)}&token=${encodeURIComponent(token)}`, {
+                method: 'POST'
+            });
+            if (res.ok) {
+                document.body.removeChild(overlay);
+                showCustomAlert("Success", `${emailInput} is now an Admin.`, "success");
+                fetchCustomers(); // reload table
+            } else {
+                const errData = await res.json().catch(() => ({}));
+                throw new Error(errData.detail || "Failed to find or promote user.");
+            }
+        } catch (err) {
+            console.error(err);
+            document.body.removeChild(overlay);
+            showCustomAlert("Error", err.message, "error");
+        }
+    };
+};
