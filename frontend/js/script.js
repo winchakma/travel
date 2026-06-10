@@ -663,8 +663,6 @@ function showToast(msg, isError = false) {
 function wireFooterLinks() {
   // Navigation interception removed.
   // Links will now naturally direct to their respective full HTML pages.
-}
-
   // Wire "View All" links - Show all items in a modal!
   // IMPORTANT: Production-ready behavior: let "View All" links navigate normally.
   // Only show the modal fallback if the link points to "#".
