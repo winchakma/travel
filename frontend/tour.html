@@ -65,27 +65,27 @@
   <h2 class="text-center">Choose Tour Types</h2>
   <p class="subtitle text-center">Browse tours by the type of experience you want</p>
   <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-top:25px;">
-    <div style="background:#1a2b6b; color:#fff; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px;">
+    <div onclick="fetchLiveTours('Beach')" style="background:#1a2b6b; color:#fff; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px;">
       <i class="fa-solid fa-umbrella-beach" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Beach Tour</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveTours('Adventure')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-mountain" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Adventure Tour</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveTours('Cultural')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-landmark" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Cultural Tour</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveTours('Food')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-utensils" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Food Tour</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveTours('Cruise')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-ship" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Cruise Tour</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveTours('Nature')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:120px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-leaf" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Nature Tour</p>
     </div>
@@ -100,23 +100,23 @@
   </div>
   <div class="dest-grid">
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=130&fit=crop" />
+      <img src="images/tour/pexels-lady-luck-328306309-14451479.jpg" />
       <div class="dest-label">New York</div>
     </div>
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=130&fit=crop" />
+      <img src="images/tour/pexels-gonchifacello-14996703.jpg" />
       <div class="dest-label">Rome</div>
     </div>
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=130&fit=crop" />
+      <img src="images/tour/pexels-lady-luck-328306309-14451479.jpg" />
       <div class="dest-label">Bali</div>
     </div>
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&h=130&fit=crop" />
+      <img src="images/tour/pexels-burak-2148400120-33795178.jpg" />
       <div class="dest-label">Sydney</div>
     </div>
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=130&fit=crop" />
+      <img src="images/tour/pexels-gaborbalazs97-27864528.jpg" />
       <div class="dest-label">London</div>
     </div>
   </div>
@@ -130,7 +130,7 @@
   </div>
   <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
     <div class="card" style="border:2px solid #1a2b6b;">
-      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=180&fit=crop" />
+      <img src="images/tour/pexels-eva-bronzini-6076097.jpg" />
       <div class="card-body">
         <span class="badge yellow">Book Early To Save</span>
         <h3>Early Bird Special — Save 30%</h3>
@@ -138,8 +138,14 @@
         <p class="price">From $49</p>
       </div>
     </div>
+    <div id="liveToursContainer" class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div class="loading" style="display:none; text-align:center; width:100%; padding:40px; color:#555;">
+        <i class="fa-solid fa-spinner fa-spin" style="font-size:24px; color:#1a2b6b; margin-bottom:10px;"></i>
+        <p>Finding best tours...</p>
+      </div>
+    </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1682686581498-5e85c7228119?w=400&h=180&fit=crop" />
+      <img src="images/tour/pexels-mayumi-maciel-686681543-18322258.jpg" />
       <div class="card-body">
         <span class="badge blue">Top Seller</span>
         <h3>Matching Tour Guide Worldwide</h3>
@@ -148,7 +154,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=180&fit=crop" />
+      <img src="images/tour/pexels-gaborbalazs97-27864528.jpg" />
       <div class="card-body">
         <span class="badge">Featured</span>
         <h3>Portugal Walking Tour & Museum Visit</h3>
@@ -157,7 +163,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&h=180&fit=crop" />
+      <img src="images/tour/pexels-stewphotography-14074141.jpg" />
       <div class="card-body">
         <span class="badge yellow">Bestseller</span>
         <h3>Paris City Highlights & Seine Cruise</h3>
@@ -239,7 +245,7 @@
     <div class="review-card">
       <p>The tour was absolutely amazing! Our guide was knowledgeable and fun. GoTrip made the whole booking process so easy. Will definitely book again for our next trip!</p>
       <div class="reviewer">
-        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=45&h=45&fit=crop" />
+        <img src="images/tour/pexels-gaborbalazs97-27864528.jpg" />
         <div>
           <h4>Sarah Johnson</h4>
           <span>⭐⭐⭐⭐⭐</span>
@@ -255,28 +261,28 @@
   <p class="subtitle text-center">Explore our travel guides for the best tour ideas</p>
   <div class="inspiration-grid" style="margin-top:25px">
     <div class="insp-card">
-      <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=400&h=200&fit=crop" />
+      <img src="images/tour/pexels-tiwi-riders-1256368688-35298082.jpg" />
       <div class="insp-text">
         <h4>Best tours in Europe this summer</h4>
         <p>May 05, 2022</p>
       </div>
     </div>
     <div class="insp-card">
-      <img src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?w=400&h=200&fit=crop" />
+      <img src="images/tour/pexels-tiwi-riders-1256368688-35298082.jpg" />
       <div class="insp-text">
         <h4>Top adventure tours for thrill seekers</h4>
         <p>May 10, 2022</p>
       </div>
     </div>
     <div class="insp-card">
-      <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&h=200&fit=crop" />
+      <img src="images/tour/pexels-regan-dsouza-1315522347-33053355.jpg" />
       <div class="insp-text">
         <h4>Cultural tours you cannot miss</h4>
         <p>May 15, 2022</p>
       </div>
     </div>
     <div class="insp-card">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=200&fit=crop" />
+      <img src="images/tour/pexels-eva-bronzini-6076097.jpg" />
       <div class="insp-text">
         <h4>Family friendly tours around the world</h4>
         <p>May 20, 2022</p>

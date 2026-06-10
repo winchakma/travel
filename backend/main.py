@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # Ensure .env is loaded from the correct path
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
 
-from app.routes import auth, profile, bookings, community, chat, admin, store, public, support, support_ws, hotels, flights, rentals, tours
+from app.routes import auth, profile, bookings, community, chat, admin, store, public, support, support_ws, hotels, flights, rentals, tours, activities
 from app.database import init_db
 
 @contextlib.asynccontextmanager
@@ -146,6 +146,7 @@ app.include_router(store.router, prefix="/api")
 app.include_router(public.router, prefix="/api")
 app.include_router(support.router, prefix="/api")
 app.include_router(support_ws.router, prefix="/api")
+app.include_router(activities.router, prefix="/api/activities", tags=["Activities"])
 app.include_router(hotels.router, prefix="/api/hotels", tags=["Hotels"])
 app.include_router(flights.router, prefix="/api/flights", tags=["Flights"])
 app.include_router(rentals.router, prefix="/api/rentals", tags=["Rentals"])

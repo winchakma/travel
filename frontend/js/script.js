@@ -1132,12 +1132,12 @@ async function fetchLiveHotels(query = "Bali") {
       data.data.forEach(hotel => {
         const priceText = hotel.price ? `From ${Math.round(hotel.price)} ${hotel.currency}/night` : "Check prices";
         const ratingHtml = hotel.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${hotel.rating}` : "New";
-        const imgUrl = hotel.image || "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=180&fit=crop";
+        const imgUrl = hotel.image || "images/hotel/pexels-vince-9156837.jpg";
 
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-          <img src="${imgUrl}" alt="${hotel.name}" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=180&fit=crop'" />
+          <img src="${imgUrl}" alt="${hotel.name}" onerror="this.style.display='none'" />
           <div class="card-body">
             <span class="badge blue">Live Rate</span>
             <h3>${hotel.name}</h3>
@@ -1420,12 +1420,12 @@ async function fetchLiveRentals(query = "Bali") {
       data.data.forEach(rental => {
         const priceText = rental.price ? `From $${Math.round(rental.price)}/night` : "Check prices";
         const ratingHtml = rental.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${rental.rating}` : "New";
-        const imgUrl = rental.image || "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=180&fit=crop";
+        const imgUrl = rental.image || "images/rental/pexels-quang-nguyen-vinh-222549-5118088.jpg";
 
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-          <img src="${imgUrl}" alt="${rental.name}" onerror="this.src='https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=180&fit=crop'" />
+          <img src="${imgUrl}" alt="${rental.name}" onerror="this.style.display='none'" />
           <div class="card-body">
             <span class="badge">Rental</span>
             <h3>${rental.name}</h3>
@@ -1486,12 +1486,12 @@ async function fetchLiveTours(query = "Paris") {
       data.data.forEach(tour => {
         const priceText = tour.price ? `From $${Math.round(tour.price)}` : "Check prices";
         const ratingHtml = tour.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${tour.rating}` : "New";
-        const imgUrl = tour.image || "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=180&fit=crop";
+        const imgUrl = tour.image || "images/tour/pexels-pixabay-261395.jpg";
 
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-          <img src="${imgUrl}" alt="${tour.name}" onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=180&fit=crop'" />
+          <img src="${imgUrl}" alt="${tour.name}" onerror="this.style.display='none'" />
           <div class="card-body">
             <span class="badge blue">Tour</span>
             <h3>${tour.name}</h3>
@@ -1515,7 +1515,83 @@ async function fetchLiveTours(query = "Paris") {
     }
   } catch (error) {
     console.error("Error fetching live tours:", error);
-    loading.innerHTML = "<p>Error loading tour data. Please try again later.</p>";
+    loading.innerHTML = "<p>Error loading tours. Please try again later.</p>";
   }
 }
 
+// --- LIVE ACTIVITIES FETCH ---
+async function fetchLiveActivities(query = "Hiking") {
+  const container = document.getElementById("liveActivitiesContainer");
+  if (!container) return; // If we aren't on a page that has this container, ignore
+
+  const grid = container.querySelector(".cards-grid");
+  const loading = container.querySelector(".loading");
+
+  if (grid) grid.innerHTML = "";
+  if (loading) {
+    loading.style.display = "block";
+    loading.innerHTML = "<p>Finding best activities...</p>";
+  }
+
+  try {
+    const res = await fetch(`${API}/activities?query=${encodeURIComponent(query)}`);
+    const data = await res.json();
+    if (loading) loading.style.display = "none";
+
+    if (data && data.data && data.data.length > 0) {
+      data.data.forEach(act => {
+        const priceText = act.price ? `From $${Math.round(act.price)}` : "Check prices";
+        const ratingHtml = act.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${act.rating}` : "New";
+        const imgUrl = act.image || "images/activity/pexels-asadphoto-1430676.jpg";
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${imgUrl}" alt="${act.name}" onerror="this.style.display='none'" />
+          <div class="card-body">
+            <span class="badge yellow">Activity</span>
+            <h3>${act.name}</h3>
+            <p>${ratingHtml} · ${act.reviews} reviews</p>
+            <p class="price">${priceText}</p>
+          </div>
+        `;
+        card.addEventListener("click", () => {
+           showDetailModal("activity", {
+               destination: act.name,
+               price: Math.round(act.price) || 50,
+               rating: act.rating || 4.5,
+               image: imgUrl
+           });
+        });
+        grid.appendChild(card);
+      });
+    } else {
+      if (loading) {
+        loading.style.display = "block";
+        loading.innerHTML = "<p>No activities found for this category at the moment.</p>";
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching live activities:", error);
+    if (loading) {
+      loading.style.display = "block";
+      loading.innerHTML = "<p>Error loading activities. Please try again later.</p>";
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get("query");
+  if (query) {
+    fetchLiveHotels(query);
+    fetchLiveRentals(query);
+    fetchLiveTours(query);
+    fetchLiveActivities(query);
+  } else {
+    fetchLiveHotels();
+    fetchLiveRentals();
+    fetchLiveTours();
+    fetchLiveActivities();
+  }
+});

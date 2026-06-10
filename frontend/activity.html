@@ -100,12 +100,12 @@
     <a href="activity.html">View All →</a>
   </div>
   <div class="promo-grid">
-    <div class="promo-card dark" style="background-image:url('https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=600&h=220&fit=crop'); background-size:cover; background-position:center;">
+    <div class="promo-card dark" style="background-image:url('images/activity/pexels-taras-kots-94104032-9303832.jpg'); background-size:cover; background-position:center;">
       <h3>Things To Do On Your Trip</h3>
       <p>Find amazing activities at every destination</p>
       <button class="btn-white">Explore Now</button>
     </div>
-    <div class="promo-card dark" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=220&fit=crop'); background-size:cover; background-position:center;">
+    <div class="promo-card dark" style="background-image:url('images/activity/pexels-taras-kots-94104032-9303832.jpg'); background-size:cover; background-position:center;">
       <h3>Up to 70% Discount!</h3>
       <p>Limited time activity deals — book today</p>
       <button class="btn-white">Book Now</button>
@@ -124,42 +124,10 @@
     <h2>Trending Activity</h2>
     <a href="activity.html">View All →</a>
   </div>
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Skydiving Over the Desert Dubai</h3>
-        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Dubai, UAE</p>
-        <p class="price">From $299</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge blue">Top Seller</span>
-        <h3>Mountain Hiking & Camping Trip</h3>
-        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Swiss Alps</p>
-        <p class="price">From $149</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge yellow">Bestseller</span>
-        <h3>Scuba Diving in the Great Barrier Reef</h3>
-        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Australia</p>
-        <p class="price">From $189</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&h=180&fit=crop" />
-      <div class="card-body">
-        <span class="badge">Featured</span>
-        <h3>Hot Air Balloon Ride at Sunrise</h3>
-        <p><i class="fa-solid fa-location-dot" style="color:#1a2b6b;"></i> Cappadocia, Turkey</p>
-        <p class="price">From $220</p>
-      </div>
+  <div id="liveActivitiesContainer" class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div class="loading" style="display:none; text-align:center; width:100%; padding:40px; color:#555;">
+      <i class="fa-solid fa-spinner fa-spin" style="font-size:24px; color:#1a2b6b; margin-bottom:10px;"></i>
+      <p>Finding best activities...</p>
     </div>
   </div>
 </section>
@@ -169,27 +137,27 @@
   <h2 class="text-center">Activities & Activity</h2>
   <p class="subtitle text-center">Browse by the type of activity you love</p>
   <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:25px;">
-    <div style="background:#1a2b6b; color:#fff; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px;">
+    <div onclick="fetchLiveActivities('Hiking')" style="background:#1a2b6b; color:#fff; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px;">
       <i class="fa-solid fa-person-hiking" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Hiking</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveActivities('Water Sports')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-water" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Water Sports</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveActivities('Photography')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-camera" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Photography</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveActivities('Ski & Snow')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-ski-lift" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Ski & Snow</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveActivities('Cycling')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-bicycle" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Cycling</p>
     </div>
-    <div style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div onclick="fetchLiveActivities('Horse Riding')" style="background:#fff; color:#1a2b6b; padding:20px 28px; border-radius:10px; text-align:center; cursor:pointer; min-width:110px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
       <i class="fa-solid fa-horse" style="font-size:28px;"></i>
       <p style="font-size:13px; margin-top:10px;">Horse Riding</p>
     </div>
@@ -204,23 +172,23 @@
   </div>
   <div class="dest-grid">
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=130&fit=crop" />
+      <img src="images/activity/pexels-vikaemerson-19560826.jpg" />
       <div class="dest-label">New York</div>
     </div>
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=130&fit=crop" />
+      <img src="images/activity/pexels-freestockpro-5276630.jpg" />
       <div class="dest-label">Santorini</div>
     </div>
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=130&fit=crop" />
+      <img src="images/activity/pexels-asadphoto-1430676.jpg" />
       <div class="dest-label">Bali</div>
     </div>
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=400&h=130&fit=crop" />
+      <img src="images/activity/pexels-taras-kots-94104032-9303832.jpg" />
       <div class="dest-label">Maldives</div>
     </div>
     <div class="dest-card">
-      <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=130&fit=crop" />
+      <img src="images/activity/pexels-gustavo-fring-5622100.jpg" />
       <div class="dest-label">Rome</div>
     </div>
   </div>
@@ -234,7 +202,7 @@
     <i class="fa-solid fa-quote-left" style="font-size:30px; color:#1a2b6b; margin-bottom:15px;"></i>
     <p style="color:#555; font-size:15px; line-height:1.8; margin-bottom:20px;">Our family had the most incredible time! The activities were perfectly organized and our guide was outstanding. GoTrip made everything stress-free from start to finish. We will definitely be back!</p>
     <div style="display:flex; align-items:center; justify-content:center; gap:15px;">
-      <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop" style="width:50px; height:50px; border-radius:50%; object-fit:cover;" />
+      <img src="images/activity/pexels-gustavo-fring-5622100.jpg" style="width:50px; height:50px; border-radius:50%; object-fit:cover;" />
       <div style="text-align:left;">
         <h4 style="color:#1a2b6b;">Emily Roberts</h4>
         <span>
@@ -257,7 +225,7 @@
   </div>
   <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1682686581498-5e85c7228119?w=400&h=180&fit=crop" />
+      <img src="images/activity/pexels-freestockpro-5276630.jpg" />
       <div class="card-body">
         <span class="badge">Featured</span>
         <h3>Safari & Wildlife Tour Kenya</h3>
@@ -266,7 +234,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=180&fit=crop" />
+      <img src="images/activity/pexels-freestockpro-5276630.jpg" />
       <div class="card-body">
         <span class="badge blue">Top Seller</span>
         <h3>Northern Lights Chasing Iceland</h3>
@@ -275,7 +243,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&h=180&fit=crop" />
+      <img src="images/activity/pexels-freestockpro-5276630.jpg" />
       <div class="card-body">
         <span class="badge yellow">Bestseller</span>
         <h3>Desert Camel Trek Morocco</h3>
@@ -284,7 +252,7 @@
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?w=400&h=180&fit=crop" />
+      <img src="images/activity/pexels-gustavo-fring-5622100.jpg" />
       <div class="card-body">
         <span class="badge">Featured</span>
         <h3>Zip Line Through the Rainforest</h3>
@@ -306,7 +274,7 @@
         <div class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</div>
       </div>
     </div>
-    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=200&fit=crop" class="w-full max-w-xs md:max-w-sm rounded-xl" />
+    <img src="images/activity/pexels-myatezhny39-6536848.jpg" class="w-full max-w-xs md:max-w-sm rounded-xl" />
   </div>
 </section>
 
@@ -316,28 +284,28 @@
   <p class="subtitle text-center">Explore activity guides from around the world</p>
   <div class="inspiration-grid" style="margin-top:25px">
     <div class="insp-card">
-      <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=400&h=200&fit=crop" />
+      <img src="images/activity/pexels-asadphoto-1430676.jpg" />
       <div class="insp-text">
         <h4>Best outdoor activities in Europe</h4>
         <p>May 05, 2022</p>
       </div>
     </div>
     <div class="insp-card">
-      <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=200&fit=crop" />
+      <img src="images/activity/pexels-asadphoto-1430676.jpg" />
       <div class="insp-text">
         <h4>Top hiking trails around the world</h4>
         <p>May 10, 2022</p>
       </div>
     </div>
     <div class="insp-card">
-      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=200&fit=crop" />
+      <img src="images/activity/pexels-myatezhny39-6536848.jpg" />
       <div class="insp-text">
         <h4>Water sports you must try this year</h4>
         <p>May 15, 2022</p>
       </div>
     </div>
     <div class="insp-card">
-      <img src="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&h=200&fit=crop" />
+      <img src="images/activity/pexels-freestockpro-5276630.jpg" />
       <div class="insp-text">
         <h4>Most unique experiences on earth</h4>
         <p>May 20, 2022</p>
