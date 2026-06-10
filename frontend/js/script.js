@@ -661,63 +661,9 @@ function showToast(msg, isError = false) {
 }
 
 function wireFooterLinks() {
-  // Map link text to popup content
-  const pages = {
-    "About Us": `<h3 style="color:#1a2b6b;margin-bottom:10px;">About GoTrip</h3>
-      <p style="color:#555;line-height:1.7;">GoTrip is a world-leading travel booking platform helping millions of travelers find the best deals on flights, hotels, tours, car hire, cruises and more. Founded in 2020, we are passionate about making travel easy and affordable for everyone.</p>`,
-    "Careers": `<h3 style="color:#1a2b6b;margin-bottom:10px;">Work With Us</h3>
-      <p style="color:#555;line-height:1.7;">We're always looking for talented people to join our team. Send your CV to <strong>careers@gotrip.com</strong> and we'll be in touch!</p>`,
-    "Blog": `<h3 style="color:#1a2b6b;margin-bottom:10px;">GoTrip Blog</h3>
-      <p style="color:#555;line-height:1.7;">Our travel blog is coming soon! We'll be sharing tips, guides and inspiration for your next adventure. Stay tuned!</p>`,
-    "Press": `<h3 style="color:#1a2b6b;margin-bottom:10px;">Press & Media</h3>
-      <p style="color:#555;line-height:1.7;">For press inquiries, please contact us at <strong>press@gotrip.com</strong>. We'd love to hear from you!</p>`,
-    "Gift Cards": `<h3 style="color:#1a2b6b;margin-bottom:10px;">GoTrip Gift Cards</h3>
-      <p style="color:#555;line-height:1.7;">Give the gift of travel! GoTrip gift cards are available in any amount and can be used on any booking. Coming soon to our platform.</p>`,
-    "Help Center": `<h3 style="color:#1a2b6b;margin-bottom:10px;">Help Center</h3>
-      <p style="color:#555;line-height:1.7;">Need help? Email us at <strong>support@gotrip.com</strong> or call <strong>+1 800 GOTRIP</strong>. We're available 24/7 to assist you.</p>`,
-    "Contact Us": `<h3 style="color:#1a2b6b;margin-bottom:10px;">Contact GoTrip</h3>
-      <p style="color:#555;line-height:1.7;">📧 Email: <strong>hello@gotrip.com</strong><br/>📞 Phone: <strong>+1 800 GOTRIP</strong><br/>🕐 Available 24/7<br/><br/>We'll get back to you within 1 business day.</p>`,
-    "Privacy Policy": `<h3 style="color:#1a2b6b;margin-bottom:10px;">Privacy Policy</h3>
-      <p style="color:#555;line-height:1.7;">GoTrip respects your privacy. We collect only the data needed to process your bookings. We never sell your personal data to third parties. Full policy available soon.</p>`,
-    "Terms of Service": `<h3 style="color:#1a2b6b;margin-bottom:10px;">Terms of Service</h3>
-      <p style="color:#555;line-height:1.7;">By using GoTrip, you agree to our terms. Bookings are subject to availability. Cancellation policies vary by booking type. Full terms available soon.</p>`,
-    "Travel Insurance": `<h3 style="color:#1a2b6b;margin-bottom:10px;">Travel Insurance</h3>
-      <p style="color:#555;line-height:1.7;">Protect your trip with GoTrip Travel Insurance. Coverage for cancellations, medical emergencies, lost luggage and more. Coming soon!</p>`,
-    "Airport Transfers": `<h3 style="color:#1a2b6b;margin-bottom:10px;">Airport Transfers</h3>
-      <p style="color:#555;line-height:1.7;">Book reliable airport transfers to and from any destination. Private cars, shared shuttles and luxury options available. Coming soon!</p>`,
-  };
-
-  // Inject info modal if not already there
-  if (!document.getElementById("gt-info-overlay")) {
-    const infoModal = document.createElement("div");
-    infoModal.className = "gt-overlay";
-    infoModal.id = "gt-info-overlay";
-    infoModal.innerHTML = `
-      <div class="gt-modal" style="max-width:480px;">
-        <div class="gt-modal-head">
-          <h2 id="gt-info-title"></h2>
-          <button class="gt-close" onclick="closeModal('gt-info-overlay')">✕</button>
-        </div>
-        <div class="gt-modal-body">
-          <div id="gt-info-body"></div>
-          <button class="gt-btn" style="margin-top:16px;" onclick="closeModal('gt-info-overlay')">Close</button>
-        </div>
-      </div>`;
-    infoModal.addEventListener("click", function(e) { if (e.target === this) closeModal("gt-info-overlay"); });
-    document.body.appendChild(infoModal);
-  }
-
-  // Wire all footer links
-  document.querySelectorAll(".footer a, footer a").forEach(link => {
-    const text = link.textContent.trim();
-    if (pages[text]) {
-      link.addEventListener("click", function(e) {
-        e.preventDefault();
-        document.getElementById("gt-info-body").innerHTML = pages[text];
-        openModal("gt-info-overlay");
-      });
-    }
-  });
+  // Navigation interception removed.
+  // Links will now naturally direct to their respective full HTML pages.
+}
 
   // Wire "View All" links - Show all items in a modal!
   // IMPORTANT: Production-ready behavior: let "View All" links navigate normally.
