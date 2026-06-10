@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("gotrip_token");
 
     const supportHTML = `
-    <div id="gotrip-support-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Inter', sans-serif;">
+    <div id="gotrip-support-widget" style="position: fixed; bottom: 95px; right: 20px; z-index: 9999; font-family: 'Inter', sans-serif;">
         <div id="support-window" style="display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); flex-direction: column; overflow: hidden; margin-bottom: 15px; border: 1px solid #333;">
             <div style="background: #000; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333;">
                 <div style="display: flex; align-items: center; gap: 10px;">
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `}
         </div>
         <button id="support-toggle-btn" style="width: 60px; height: 60px; background: #facc15; color: #000; border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 24px; float: right; transition: transform 0.2s; font-weight: bold; font-family: monospace;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1v-4h3v2z"></path><path d="M3 19a2 2 0 0 0 2 2h1v-4H3v2z"></path><path d="M14 21c0 1-1 2-2 2s-2-1-2-2"></path></svg>
         </button>
     </div>
     `;
