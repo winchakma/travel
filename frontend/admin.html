@@ -273,7 +273,11 @@
         
         <!-- Chat Form -->
         <div id="admin-support-chat-form" class="p-4 bg-[#0a0a0a] border-t border-white/5 hidden">
-          <div class="flex gap-2">
+          <div class="flex gap-2 items-center">
+            <input type="file" id="admin-support-image" style="display: none;" accept="image/*">
+            <button id="admin-support-upload" class="text-[#888] hover:text-white transition-colors p-2 text-lg">
+              <i class="fa-solid fa-camera"></i>
+            </button>
             <input type="text" id="admin-support-input" class="flex-1 bg-[#1a1a1a] text-white border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-yellow-400" placeholder="Type your reply...">
             <button id="admin-support-send" class="bg-yellow-400 text-black px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-yellow-300 transition-colors">
               Send

@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div id="support-messages" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #1a1a1a;">
                         <div style="text-align: center; color: #555; font-size: 12px; margin-top: 10px;">Connecting to secure line...</div>
                     </div>
-                    <div style="padding: 15px; background: #111; border-top: 1px solid #333; display: flex; gap: 10px;">
+                    <div style="padding: 15px; background: #111; border-top: 1px solid #333; display: flex; gap: 10px; align-items: center;">
+                        <input type="file" id="support-image-input" style="display: none;" accept="image/*">
+                        <button id="support-upload-btn" style="background: transparent; color: #888; border: none; cursor: pointer; font-size: 18px; transition: color 0.2s;">📷</button>
                         <input type="text" id="support-input" placeholder="Type a message..." style="flex: 1; padding: 10px 15px; background: #222; border: 1px solid #333; border-radius: 20px; color: white; outline: none; font-size: 14px;">
                         <button id="support-send-btn" style="background: transparent; color: #e5c414; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 18px;">➤</button>
                     </div>
@@ -68,6 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputField = document.getElementById("support-input");
     const sendBtn = document.getElementById("support-send-btn");
     const backBtn = document.getElementById("support-back-btn");
+    const uploadBtn = document.getElementById("support-upload-btn");
+    const imageInput = document.getElementById("support-image-input");
     const roleBtns = document.querySelectorAll(".support-role-btn");
 
     roleBtns.forEach(btn => {
@@ -80,10 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let sessionId = null;
 
     function initWebSocket() {
-        if (ws) ws.close();
-        
+        if (ws) {
+            if (ws.pingInterval) clearInterval(ws.pingInterval);
+            ws.close();
+            ws = null;
+        }
+
         const activeAPI = window.ELITE_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:10000' : 'https://travel-xyyl.onrender.com');
-        let wsUrl = activeAPI.replace(/^http/, 'ws') + '/api/support-ws/chat?token=' + encodeURIComponent(token);
+        const wsUrl = activeAPI.replace(/^http/, 'ws') + `/api/support-ws/chat?token=${encodeURIComponent(token)}`;
         
         ws = new WebSocket(wsUrl);
         
@@ -114,10 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ws.onclose = () => {
             console.log("Support WS Disconnected");
+            if (ws && ws.pingInterval) clearInterval(ws.pingInterval);
             setTimeout(initWebSocket, 5000);
         };
 
-        setInterval(() => {
+        ws.pingInterval = setInterval(() => {
             if (ws && ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify({ action: "ping" }));
             }
@@ -181,6 +190,53 @@ document.addEventListener("DOMContentLoaded", () => {
         }));
         
         inputField.value = "";
+    }
+
+    if (uploadBtn && imageInput) {
+        uploadBtn.addEventListener("click", () => imageInput.click());
+        
+        imageInput.addEventListener("change", async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const tempId = "img-" + Date.now();
+            const msgDiv = document.createElement("div");
+            msgDiv.id = tempId;
+            msgDiv.style.alignSelf = "flex-end";
+            msgDiv.style.color = "#888";
+            msgDiv.style.fontSize = "12px";
+            msgDiv.textContent = "Uploading image...";
+            messagesContainer.appendChild(msgDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            const formData = new FormData();
+            formData.append("image", file);
+            
+            try {
+                const apiBase = window.ELITE_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:10000' : 'https://travel-xyyl.onrender.com');
+                const res = await fetch(apiBase + "/api/support-ws/upload-image", {
+                    method: "POST",
+                    body: formData
+                });
+                const data = await res.json();
+                
+                document.getElementById(tempId)?.remove();
+                
+                if (data.url && ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({
+                        action: "send_message",
+                        targetRole: selectedRole,
+                        type: "image",
+                        content: data.url
+                    }));
+                }
+            } catch (err) {
+                console.error("Upload error", err);
+                const el = document.getElementById(tempId);
+                if(el) el.textContent = "Upload failed.";
+            }
+            imageInput.value = "";
+        });
     }
 
     sendBtn.addEventListener("click", sendMessage);

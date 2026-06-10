@@ -200,7 +200,7 @@ async def support_chat_endpoint(websocket: WebSocket, token: str):
                 session_id = message_data.get("session_id")
                 target_role = message_data.get("targetRole")
 
-                if role == "user":
+                if not session_id:
                     session = await SupportSession.find_one(
                         SupportSession.userEmail == email,
                         SupportSession.targetRole == target_role,

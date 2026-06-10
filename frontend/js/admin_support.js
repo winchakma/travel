@@ -3,6 +3,7 @@
 
 let adminSupportWs = null;
 let currentSupportSessionId = null;
+let adminSupportListenersAttached = false;
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -84,11 +85,60 @@ function initAdminSupport() {
         }
     }, 20000);
 
-    // Handle Send
-    document.getElementById('admin-support-send').addEventListener('click', sendAdminReply);
-    document.getElementById('admin-support-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendAdminReply();
-    });
+    // Handle Send and Upload ONLY ONCE
+    if (!adminSupportListenersAttached) {
+        document.getElementById('admin-support-send').addEventListener('click', sendAdminReply);
+        document.getElementById('admin-support-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendAdminReply();
+        });
+
+        const uploadBtn = document.getElementById("admin-support-upload");
+        const imageInput = document.getElementById("admin-support-image");
+        
+        if (uploadBtn && imageInput) {
+            uploadBtn.addEventListener("click", () => imageInput.click());
+            
+            imageInput.addEventListener("change", async (e) => {
+                const file = e.target.files[0];
+                if (!file || !currentSupportSessionId) return;
+                
+                const tempId = "img-" + Date.now();
+                const historyEl = document.getElementById('admin-support-chat-history');
+                historyEl.insertAdjacentHTML('beforeend', \`<div id="\${tempId}" class="self-end text-[10px] text-[#888]">Uploading image...</div>\`);
+                historyEl.scrollTop = historyEl.scrollHeight;
+                
+                const formData = new FormData();
+                formData.append("image", file);
+                
+                try {
+                    const apiBase = window.ELITE_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:10000' : 'https://travel-xyyl.onrender.com');
+                    const res = await fetch(apiBase + "/api/support-ws/upload-image", {
+                        method: "POST",
+                        body: formData
+                    });
+                    const data = await res.json();
+                    
+                    document.getElementById(tempId)?.remove();
+                    
+                    if (data.url && adminSupportWs && adminSupportWs.readyState === WebSocket.OPEN) {
+                        adminSupportWs.send(JSON.stringify({
+                            action: 'admin_reply',
+                            session_id: currentSupportSessionId,
+                            type: 'image',
+                            content: data.url
+                        }));
+                    }
+                } catch (err) {
+                    console.error("Upload error", err);
+                    const el = document.getElementById(tempId);
+                    if (el) el.textContent = "Upload failed.";
+                }
+                imageInput.value = "";
+            });
+        }
+        
+        adminSupportListenersAttached = true;
+    }
 }
 
 function renderAdminSessions(sessions) {
