@@ -73,7 +73,7 @@ async function loadProfileBookings() {
   const list = document.getElementById("profile-bookings-list");
   list.innerHTML = `<p class="text-gray-500">Loading bookings...</p>`;
   try {
-    const res = await fetch(`${window.ELITE_API_URL || "https://mygym-p9rd.onrender.com"}/api/bookings/me`, {
+    const res = await fetch(`${window.ELITE_API_URL || "https://travel-xyyl.onrender.com"}/api/bookings/me`, {
       headers: { Authorization: `Bearer ${getToken()}` }
     });
     if (!res.ok) throw new Error("Failed to load");
@@ -85,13 +85,13 @@ async function loadProfileBookings() {
     list.innerHTML = data.map(b => `
       <div class="border border-gray-100 rounded-lg p-4 flex justify-between items-center hover:bg-gray-50 transition-colors">
         <div>
-          <p class="font-bold text-[#1a2b6b]">${b.itemName || b.itemType}</p>
-          <p class="text-sm text-gray-500">Date: ${b.bookingDate || 'N/A'}</p>
+          <p class="font-bold text-[#1a2b6b]">${b.itemName || b.itemType || (b.details && b.details.name) || "Booking"}</p>
+          <p class="text-sm text-gray-500">Date: ${b.bookingDate || (b.details && (b.details.departureDate || b.details.checkIn || b.details.pickupDate || b.details.date)) || 'N/A'}</p>
           <p class="text-sm text-gray-500">Status: <span class="text-green-600 font-medium">${b.status}</span></p>
         </div>
         <div class="text-right">
-          <p class="font-bold text-gray-800">$${b.totalPrice}</p>
-          <p class="text-xs text-gray-400">ID: ${b.id.substring(0,6)}...</p>
+          <p class="font-bold text-gray-800">$${b.totalPrice || b.price}</p>
+          <p class="text-xs text-gray-400">ID: ${(b._id || b.id || "000000").substring(0,6)}...</p>
         </div>
       </div>
     `).join("");
