@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initAdminSupport() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('gotrip_token');
     if (!token) return;
 
     // Use the same API host logic
