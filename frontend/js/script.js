@@ -1247,6 +1247,20 @@ document.addEventListener("DOMContentLoaded", () => {
         "ROME": "FCO"
       };
 
+      const iataToCity = {
+        "JFK": "New York",
+        "LHR": "London",
+        "DAC": "Dhaka",
+        "KTM": "Kathmandu",
+        "CDG": "Paris",
+        "HND": "Tokyo",
+        "SYD": "Sydney",
+        "DXB": "Dubai",
+        "DPS": "Bali",
+        "LAX": "Los Angeles",
+        "FCO": "Rome"
+      };
+
       if (cityToIATA[origin]) origin = cityToIATA[origin];
       if (cityToIATA[dest]) dest = cityToIATA[dest];
 
@@ -1257,7 +1271,7 @@ document.addEventListener("DOMContentLoaded", () => {
         date = d.toISOString().split('T')[0];
       }
 
-      fetchLiveFlights(origin, dest, date, pass);
+      fetchLiveFlights(origin, dest, date, pass, iataToCity);
     });
 
     // Automatically load default flights on page load if container exists
@@ -1265,13 +1279,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const d = new Date();
       d.setDate(d.getDate() + 14);
       const dateStr = d.toISOString().split('T')[0];
-      fetchLiveFlights("LHR", "JFK", dateStr, 1);
+      
+      const iataToCity = {
+        "JFK": "New York", "LHR": "London", "DAC": "Dhaka", "KTM": "Kathmandu",
+        "CDG": "Paris", "HND": "Tokyo", "SYD": "Sydney", "DXB": "Dubai",
+        "DPS": "Bali", "LAX": "Los Angeles", "FCO": "Rome"
+      };
+      fetchLiveFlights("LHR", "JFK", dateStr, 1, iataToCity);
     }
   }
 });
 
 // --- LIVE FLIGHTS FETCH (DUFFEL API) ---
-async function fetchLiveFlights(origin, dest, date, passengers) {
+async function fetchLiveFlights(origin, dest, date, passengers, iataToCity = {}) {
   const container = document.getElementById("live-flights-container");
   const loading = document.getElementById("live-flights-loading");
   if (!container || !loading) return;
@@ -1287,6 +1307,9 @@ async function fetchLiveFlights(origin, dest, date, passengers) {
     const data = await res.json();
 
     loading.style.display = "none";
+
+    const displayOrigin = iataToCity[origin] || origin;
+    const displayDest = iataToCity[dest] || dest;
 
     if (data.status === "success" && data.flights && data.flights.length > 0) {
       data.flights.forEach(flight => {
@@ -1306,7 +1329,9 @@ async function fetchLiveFlights(origin, dest, date, passengers) {
           flight.segments.forEach((seg, i) => {
             const sDep = new Date(seg.departing_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             const sArr = new Date(seg.arriving_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            segmentsHtml += `• ${seg.origin} → ${seg.destination} | ${seg.airline} ${seg.flight_number} | ${sDep} - ${sArr}<br/>`;
+            const segOrigin = iataToCity[seg.origin] || seg.origin;
+            const segDest = iataToCity[seg.destination] || seg.destination;
+            segmentsHtml += `• ${segOrigin} (${seg.origin}) → ${segDest} (${seg.destination}) | ${seg.airline} ${seg.flight_number} | ${sDep} - ${sArr}<br/>`;
           });
           segmentsHtml += `</div>`;
         }
@@ -1320,7 +1345,7 @@ async function fetchLiveFlights(origin, dest, date, passengers) {
               <p style="font-size:11px; color:#777; margin-top:4px;">${flight.airline}</p>
             </div>
             <div>
-              <h4 style="color:#1a2b6b; font-size:15px;">${origin} → ${dest}</h4>
+              <h4 style="color:#1a2b6b; font-size:15px;">${displayOrigin} → ${displayDest}</h4>
               <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> ${durStr} &nbsp; ${flight.stops}</p>
               <span onclick="document.getElementById('seg-${flight.id}').style.display = document.getElementById('seg-${flight.id}').style.display === 'none' ? 'block' : 'none';" style="font-size: 12px; color: #4a90d9; text-decoration: underline; cursor: pointer; display: inline-block; margin-top: 4px;">View Details</span>
             </div>
@@ -1349,7 +1374,7 @@ async function fetchLiveFlights(origin, dest, date, passengers) {
             openBookingDetail({
               name: flight.airline + " Flight",
               price: flight.price,
-              location: origin + " to " + dest,
+              location: displayOrigin + " to " + displayDest,
               badge: flight.stops
             });
           });
