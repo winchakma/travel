@@ -388,3 +388,76 @@ async function handleChangePassword() {
     btn.disabled = false;
   }
 }
+
+// Feedback System Logic
+document.addEventListener("DOMContentLoaded", () => {
+  const stars = document.querySelectorAll("#feedback-star-rating i");
+  const ratingInput = document.getElementById("feedback-rating-val");
+
+  if (stars.length > 0) {
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+        const rating = parseInt(star.getAttribute("data-rating"));
+        ratingInput.value = rating;
+        
+        stars.forEach(s => {
+          if (parseInt(s.getAttribute("data-rating")) <= rating) {
+            s.classList.remove("text-gray-300");
+            s.classList.add("text-[#f5c518]");
+          } else {
+            s.classList.remove("text-[#f5c518]");
+            s.classList.add("text-gray-300");
+          }
+        });
+      });
+    });
+  }
+
+  const feedbackForm = document.getElementById("profile-feedback-form");
+  if (feedbackForm) {
+    feedbackForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = feedbackForm.querySelector("button[type='submit']");
+      const statusText = document.getElementById("feedback-status");
+      
+      submitBtn.textContent = "Submitting...";
+      submitBtn.disabled = true;
+      statusText.classList.add("hidden");
+      
+      try {
+        const res = await fetch(`${API}/user/feedback`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            token: getToken(),
+            category: document.getElementById("feedback-category").value,
+            message: document.getElementById("feedback-message").value,
+            rating: parseInt(document.getElementById("feedback-rating-val").value)
+          })
+        });
+        
+        if (!res.ok) throw new Error("Failed to submit feedback");
+        
+        if (typeof showToast !== 'undefined') {
+          showToast("Thank you! Your feedback has been submitted.");
+        }
+        
+        feedbackForm.reset();
+        // Reset stars
+        ratingInput.value = 5;
+        stars.forEach(s => s.classList.replace("text-gray-300", "text-[#f5c518]"));
+        
+      } catch (err) {
+        statusText.textContent = "Error: " + err.message;
+        statusText.classList.remove("hidden", "text-green-600");
+        statusText.classList.add("text-red-500");
+        if (typeof showToast !== 'undefined') showToast("Error: " + err.message);
+      } finally {
+        submitBtn.textContent = "Submit Review";
+        submitBtn.disabled = false;
+      }
+    });
+  }
+});
+

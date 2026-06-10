@@ -78,6 +78,8 @@ class UserFeedback(Document):
     userName: Optional[str] = None
     category: str # feature, bug, praise, suggestion
     message: str
+    rating: int = 5
+    is_published: bool = False
     timestamp: datetime = datetime.utcnow()
     status: str = "new" # new, read, resolved
 

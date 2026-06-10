@@ -54,8 +54,11 @@
     <a href="index.html" onclick="switchAdminTab('bookings', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
       <i class="fa-solid fa-calendar-check w-5"></i> Bookings
     </a>
-    <a href="index.html" onclick="switchAdminTab('customers', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
-      <i class="fa-solid fa-address-book w-5"></i> Customers
+    <a href="index.html" onclick="switchAdminTab('customers', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+      <i class="fa-solid fa-users w-5"></i> Customers
+    </a>
+    <a href="index.html" onclick="switchAdminTab('feedback', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+      <i class="fa-regular fa-comment-dots w-5"></i> Reviews & Feedback
     </a>
     <a href="index.html" onclick="switchAdminTab('support', this)" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium relative">
       <i class="fa-solid fa-headset w-5"></i> Support Inbox
@@ -240,6 +243,31 @@
             </thead>
             <tbody class="text-sm text-gray-700 divide-y divide-gray-100" id="admin-customers-table">
               <!-- Customers will be dynamically injected here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVIEWS & FEEDBACK VIEW -->
+    <div id="view-feedback" class="admin-view hidden">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-8">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+          <h2 class="text-xl font-bold text-gray-800">Customer Reviews & Feedback</h2>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                <th class="px-6 py-4 font-semibold border-b border-gray-200">Customer</th>
+                <th class="px-6 py-4 font-semibold border-b border-gray-200">Rating</th>
+                <th class="px-6 py-4 font-semibold border-b border-gray-200">Review</th>
+                <th class="px-6 py-4 font-semibold border-b border-gray-200">Date</th>
+                <th class="px-6 py-4 font-semibold border-b border-gray-200 text-right">Publish to Home</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm text-gray-700 divide-y divide-gray-100" id="admin-feedback-table">
+              <!-- Feedback will be dynamically injected here -->
             </tbody>
           </table>
         </div>

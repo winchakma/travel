@@ -196,6 +196,11 @@ window.switchAdminTab = function(tabId, element) {
         fetchCustomers();
     }
     
+    // Load data if switching to feedback
+    if (tabId === 'feedback') {
+        fetchFeedback();
+    }
+    
     // Clear unread badge if switching to support
     if (tabId === 'support') {
         const badge = document.getElementById('support-unread-badge');
@@ -414,6 +419,76 @@ window.promoteFromDashboard = async function() {
             showCustomAlert("Error", err.message, "error");
         }
     };
+};
+
+// Feedback Management
+window.fetchFeedback = async function() {
+    const table = document.getElementById("admin-feedback-table");
+    if (!table) return;
+    
+    table.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">Loading feedback...</td></tr>`;
+    
+    const token = getToken();
+    try {
+        const res = await fetch(`${API}/admin/feedback?token=${encodeURIComponent(token)}`);
+        if (!res.ok) throw new Error("Failed to load feedback");
+        
+        const feedbackList = await res.json();
+        if (feedbackList.length === 0) {
+            table.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No feedback submitted yet.</td></tr>`;
+            return;
+        }
+        
+        table.innerHTML = feedbackList.map(f => {
+            const isPub = f.is_published ? "checked" : "";
+            const stars = Array(5).fill(0).map((_, i) => 
+                i < (f.rating || 5) ? '<i class="fa-solid fa-star text-yellow-400"></i>' : '<i class="fa-solid fa-star text-gray-300"></i>'
+            ).join('');
+            
+            const dateStr = f.timestamp ? new Date(f.timestamp).toLocaleDateString() : 'N/A';
+            
+            return `
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <img src="${f.profilePicture || 'https://ui-avatars.com/api/?name=' + (f.userName ? f.userName[0] : 'U') + '&background=f5e642'}" class="w-8 h-8 rounded-full" />
+                      <div>
+                        <p class="font-bold text-gray-800">${f.userName || 'Anonymous'}</p>
+                        <p class="text-xs text-gray-500">${f.userEmail}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-sm">${stars}</td>
+                  <td class="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title="${f.message}">${f.message}</td>
+                  <td class="px-6 py-4 text-sm text-gray-500">${dateStr}</td>
+                  <td class="px-6 py-4 text-right">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" class="sr-only peer" ${isPub} onchange="togglePublishFeedback('${f._id}', this.checked)">
+                      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </td>
+                </tr>
+            `;
+        }).join("");
+    } catch (err) {
+        table.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-red-500">Error loading feedback: ${err.message}</td></tr>`;
+    }
+};
+
+window.togglePublishFeedback = async function(id, isPublished) {
+    const token = getToken();
+    try {
+        const res = await fetch(`${API}/admin/feedback/${id}/publish?token=${encodeURIComponent(token)}`, {
+            method: 'PATCH'
+        });
+        if (!res.ok) throw new Error("Failed to update status");
+        
+        showCustomAlert("Success", "Feedback visibility updated successfully.", "success");
+    } catch (err) {
+        console.error(err);
+        showCustomAlert("Error", "Could not update feedback status.", "error");
+        fetchFeedback(); // Revert checkbox state
+    }
 };
 
 window.logout = function(event) {

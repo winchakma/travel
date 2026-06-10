@@ -1537,6 +1537,10 @@ async function fetchLiveActivities(query = "Hiking") {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("home-reviews-container")) {
+    fetchPublicReviews();
+  }
+  
   const urlParams = new URLSearchParams(window.location.search);
   const query = urlParams.get("query");
   if (query) {
@@ -1570,3 +1574,61 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
+// Fetch and render public reviews
+async function fetchPublicReviews() {
+  const container = document.getElementById("home-reviews-container");
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${API}/public/reviews`);
+    if (!res.ok) throw new Error("Failed to fetch reviews");
+    const reviews = await res.json();
+
+    if (reviews.length === 0) {
+      container.innerHTML = `<p class="text-gray-500 italic text-center p-8">No reviews yet. Be the first to leave feedback!</p>`;
+      return;
+    }
+
+    // Optional: Fetch overall stats
+    try {
+      const statsRes = await fetch(`${API}/public/stats`);
+      if (statsRes.ok) {
+        const stats = await statsRes.json();
+        const totalElem = document.getElementById("home-total-members");
+        const ratingElem = document.getElementById("home-overall-rating");
+        if (totalElem) totalElem.textContent = stats.totalMembers + "+";
+        if (ratingElem) ratingElem.textContent = parseFloat(stats.overallRating).toFixed(1);
+      }
+    } catch (e) { console.error("Stats fetch error:", e); }
+
+    let html = "";
+    reviews.forEach(review => {
+      const starsHtml = Array(5).fill(0).map((_, i) => 
+        i < (review.rating || 5) 
+          ? '<i class="fa-solid fa-star" style="color:#f5c518;"></i>' 
+          : '<i class="fa-solid fa-star" style="color:#e5e7eb;"></i>'
+      ).join('');
+
+      html += `
+        <div class="review-card" style="margin-bottom: 20px; width: 100%;">
+          <p>"${review.quote}"</p>
+          <div class="reviewer">
+            <img src="${review.avatarUrl}" alt="${review.userName}" />
+            <div>
+              <h4>${review.userName}</h4>
+              <span class="flex gap-1 mt-1">
+                ${starsHtml}
+              </span>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    container.innerHTML = `<p class="text-red-500 text-center p-8">Unable to load reviews at this time.</p>`;
+  }
+}
+

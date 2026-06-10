@@ -457,8 +457,9 @@ async def invest_request(data: dict):
 @router.post("/feedback")
 async def submit_feedback(data: dict):
     token = data.get("token")
-    category = data.get("category")
+    category = data.get("category", "praise")
     message = data.get("message")
+    rating = int(data.get("rating", 5))
     
     user = await get_current_user(token)
     
@@ -466,7 +467,9 @@ async def submit_feedback(data: dict):
         userEmail=user.email,
         userName=f"{user.firstName} {user.lastName}",
         category=category,
-        message=message
+        message=message,
+        rating=rating,
+        is_published=False
     )
     await feedback.insert()
     

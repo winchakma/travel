@@ -389,6 +389,21 @@ async def resolve_feedback(id: str, token: str):
     await feedback.save()
     return {"message": "Feedback marked as resolved"}
 
+@router.patch("/feedback/{id}/publish")
+async def publish_feedback(id: str, token: str):
+    await get_current_admin(token)
+    from beanie import PydanticObjectId
+    feedback = await UserFeedback.get(PydanticObjectId(id))
+    if not feedback:
+        raise HTTPException(status_code=404, detail="Feedback not found")
+    
+    # Toggle publish status
+    feedback.is_published = not getattr(feedback, 'is_published', False)
+    await feedback.save()
+    status_str = "published" if feedback.is_published else "unpublished"
+    return {"message": f"Feedback successfully {status_str}", "is_published": feedback.is_published}
+
+
 @router.get("/users/{email}/progress")
 async def get_user_progress(email: str, token: str):
     await get_current_admin_or_trainer(token)

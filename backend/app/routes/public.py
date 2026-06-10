@@ -23,8 +23,8 @@ async def get_public_stats():
 
 @router.get("/reviews")
 async def get_public_reviews():
-    # Return actual member feedback from the admin panel
-    feedbacks = await UserFeedback.find_all().sort("-timestamp").limit(10).to_list()
+    # Return actual member feedback from the admin panel that are published
+    feedbacks = await UserFeedback.find(UserFeedback.is_published == True).sort("-timestamp").limit(10).to_list()
     
     # Transform UserFeedback into the format expected by the frontend
     formatted_reviews = []
@@ -40,7 +40,8 @@ async def get_public_reviews():
             "quote": f.message,
             "userName": f.userName if f.userName else f.userEmail.split('@')[0],
             "avatarUrl": pic,
-            "location": "Verified Member"
+            "location": "Verified Member",
+            "rating": getattr(f, 'rating', 5)
         })
     return formatted_reviews
 
