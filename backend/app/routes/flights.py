@@ -18,7 +18,7 @@ def search_places(query: str = Query(..., description="Search query for city or 
     if not DUFFEL_API_KEY:
         raise HTTPException(status_code=500, detail="Duffel API key not configured")
     try:
-        req_res = requests.get(f"{DUFFEL_BASE_URL}/places/suggestions?query={query}", headers=headers)
+        req_res = requests.get(f"https://api.duffel.com/places/suggestions?query={query}", headers=headers)
         if req_res.status_code != 200:
             return {"status": "error", "message": f"Duffel API error: {req_res.text}"}
         
