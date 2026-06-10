@@ -1223,10 +1223,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const flightSearchBtn = document.getElementById("flight-search-btn");
   if (flightSearchBtn) {
     flightSearchBtn.addEventListener("click", () => {
-      const origin = document.getElementById("flight-origin")?.value.trim().toUpperCase() || "LHR";
-      const dest = document.getElementById("flight-dest")?.value.trim().toUpperCase() || "JFK";
+      let origin = document.getElementById("flight-origin")?.value.trim().toUpperCase() || "LHR";
+      let dest = document.getElementById("flight-dest")?.value.trim().toUpperCase() || "JFK";
       let date = document.getElementById("flight-date")?.value;
       const pass = document.getElementById("flight-passengers")?.value || 1;
+
+      // Smart mapping so users can type city names instead of just IATA codes
+      const cityToIATA = {
+        "NEW YORK": "JFK",
+        "LONDON": "LHR",
+        "DHAKA": "DAC",
+        "BANGLADESH": "DAC",
+        "DHAKA, BANGLADESH": "DAC",
+        "KATHMANDU": "KTM",
+        "NEPAL": "KTM",
+        "KATHMANDU, NEPAL": "KTM",
+        "PARIS": "CDG",
+        "TOKYO": "HND",
+        "SYDNEY": "SYD",
+        "DUBAI": "DXB",
+        "BALI": "DPS",
+        "LOS ANGELES": "LAX",
+        "ROME": "FCO"
+      };
+
+      if (cityToIATA[origin]) origin = cityToIATA[origin];
+      if (cityToIATA[dest]) dest = cityToIATA[dest];
 
       if (!date) {
         // default to 14 days from now if empty
