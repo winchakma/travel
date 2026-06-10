@@ -68,23 +68,23 @@
         </label>
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
-        <input type="text" placeholder="From — City or Airport" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
-        <input type="text" placeholder="To — City or Airport" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
-        <input type="date" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
-        <input type="date" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+        <input type="text" id="flight-origin" placeholder="From (IATA Code, e.g. LHR)" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+        <input type="text" id="flight-dest" placeholder="To (IATA Code, e.g. JFK)" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+        <input type="date" id="flight-date" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
+        <input type="date" placeholder="Return" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none;" />
       </div>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <select style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none; flex:1;">
-          <option>1 Passenger</option>
-          <option>2 Passengers</option>
-          <option>3 Passengers</option>
+        <select id="flight-passengers" style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none; flex:1;">
+          <option value="1">1 Passenger</option>
+          <option value="2">2 Passengers</option>
+          <option value="3">3 Passengers</option>
         </select>
         <select style="padding:12px; border:1px solid #e5e7eb; border-radius:6px; font-size:14px; outline:none; flex:1;">
           <option>Economy</option>
           <option>Business</option>
           <option>First Class</option>
         </select>
-        <button class="btn-search" style="padding:12px 30px;"><i class="fa-solid fa-magnifying-glass"></i> Search Flights</button>
+        <button id="flight-search-btn" class="btn-search" style="padding:12px 30px;"><i class="fa-solid fa-magnifying-glass"></i> Search Flights</button>
       </div>
     </div>
   </div>
@@ -117,127 +117,14 @@
 <!-- RECOMMENDED FLIGHTS -->
 <section class="section gray-bg px-4 md:px-10">
   <div class="section-header">
-    <h2>Recommended Flights</h2>
-    <a href="flights.html">View All →</a>
+    <h2 id="flights-section-title">Recommended Flights</h2>
   </div>
-  <!-- Flight list style -->
-  <div style="display:flex; flex-direction:column; gap:15px;">
-    <div style="background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;">
-      <div style="display:flex; align-items:center; gap:20px;">
-        <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
-          <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
-          <p style="font-size:11px; color:#777; margin-top:4px;">Emirates</p>
-        </div>
-        <div>
-          <h4 style="color:#1a2b6b; font-size:15px;">New York → London</h4>
-          <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> 7h 30m &nbsp; Direct</p>
-        </div>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Departure</p>
-        <h4 style="color:#1a2b6b;">08:00 AM</h4>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Arrival</p>
-        <h4 style="color:#1a2b6b;">03:30 PM</h4>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Class</p>
-        <h4 style="color:#1a2b6b;">Economy</h4>
-      </div>
-      <div style="text-align:right;">
-        <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">$420</h3>
-        <p style="color:#777; font-size:12px;">per person</p>
-        <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
-      </div>
-    </div>
-    <div style="background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;">
-      <div style="display:flex; align-items:center; gap:20px;">
-        <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
-          <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
-          <p style="font-size:11px; color:#777; margin-top:4px;">Qatar Airways</p>
-        </div>
-        <div>
-          <h4 style="color:#1a2b6b; font-size:15px;">London → Dubai</h4>
-          <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> 6h 45m &nbsp; Direct</p>
-        </div>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Departure</p>
-        <h4 style="color:#1a2b6b;">10:15 AM</h4>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Arrival</p>
-        <h4 style="color:#1a2b6b;">05:00 PM</h4>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Class</p>
-        <h4 style="color:#1a2b6b;">Business</h4>
-      </div>
-      <div style="text-align:right;">
-        <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">$980</h3>
-        <p style="color:#777; font-size:12px;">per person</p>
-        <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
-      </div>
-    </div>
-    <div style="background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;">
-      <div style="display:flex; align-items:center; gap:20px;">
-        <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
-          <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
-          <p style="font-size:11px; color:#777; margin-top:4px;">Singapore Air</p>
-        </div>
-        <div>
-          <h4 style="color:#1a2b6b; font-size:15px;">Sydney → Singapore</h4>
-          <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> 8h 10m &nbsp; Direct</p>
-        </div>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Departure</p>
-        <h4 style="color:#1a2b6b;">06:30 AM</h4>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Arrival</p>
-        <h4 style="color:#1a2b6b;">02:40 PM</h4>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Class</p>
-        <h4 style="color:#1a2b6b;">Economy</h4>
-      </div>
-      <div style="text-align:right;">
-        <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">$560</h3>
-        <p style="color:#777; font-size:12px;">per person</p>
-        <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
-      </div>
-    </div>
-    <div style="background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;">
-      <div style="display:flex; align-items:center; gap:20px;">
-        <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
-          <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
-          <p style="font-size:11px; color:#777; margin-top:4px;">Air France</p>
-        </div>
-        <div>
-          <h4 style="color:#1a2b6b; font-size:15px;">Paris → New York</h4>
-          <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> 8h 25m &nbsp; Direct</p>
-        </div>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Departure</p>
-        <h4 style="color:#1a2b6b;">02:00 PM</h4>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Arrival</p>
-        <h4 style="color:#1a2b6b;">04:25 PM</h4>
-      </div>
-      <div style="text-align:center;">
-        <p style="color:#777; font-size:13px;">Class</p>
-        <h4 style="color:#1a2b6b;">First Class</h4>
-      </div>
-      <div style="text-align:right;">
-        <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">$2,400</h3>
-        <p style="color:#777; font-size:12px;">per person</p>
-        <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;">Book Now</button>
-      </div>
-    </div>
+  <div id="live-flights-loading" style="text-align:center; padding: 40px; color: #1a2b6b; display: none;">
+    <i class="fa-solid fa-plane fa-spin" style="font-size:30px; margin-bottom:15px;"></i>
+    <p>Searching hundreds of airlines for the best deals...</p>
+  </div>
+  <div id="live-flights-container" style="display:flex; flex-direction:column; gap:15px;">
+    <!-- Live flights will be injected here -->
   </div>
 </section>
 

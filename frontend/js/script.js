@@ -1218,4 +1218,93 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // Wire up Flight Search
+  const flightSearchBtn = document.getElementById("flight-search-btn");
+  if (flightSearchBtn) {
+    flightSearchBtn.addEventListener("click", () => {
+      const origin = document.getElementById("flight-origin")?.value.trim().toUpperCase() || "LHR";
+      const dest = document.getElementById("flight-dest")?.value.trim().toUpperCase() || "JFK";
+      let date = document.getElementById("flight-date")?.value;
+      const pass = document.getElementById("flight-passengers")?.value || 1;
+
+      if (!date) {
+        // default to 14 days from now if empty
+        const d = new Date();
+        d.setDate(d.getDate() + 14);
+        date = d.toISOString().split('T')[0];
+      }
+
+      fetchLiveFlights(origin, dest, date, pass);
+    });
+  }
 });
+
+// --- LIVE FLIGHTS FETCH (DUFFEL API) ---
+async function fetchLiveFlights(origin, dest, date, passengers) {
+  const container = document.getElementById("live-flights-container");
+  const loading = document.getElementById("live-flights-loading");
+  if (!container || !loading) return;
+
+  loading.style.display = "block";
+  container.innerHTML = "";
+  
+  // Scroll to section
+  document.getElementById("flights-section-title")?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  try {
+    const res = await fetch(`${API}/flights/search?origin=${origin}&destination=${dest}&departure_date=${date}&passengers=${passengers}`);
+    const data = await res.json();
+
+    loading.style.display = "none";
+
+    if (data.status === "success" && data.flights && data.flights.length > 0) {
+      data.flights.forEach(flight => {
+        // Parse ISO duration e.g., PT7H30M
+        let durStr = flight.duration.replace("PT", "");
+        durStr = durStr.replace("H", "h ").replace("M", "m");
+
+        // Format dates
+        const depTime = new Date(flight.departure_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        const arrTime = new Date(flight.arrival_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+        const priceText = flight.price ? `$${flight.price}` : "Check prices";
+
+        const card = document.createElement("div");
+        card.style = "background:#fff; border-radius:10px; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 10px rgba(0,0,0,0.06); flex-wrap:wrap; gap:15px;";
+        card.innerHTML = `
+          <div style="display:flex; align-items:center; gap:20px; min-width: 250px;">
+            <div style="background:#f0f3fa; padding:10px 15px; border-radius:8px; text-align:center;">
+              <i class="fa-solid fa-plane" style="color:#1a2b6b; font-size:20px;"></i>
+              <p style="font-size:11px; color:#777; margin-top:4px;">${flight.airline}</p>
+            </div>
+            <div>
+              <h4 style="color:#1a2b6b; font-size:15px;">${origin} → ${dest}</h4>
+              <p style="color:#777; font-size:13px;"><i class="fa-solid fa-clock" style="color:#4a90d9;"></i> ${durStr} &nbsp; ${flight.stops}</p>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <p style="color:#777; font-size:13px;">Departure</p>
+            <h4 style="color:#1a2b6b;">${depTime}</h4>
+          </div>
+          <div style="text-align:center;">
+            <p style="color:#777; font-size:13px;">Arrival</p>
+            <h4 style="color:#1a2b6b;">${arrTime}</h4>
+          </div>
+          <div style="text-align:right;">
+            <h3 style="color:#1a2b6b; font-size:22px; font-weight:700;">${priceText} ${flight.currency}</h3>
+            <p style="color:#777; font-size:12px;">total price</p>
+            <button class="btn-register" style="margin-top:8px; padding:8px 18px; font-size:13px;" onclick="alert('Flight booking integration coming soon!')">Book Now</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    } else {
+      container.innerHTML = "<p style='text-align:center; padding: 20px;'>No flights found for this route. Try different IATA codes or dates (e.g. LHR to JFK).</p>";
+    }
+  } catch (error) {
+    console.error("Error fetching live flights:", error);
+    loading.style.display = "none";
+    container.innerHTML = "<p style='text-align:center; padding: 20px;'>Error loading live flight data. Please try again later.</p>";
+  }
+}
