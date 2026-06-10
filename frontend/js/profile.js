@@ -108,32 +108,69 @@ async function loadProfileBookings() {
   }
 }
 
-window.cancelProfileBooking = async function(id) {
-  const reason = prompt("Please provide a reason for cancelling this booking:");
-  if (reason === null) return; // User cancelled the prompt
-  if (reason.trim() === "") {
-    alert("Cancellation reason is required.");
-    return;
-  }
+window.cancelProfileBooking = function(id) {
+  // Create modal overlay
+  const overlay = document.createElement("div");
+  overlay.className = "gt-overlay active";
+  overlay.style.zIndex = "999999";
+  
+  overlay.innerHTML = `
+    <div class="gt-modal" style="max-width: 400px; padding: 24px; border-radius: 12px; background: white; margin: auto; margin-top: 15vh; position: relative;">
+      <h3 style="font-size: 18px; color: #1a2b6b; font-weight: bold; margin-bottom: 12px;">Cancel Booking</h3>
+      <p style="font-size: 14px; color: #555; margin-bottom: 16px;">Please provide a reason for cancelling this booking:</p>
+      <input type="text" id="cancel-reason-input" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-[#1a2b6b]" style="width: 100%; margin-bottom: 20px;" placeholder="Type your reason..." />
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button id="cancel-modal-close" style="padding: 8px 16px; border-radius: 6px; background: #f3f4f6; color: #374151; font-weight: 500; transition: background 0.2s;">Go Back</button>
+        <button id="cancel-modal-confirm" style="padding: 8px 16px; border-radius: 6px; background: #ef4444; color: white; font-weight: 500; transition: background 0.2s;">Confirm Cancel</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  
+  setTimeout(() => {
+    document.getElementById("cancel-reason-input").focus();
+  }, 100);
 
-  try {
-    const res = await fetch(`${window.ELITE_API_URL || "https://travel-xyyl.onrender.com"}/api/bookings/${id}`, {
-      method: 'DELETE',
-      headers: { 
-        'Authorization': `Bearer ${getToken()}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ reason })
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.detail || "Failed to cancel");
+  document.getElementById("cancel-modal-close").onclick = () => {
+    document.body.removeChild(overlay);
+  };
+
+  document.getElementById("cancel-modal-confirm").onclick = async () => {
+    const reason = document.getElementById("cancel-reason-input").value;
+    if (reason.trim() === "") {
+      alert("Cancellation reason is required.");
+      return;
     }
-    alert("Booking cancelled successfully.");
-    loadProfileBookings(); // Reload the list
-  } catch (err) {
-    alert("Error: " + err.message);
-  }
+    
+    document.getElementById("cancel-modal-confirm").textContent = "Cancelling...";
+    document.getElementById("cancel-modal-confirm").disabled = true;
+
+    try {
+      const res = await fetch(`${window.ELITE_API_URL || "https://travel-xyyl.onrender.com"}/api/bookings/${id}`, {
+        method: 'DELETE',
+        headers: { 
+          'Authorization': `Bearer ${getToken()}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ reason })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.detail || "Failed to cancel");
+      }
+      if (typeof showToast !== 'undefined') {
+        showToast("Booking cancelled successfully.");
+      } else {
+        alert("Booking cancelled successfully.");
+      }
+      document.body.removeChild(overlay);
+      loadProfileBookings(); // Reload the list
+    } catch (err) {
+      alert("Error: " + err.message);
+      document.getElementById("cancel-modal-confirm").textContent = "Confirm Cancel";
+      document.getElementById("cancel-modal-confirm").disabled = false;
+    }
+  };
 }
 
 async function initProfile() {
