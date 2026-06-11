@@ -1084,48 +1084,65 @@ async function fetchLiveHotels(query = "Bali") {
   const loading = document.getElementById("live-hotels-loading");
   if (!grid || !loading) return;
 
+  const renderHotels = (hotelData, isDummy = false) => {
+    loading.style.display = "none";
+    grid.style.display = "grid";
+    grid.innerHTML = "";
+
+    hotelData.forEach(hotel => {
+      const priceText = hotel.price ? `From ${Math.round(hotel.price)} ${hotel.currency || 'USD'}/night` : "Check prices";
+      const ratingHtml = hotel.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${hotel.rating}` : "New";
+      const imgUrl = hotel.image || "images/hotel/pexels-vince-9156837.jpg";
+
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${imgUrl}" alt="${hotel.name}" onerror="this.style.display='none'" />
+        <div class="card-body">
+          <span class="badge ${isDummy ? 'gray' : 'blue'}">${isDummy ? 'Example Rate' : 'Live Rate'}</span>
+          <h3>${hotel.name}</h3>
+          <p>${ratingHtml} · ${hotel.reviews || 0} reviews</p>
+          <p class="price">${priceText}</p>
+        </div>
+      `;
+      // Wire up the card to the details modal
+      card.addEventListener("click", () => {
+         openBookingDetail({
+             name: hotel.name,
+             price: Math.round(hotel.price) || 250,
+             badge: hotel.rating ? "⭐ " + hotel.rating : "Top Rated",
+             img: imgUrl
+         }, "HOTEL");
+      });
+      grid.appendChild(card);
+    });
+  };
+
+  const dummyData = [
+    { name: "Grand Sunset Resort " + query, price: 320, rating: 4.8, reviews: 145, image: "images/hotel/pexels-pixabay-261395.jpg", currency: "USD" },
+    { name: "Oceanview Paradise " + query, price: 450, rating: 4.9, reviews: 312, image: "images/hotel/pexels-yunus-emre-yazici-yazici-2161314230-37740114.jpg", currency: "USD" },
+    { name: "City Center Inn " + query, price: 150, rating: 4.2, reviews: 89, image: "images/hotel/pexels-denis-mustafaev-143461191-33791950.jpg", currency: "USD" },
+    { name: "Mountain Retreat " + query, price: 210, rating: 4.5, reviews: 204, image: "images/hotel/pexels-aysegul-aytoren-46790226-35386185.jpg", currency: "USD" }
+  ];
+
   try {
-    const res = await fetch(`${API}/hotels?query=${encodeURIComponent(query)}`);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    const res = await fetch(`${API}/hotels?query=${encodeURIComponent(query)}`, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    
     const data = await res.json();
 
     if (data.status === "success" && data.data && data.data.length > 0) {
-      loading.style.display = "none";
-      grid.style.display = "grid";
-      grid.innerHTML = "";
-
-      data.data.forEach(hotel => {
-        const priceText = hotel.price ? `From ${Math.round(hotel.price)} ${hotel.currency}/night` : "Check prices";
-        const ratingHtml = hotel.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${hotel.rating}` : "New";
-        const imgUrl = hotel.image || "images/hotel/pexels-vince-9156837.jpg";
-
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${imgUrl}" alt="${hotel.name}" onerror="this.style.display='none'" />
-          <div class="card-body">
-            <span class="badge blue">Live Rate</span>
-            <h3>${hotel.name}</h3>
-            <p>${ratingHtml} · ${hotel.reviews} reviews</p>
-            <p class="price">${priceText}</p>
-          </div>
-        `;
-        // Wire up the card to the details modal
-        card.addEventListener("click", () => {
-           openBookingDetail({
-               name: hotel.name,
-               price: Math.round(hotel.price) || 250,
-               badge: hotel.rating ? "⭐ " + hotel.rating : "Top Rated",
-               img: imgUrl
-           }, "HOTEL");
-        });
-        grid.appendChild(card);
-      });
+      renderHotels(data.data, false);
     } else {
-      loading.innerHTML = "<p>No hotels found for this destination at the moment.</p>";
+      console.warn("No hotels found, showing dummy data.");
+      renderHotels(dummyData, true);
     }
   } catch (error) {
-    console.error("Error fetching live hotels:", error);
-    loading.innerHTML = "<p>Error loading live hotel data. Please try again later.</p>";
+    console.warn("Error fetching live hotels, showing dummy data:", error);
+    renderHotels(dummyData, true);
   }
 }
 
