@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard - GoTrip</title>
+  <title>Admin System Overview - GoTrip</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -49,7 +49,7 @@
   </div>
   <nav class="mt-6 flex flex-col gap-2 px-4">
     <a href="#" onclick="switchAdminTab('dashboard', this); return false;" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
-      <i class="fa-solid fa-house w-5"></i> Dashboard
+      <i class="fa-solid fa-house w-5"></i> System Overview
     </a>
     <a href="#" onclick="switchAdminTab('bookings', this); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium">
       <i class="fa-solid fa-calendar-check w-5"></i> Bookings
@@ -84,7 +84,7 @@
       <button class="md:hidden text-gray-500 hover:text-white">
         <i class="fa-solid fa-bars text-xl"></i>
       </button>
-      <h1 class="text-xl font-semibold text-white">Admin Dashboard</h1>
+      <h1 class="text-xl font-semibold text-white">System Overview</h1>
     </div>
     <div class="flex items-center gap-6">
       <button class="text-gray-400 hover:text-white relative">
@@ -183,36 +183,37 @@
       </div>
     </div>
 
-    <!-- BOOKINGS TABLE -->
-    <div class="bg-[#111] rounded-xl shadow-sm border border-white/5 overflow-hidden">
-      <div class="px-6 py-5 border-b border-white/5 flex justify-between items-center bg-[#111]">
-        <h2 class="text-lg font-semibold text-white">Recent Bookings</h2>
-        <div class="flex gap-2">
-          <input type="text" placeholder="Search bookings..." class="text-sm bg-[#1a1a1a] text-white border border-white/10 rounded-md px-3 py-1.5 focus:outline-none focus:border-yellow-400" />
-          <button class="bg-[#1a1a1a] hover:bg-[#222] text-gray-300 px-3 py-1.5 rounded-md text-sm font-medium transition-colors border border-white/10">
-            <i class="fa-solid fa-filter mr-1"></i> Filter
-          </button>
+    <!-- BOOKINGS VIEW -->
+    <div id="view-bookings" class="admin-view hidden">
+      <!-- BOOKINGS TABLE -->
+      <div class="bg-[#111] rounded-xl shadow-sm border border-white/5 overflow-hidden">
+        <div class="px-6 py-5 border-b border-white/5 flex justify-between items-center bg-[#111]">
+          <h2 class="text-lg font-semibold text-white">Recent Bookings</h2>
+          <div class="flex gap-2">
+            <input type="text" placeholder="Search bookings..." class="text-sm bg-[#1a1a1a] text-white border border-white/10 rounded-md px-3 py-1.5 focus:outline-none focus:border-yellow-400" />
+            <button class="bg-[#1a1a1a] hover:bg-[#222] text-gray-300 px-3 py-1.5 rounded-md text-sm font-medium transition-colors border border-white/10">
+              <i class="fa-solid fa-filter mr-1"></i> Filter
+            </button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-[#0a0a0a] text-gray-400 text-xs uppercase tracking-wider border-b border-white/5">
+                <th class="px-6 py-4 font-medium">Booking ID</th>
+                <th class="px-6 py-4 font-medium">Customer</th>
+                <th class="px-6 py-4 font-medium">Item</th>
+                <th class="px-6 py-4 font-medium">Date</th>
+                <th class="px-6 py-4 font-medium">Status</th>
+                <th class="px-6 py-4 font-medium text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm text-gray-700 divide-y divide-gray-100" id="admin-bookings-table">
+              <!-- Bookings will be dynamically injected here -->
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="bg-[#0a0a0a] text-gray-400 text-xs uppercase tracking-wider border-b border-white/5">
-              <th class="px-6 py-4 font-medium">Booking ID</th>
-              <th class="px-6 py-4 font-medium">Customer</th>
-              <th class="px-6 py-4 font-medium">Item</th>
-              <th class="px-6 py-4 font-medium">Date</th>
-              <th class="px-6 py-4 font-medium">Status</th>
-              <th class="px-6 py-4 font-medium text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody class="text-sm text-gray-700 divide-y divide-gray-100" id="admin-bookings-table">
-            <!-- Bookings will be dynamically injected here -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-
     </div>
     
     <!-- CUSTOMERS VIEW -->

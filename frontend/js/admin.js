@@ -186,6 +186,22 @@ window.switchAdminTab = function(tabId, element) {
         document.getElementById('view-dashboard').classList.remove('hidden');
     }
     
+    // Update header title dynamically
+    const headerTitle = document.querySelector('header h1');
+    if (headerTitle) {
+        if (tabId === 'dashboard') {
+            headerTitle.textContent = 'System Overview';
+        } else if (tabId === 'bookings') {
+            headerTitle.textContent = 'Bookings';
+        } else if (tabId === 'customers') {
+            headerTitle.textContent = 'Customers';
+        } else if (tabId === 'feedback') {
+            headerTitle.textContent = 'Reviews & Feedback';
+        } else if (tabId === 'support') {
+            headerTitle.textContent = 'Support Inbox';
+        }
+    }
+    
     // Add active class to clicked link
     if (element) {
         element.classList.add('active');
