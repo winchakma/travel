@@ -177,7 +177,7 @@ async def demote_user(email: str, token: str):
 @router.get("/bookings")
 async def list_bookings(token: str):
     await get_current_admin_or_trainer(token)
-    all_bookings = await Booking.find().sort("-createdAt").to_list()
+    all_bookings = await Booking.find().sort("-created_at").to_list()
     return all_bookings
 
 @router.delete("/bookings/{id}")
