@@ -1447,6 +1447,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const query = urlParams.get('query') || 'Paris';
     fetchLiveTours(query);
   }
+
+  if (document.getElementById("live-cruises-grid")) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query') || 'Miami';
+    fetchLiveCruises(query);
+
+    const cruiseSearchBtn = document.getElementById("cruise-search-btn");
+    const cruiseSearchInput = document.getElementById("cruise-search-input");
+    if (cruiseSearchBtn && cruiseSearchInput) {
+      cruiseSearchBtn.addEventListener("click", () => {
+        const query = cruiseSearchInput.value.trim();
+        if (!query) return;
+        fetchLiveCruises(query);
+      });
+      cruiseSearchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          cruiseSearchBtn.click();
+        }
+      });
+    }
+  }
 });
 
 // --- LIVE TOURS FETCH ---
@@ -1646,6 +1667,60 @@ async function fetchPublicReviews() {
   } catch (error) {
     console.error("Error fetching reviews:", error);
     container.innerHTML = `<p class="text-red-500 text-center p-8">Unable to load reviews at this time.</p>`;
+  }
+}
+
+// --- LIVE CRUISES FETCH ---
+async function fetchLiveCruises(query = "Miami") {
+  const grid = document.getElementById("live-cruises-grid");
+  const loading = document.getElementById("live-cruises-loading");
+  if (!grid || !loading) return;
+
+  try {
+    loading.style.display = "block";
+    grid.innerHTML = "";
+    const res = await fetch(`${API}/cruises?query=${encodeURIComponent(query)}`);
+    const data = await res.json();
+
+    if (data.status === "success" && data.data && data.data.length > 0) {
+      loading.style.display = "none";
+      grid.style.display = "grid";
+
+      data.data.forEach(cruise => {
+        const priceText = cruise.price ? `From $${Math.round(cruise.price)}` : "Check prices";
+        const ratingHtml = cruise.rating ? `<i class="fa-solid fa-star" style="color:#f5c518;"></i> ${cruise.rating}` : "New";
+        const imgUrl = cruise.image || "images/Cruise/pexels-enrique72-33336580.jpg";
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${imgUrl}" alt="${cruise.name}" onerror="this.style.display='none'" />
+          <div class="card-body">
+            <span class="badge">Cruise</span>
+            <h3>${cruise.name}</h3>
+            <p>${ratingHtml} · ${cruise.reviews} reviews</p>
+            <p class="price">${priceText}</p>
+          </div>
+        `;
+        // Wire up the card to the details modal
+        card.addEventListener("click", () => {
+           openBookingDetail({
+               name: cruise.name,
+               price: Math.round(cruise.price) || 500,
+               badge: cruise.rating ? "⭐ " + cruise.rating : "Top Rated",
+               img: imgUrl
+           }, "CRUISE");
+        });
+        grid.appendChild(card);
+      });
+    } else {
+      loading.style.display = "block";
+      loading.innerHTML = "<p>No cruises found for this destination at the moment.</p>";
+    }
+  } catch (error) {
+    console.error("Error fetching live cruises:", error);
+    loading.style.display = "block";
+    loading.innerHTML = "<p>Error loading cruises. Please try again later.</p>";
   }
 }
 

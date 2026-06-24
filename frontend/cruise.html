@@ -55,7 +55,7 @@
   <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-tight">Find The Best Cruise For You</h1>
   <p>Explore the world's most beautiful seas and destinations</p>
   <div class="search-bar">
-    <input type="text" placeholder="Where do you want to sail?" />
+    <input type="text" id="cruise-search-input" placeholder="Where do you want to sail?" />
     <input type="date" />
     <select>
       <option>1 Guest</option>
@@ -68,7 +68,7 @@
       <option>7 Days</option>
       <option>14+ Days</option>
     </select>
-    <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+    <button id="cruise-search-btn" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
   </div>
 </section>
 
@@ -116,7 +116,10 @@
     <h2>Featured Cruise Deals</h2>
     <a href="cruise.html">View All →</a>
   </div>
-  <div class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" data-filter-list="cruises">
+  <div id="live-cruises-loading" style="display:none; text-align:center; padding: 40px; color:#888; width: 100%;">
+    <p>Searching for cruises...</p>
+  </div>
+  <div id="live-cruises-grid" class="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" data-filter-list="cruises">
     <div class="card" data-category="caribbean">
       <img src="images/Cruise/pexels-enrique72-33336580.jpg" />
       <div class="card-body">

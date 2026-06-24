@@ -229,8 +229,12 @@ window.fetchCustomers = async function() {
                 : `<span class="px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">User</span>`;
                 
             const actionBtn = u.role === 'admin' 
-                ? `<button disabled class="text-gray-300 cursor-not-allowed" title="Already Admin"><i class="fa-solid fa-shield-halved"></i></button>`
-                : `<button class="text-blue-500 hover:text-blue-700 font-medium" onclick="promoteToAdmin('${u.email}')" title="Promote to Admin"><i class="fa-solid fa-arrow-up"></i> Make Admin</button>`;
+                ? `<button disabled class="text-gray-300 cursor-not-allowed mr-2" title="Already Admin"><i class="fa-solid fa-shield-halved"></i></button>`
+                : `<button class="text-blue-500 hover:text-blue-700 font-medium mr-2" onclick="promoteToAdmin('${u.email}')" title="Promote to Admin"><i class="fa-solid fa-arrow-up"></i> Make Admin</button>`;
+
+            const deleteBtn = u.role === 'super_admin'
+                ? ''
+                : `<button class="text-red-500 hover:text-red-700 ml-2" onclick="deleteUser('${u.email}')" title="Purge User"><i class="fa-solid fa-trash"></i></button>`;
 
             const rowHTML = `
                 <tr class="admin-table-row">
@@ -238,7 +242,7 @@ window.fetchCustomers = async function() {
                   <td class="px-6 py-4">${u.email}</td>
                   <td class="px-6 py-4">${roleBadge}</td>
                   <td class="px-6 py-4">${u.created_at ? new Date(u.created_at).toLocaleDateString() : 'N/A'}</td>
-                  <td class="px-6 py-4 text-right">${actionBtn}</td>
+                  <td class="px-6 py-4 text-right">${actionBtn}${deleteBtn}</td>
                 </tr>
             `;
             tableBody.insertAdjacentHTML('beforeend', rowHTML);
@@ -493,7 +497,57 @@ window.togglePublishFeedback = async function(id, isPublished) {
 
 window.logout = function(event) {
     if (event) event.preventDefault();
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem("gotrip_token");
+    localStorage.removeItem("gotrip_user");
     window.location.href = "index.html";
+};
+
+window.deleteUser = function(email) {
+    const overlay = document.createElement("div");
+    overlay.className = "gt-overlay active";
+    overlay.style.zIndex = "999999";
+    
+    overlay.innerHTML = `
+      <div style="background: rgba(0,0,0,0.5); position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 24px; border-radius: 12px; max-width: 400px; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+          <h3 style="font-size: 18px; color: #1a2b6b; font-weight: bold; margin-bottom: 12px;">Delete User?</h3>
+          <p style="font-size: 14px; color: #555; margin-bottom: 24px;">Are you sure you want to permanently delete user <strong>${email}</strong> and all their bookings, orders, and logs?</p>
+          <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button id="admin-user-delete-cancel" style="padding: 8px 16px; border-radius: 6px; background: #f3f4f6; color: #374151; font-weight: 500; cursor: pointer; border: none;">Cancel</button>
+            <button id="admin-user-delete-confirm" style="padding: 8px 16px; border-radius: 6px; background: #ef4444; color: white; font-weight: 500; cursor: pointer; border: none;">Delete</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(overlay);
+
+    document.getElementById("admin-user-delete-cancel").onclick = () => {
+        document.body.removeChild(overlay);
+    };
+
+    document.getElementById("admin-user-delete-confirm").onclick = async () => {
+        const btn = document.getElementById("admin-user-delete-confirm");
+        btn.textContent = "Deleting...";
+        btn.disabled = true;
+        
+        const token = getToken();
+        try {
+            const res = await fetch(`${API}/admin/users/${encodeURIComponent(email)}?token=${encodeURIComponent(token)}`, {
+                method: 'DELETE'
+            });
+            if (res.ok) {
+                document.body.removeChild(overlay);
+                showCustomAlert("Success", `User ${email} and all associated records purged successfully.`, "success");
+                fetchCustomers(); // reload table
+            } else {
+                const errData = await res.json().catch(() => ({}));
+                throw new Error(errData.detail || "Failed to delete user.");
+            }
+        } catch (err) {
+            console.error(err);
+            document.body.removeChild(overlay);
+            showCustomAlert("Error", err.message, "error");
+        }
+    };
 };

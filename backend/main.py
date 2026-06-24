@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # Ensure .env is loaded from the correct path
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
 
-from app.routes import auth, profile, bookings, community, chat, admin, store, public, support, support_ws, hotels, flights, rentals, tours, activities
+from app.routes import auth, profile, bookings, community, chat, admin, store, public, support, support_ws, hotels, flights, rentals, tours, activities, cruise
 from app.database import init_db
 
 @contextlib.asynccontextmanager
@@ -151,6 +151,7 @@ app.include_router(hotels.router, prefix="/api/hotels", tags=["Hotels"])
 app.include_router(flights.router, prefix="/api/flights", tags=["Flights"])
 app.include_router(rentals.router, prefix="/api/rentals", tags=["Rentals"])
 app.include_router(tours.router, prefix="/api/tours", tags=["Tours"])
+app.include_router(cruise.router, prefix="/api/cruises", tags=["Cruises"])
 @app.get("/")
 def read_root():
     return {"status": "Travel Backend Online", "version": "1.0.0"}

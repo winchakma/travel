@@ -161,6 +161,19 @@ async def promote_user(email: str, token: str):
     await target.save()
     return {"message": f"User {email} promoted to Admin."}
 
+@router.post("/demote")
+async def demote_user(email: str, token: str):
+    await get_super_admin(token)
+    email_clean = email.strip().lower()
+    target = await User.find_one(User.email == email_clean)
+    if not target:
+        raise HTTPException(status_code=404, detail="User not found")
+    if target.role == "super_admin":
+        raise HTTPException(status_code=403, detail="Cannot demote Super Admin")
+    target.role = "member"
+    await target.save()
+    return {"message": f"User {email} demoted to Member."}
+
 @router.get("/bookings")
 async def list_bookings(token: str):
     await get_current_admin_or_trainer(token)

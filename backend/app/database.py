@@ -36,11 +36,11 @@ async def init_db():
         await init_beanie(
             database=client[db_name],
             document_models=[
-                User, AttendanceLog, Booking, Activity, Order, ClassSchedule, Notification, Video, UserFeedback, MentorshipRequest, SupportMessage, 
+                User, Booking, Activity, Order, Notification, UserFeedback, SupportMessage, 
                 SupportSession, SupportChatMessage,
                 CommunityPost, CommunityChat, PrivateMessage, SocialLink, Story, SocialProfile,
                 CommunityForumTopic, CommunityEvent, MemberSpotlight,
-                Review, Transformation
+                Review
             ]
         )
 
