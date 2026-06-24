@@ -33,6 +33,19 @@ async def init_db():
         # Force-override the attribute to bypass Motor's dynamic __getattr__.
         client.append_metadata = lambda x: None
             
+        # Clean up legacy/invalid bookings from the bookings collection (raw MongoDB query)
+        db = client[db_name]
+        try:
+            raw_result = await db["bookings"].delete_many({
+                "$or": [
+                    {"user_email": {"$exists": False}},
+                    {"type": {"$exists": False}}
+                ]
+            })
+            print(f"Purged {raw_result.deleted_count} legacy/invalid bookings.", flush=True)
+        except Exception as err:
+            print(f"Raw bookings purge warning: {err}", flush=True)
+            
         await init_beanie(
             database=client[db_name],
             document_models=[
