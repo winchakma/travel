@@ -60,7 +60,7 @@
     <a href="#" onclick="switchAdminTab('feedback', this); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
       <i class="fa-regular fa-comment-dots w-5"></i> Reviews & Feedback
     </a>
-    <a href="#" onclick="switchAdminTab('support', this); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium relative">
+    <a href="#" id="sidebar-support-link" onclick="switchAdminTab('support', this); return false;" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-md text-sm font-medium relative">
       <i class="fa-solid fa-headset w-5"></i> Support Inbox
       <span id="support-unread-badge" class="hidden absolute top-3 right-4 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">!</span>
     </a>
@@ -87,9 +87,9 @@
       <h1 class="text-xl font-semibold text-white">System Overview</h1>
     </div>
     <div class="flex items-center gap-6">
-      <button class="text-gray-400 hover:text-white relative">
+      <button onclick="switchAdminTab('support', document.getElementById('sidebar-support-link'));" class="text-gray-400 hover:text-white relative" title="Support Messages">
         <i class="fa-regular fa-envelope text-xl"></i>
-        <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">5</span>
+        <span id="header-notification-badge" class="hidden absolute -top-1 -right-1 bg-blue-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
       </button>
       <div class="flex items-center gap-3 cursor-pointer">
         <img src="https://ui-avatars.com/api/?name=Sarah+Connor&background=3b82f6&color=fff" alt="User Profile" class="w-9 h-9 rounded-full shadow-sm" />

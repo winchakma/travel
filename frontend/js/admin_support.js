@@ -145,6 +145,7 @@ function renderAdminSessions(sessions) {
     const listEl = document.getElementById('admin-support-sessions');
     if (sessions.length === 0) {
         listEl.innerHTML = '<div class="p-6 text-center text-[#555] text-xs italic font-bold">No active support threads</div>';
+        updateHeaderNotificationBadge(0);
         return;
     }
 
@@ -157,6 +158,8 @@ function renderAdminSessions(sessions) {
             <div class="text-[10px] text-[#888] truncate">${session.userEmail}</div>
         </div>
     `).join('');
+    
+    updateHeaderNotificationBadge(sessions.length);
 }
 
 window.loadSupportSession = function(sessionId, userName) {
@@ -228,5 +231,17 @@ function sendAdminReply() {
             content: content
         }));
         input.value = '';
+    }
+}
+
+function updateHeaderNotificationBadge(count) {
+    const badge = document.getElementById('header-notification-badge');
+    if (!badge) return;
+    if (count > 0) {
+        badge.textContent = count;
+        badge.classList.remove('hidden');
+    } else {
+        badge.textContent = '0';
+        badge.classList.add('hidden');
     }
 }
